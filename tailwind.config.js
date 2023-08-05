@@ -28,10 +28,12 @@ module.exports = {
         secondary: "#130F61",
         tertiary: "#E8EAF5"
       },
-      fontFamily: {
-        'inter': ['Inter']
-      },
+      // fontFamily: {
+      //   'inter': ['Inter']
+      // },
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-fontawesome')
+  ],
 };

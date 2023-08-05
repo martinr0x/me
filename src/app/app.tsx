@@ -2,35 +2,18 @@
 import { RefObject, useEffect, useMemo, useRef, useState } from 'react';
 import Stepper from './stepper';
 import { backgroundSteps, workExpierenceSteps } from './background';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChessBoard } from '@fortawesome/free-solid-svg-icons';
+import {
+  faGithub,
+  faLinkedin,
+  faMeta,
+} from '@fortawesome/free-brands-svg-icons';
 
-function useOnScreen(ref: RefObject<HTMLElement>) {
-  const [isIntersecting, setIntersecting] = useState(false);
-
-  const observer = useMemo(
-    () =>
-      new IntersectionObserver(([entry]) =>
-        setIntersecting(entry.isIntersecting)
-      ),
-    [ref]
-  );
-
-  useEffect(() => {
-    if (!ref?.current) return;
-    observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
-
-  return isIntersecting;
-}
 export function App() {
   const refWorkExpierence = useRef<HTMLDivElement>(null);
   const refBackground = useRef<HTMLDivElement>(null);
 
-  const [background, setBackground] = useState(false);
-  const toggleBackground = () => {
-    setBackground(!background);
-  };
-  const isVisible = (ref: RefObject<HTMLElement>) => useOnScreen(ref);
   const scroll = (ref: any) => (e: any) => {
     e.preventDefault();
     e.stopPropagation();
@@ -59,17 +42,39 @@ export function App() {
             <div className="flex-initial w-80 h-80">
               <img className="" src="portrait-martin.jpg"></img>
             </div>
+
             <div className="pl-8 flex-1">
-              <div className="text-neutral-900 text-6xl font-semibold font-inter leading-[48px]">
-                Hi there, I’m Martin.
+              <div className="flex flex-row justify-start">
+                <div className="w-[50%] typewriter text-neutral-900 text-6xl font-semibold font-inter leading-[48px]">
+                  Hi there,
+                </div>
               </div>
-              <div className="pt-4 font-normal text-base font-inter">
+              <div className="flex flex-row justify-start">
+                <div className="typewriter2 text-neutral-900 text-6xl font-semibold font-inter leading-[48px]">
+                  I'm <span>Martin</span>.
+                </div>
+              </div>
+              <div className="pt-4 pb-3 font-normal text-base font-inter leading-6 text-intro ">
                 I'm all about exploring the wonders of technology, especially
                 when it comes to IT security. Keeping data safe and secure is my
                 top priority, and I'm excited to share the latest insights with
                 you. Distributed computing also fuels my curiosity. I love
                 delving into the world of parallel processing and making the
                 most out of interconnected systems.
+              </div>
+              <div className="">
+                <a href="https://www.linkedin.com/in/martinbogusz/">
+                  <FontAwesomeIcon
+                    className="text-4xl pr-3 text-primary hover:text-indigo-700"
+                    icon={faLinkedin}
+                  ></FontAwesomeIcon>
+                </a>
+                <a href="https://github.com/martinr0x">
+                  <FontAwesomeIcon
+                    className="text-4xl pr-3 text-primary hover:text-indigo-700"
+                    icon={faGithub}
+                  ></FontAwesomeIcon>
+                </a>
               </div>
             </div>
           </div>
@@ -80,7 +85,7 @@ export function App() {
         <div className="max-w-screen-md flex flex-col justify-center font-inter">
           <Stepper
             left={true}
-            checked={background}
+            checked={false}
             onToggle={scroll(refWorkExpierence)}
             topRef={refBackground}
             title={'Background'}
@@ -97,7 +102,6 @@ export function App() {
             topRef={refWorkExpierence}
             title={'Work Expierence'}
             steps={workExpierenceSteps}
-
           />
         </div>
       </div>

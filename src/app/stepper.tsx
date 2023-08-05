@@ -1,24 +1,6 @@
-import { RefObject, useEffect, useMemo, useRef, useState } from 'react';
+import { useRef } from 'react';
 
-function useOnScreen(ref: RefObject<HTMLElement>) {
-  const [isIntersecting, setIntersecting] = useState(false);
 
-  const observer = useMemo(
-    () =>
-      new IntersectionObserver(([entry]) =>
-        setIntersecting(entry.isIntersecting)
-      ),
-    [ref]
-  );
-
-  useEffect(() => {
-    if (!ref?.current) return;
-    observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
-
-  return isIntersecting;
-}
 export default function Stepper({
   left,
   checked,
@@ -27,8 +9,6 @@ export default function Stepper({
   title,
   steps,
 }: any) {
-  const ref = useRef<HTMLDivElement>(null);
-  const isVisible = useOnScreen(ref);
 
   return (
     <div ref={topRef}>
@@ -36,7 +16,6 @@ export default function Stepper({
         <div className="flex flex-row">
           <div
             className="text-neutral-900 text-5xl font-semibold leading-10 pb-10 flex"
-            ref={ref}
           >
             {title}
           </div>
@@ -54,8 +33,8 @@ export default function Stepper({
         </div>
 
         <div>
-          {steps.map((s: any) => (
-            <div
+          {steps.map((s: any, index: number) => (
+            <div key={index}
               className={
                 'flex ' + (left ? 'flex-row-reverse text-right' : null)
               }
