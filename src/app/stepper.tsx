@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+
 
 
 export default function Stepper({
@@ -9,6 +9,7 @@ export default function Stepper({
   title,
   steps,
 }: any) {
+
 
   return (
     <div ref={topRef}>
@@ -33,7 +34,7 @@ export default function Stepper({
         </div>
 
         <div>
-          {steps.map((s: any, index: number) => (
+          {steps.map((s: any, index:number) => (
             <div key={index}
               className={
                 'flex ' + (left ? 'flex-row-reverse text-right' : null)

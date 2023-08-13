@@ -19,8 +19,16 @@
   animation: hidden 2.2s step-end, typing 2.2s steps(40, end) 2.2s,
     blink-caret 0.75s step-end 2.2s 2;
 }
+
+
 .text-intro {
-  animation: invisible 4.2s step-end, fade-in 2.2s steps(40, end) 4.2s;
+  transition: all 1s;
+  
+  animation-name: invisible;
+  animation-delay: 4.2s;
+  animation-duration: 0.2s;
+  animation-fill-mode: backwards;
+  animation-timing-function: ease-out;
 }
 /* The typing effect */
 @keyframes typing {
@@ -38,9 +46,15 @@
   }
 }
 @keyframes invisible {
-  from,
-  to {
-    opacity: 0%;
+  0% {
+    transform: translateX(100%);
+    filter: blur(5px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    filter: blur(0);
+    opacity: 1;
   }
 }
 @keyframes fade-in {
@@ -62,4 +76,15 @@
   50% {
     border-color: rgb(0, 0, 0);
   }
+}
+
+.hidden-left {
+  opacity: 0;
+  transform: translateX(-100%);
+  filter: blur(10px);
+}
+.show {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateX(0);
 }
