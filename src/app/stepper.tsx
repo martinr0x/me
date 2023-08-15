@@ -13,7 +13,7 @@ export default function Stepper({
 
   return (
     <div ref={topRef}>
-      <div className={'transition delay-900 blur-none '}>
+      <div className={''}>
         <div className="flex flex-row">
           <div
             className="text-neutral-900 text-5xl font-semibold leading-10 pb-10 flex"
