@@ -25,7 +25,7 @@ function useOnScreen(ref: RefObject<HTMLElement>) {
     if (!ref?.current) return;
     observer.observe(ref.current);
     return () => observer.disconnect();
-  }, []);
+  }, [observer, ref]);
 
   return isIntersecting;
 }
@@ -33,7 +33,6 @@ function useOnScreen(ref: RefObject<HTMLElement>) {
 export function App() {
   const refWorkExpierence = useRef<HTMLDivElement>(null);
   const refBackground = useRef<HTMLDivElement>(null);
-  const ref = useRef<HTMLDivElement>(null);
 
   const isVisible = useOnScreen(refBackground);
   const isVisible2 = useOnScreen(refWorkExpierence);
@@ -157,15 +156,15 @@ export function App() {
           />
         </div>
       </div>
-      <div className="snap-start w-screen h-screen flex flex-row justify-center">
-        <div className={" flex flex-row justify-center font-inter overflow-scroll  w-screen"}>
+      <div className="snap-start w-screen h-screen justify-center flex flex-row">
+        
           <ScrollStepper
             left={false}
             checked={true}
             title={'Work Expierence'}
             steps={workExpierenceSteps}
           />
-        </div>
+        
       </div>
     </div>
   );
