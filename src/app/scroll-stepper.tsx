@@ -1,19 +1,18 @@
 import { useRef, useState } from 'react';
 
 export default function ScrollStepper({ steps, title, topRef }: any) {
-  const scale = 3;
+  const scale = 1;
   const scrollMax = 1000;
   const threshold = 25;
   const scrollTotal = scale * scrollMax;
   const step = scrollTotal / steps.length;
-  const itemsRef = useRef<Array<Element | null>>([]);
   const [pos, setPos] = useState(steps.map(() => scrollMax));
   const [activeIndex, setActiveIndex] = useState(-1);
 
   const calcPos = (scrollPos: number, index: number) => {
     const current = step * (index + 1);
 
-    let pos = (scrollTotal * (current - scrollPos)) / current;
+    let pos = (scrollTotal * (current - scrollPos) ) / current;
     const noScroll = step * (index + 2) - threshold;
 
     if (scrollPos >= noScroll) {
@@ -24,6 +23,7 @@ export default function ScrollStepper({ steps, title, topRef }: any) {
 
     return pos;
   };
+
   const getTranslation = (index: number, activeIndex: number) => {
     if (activeIndex === index) return 0;
     if (activeIndex - 1 === index) return -400;
@@ -36,18 +36,16 @@ export default function ScrollStepper({ steps, title, topRef }: any) {
     const npos = pos.map((_: unknown, i: number) => calcPos(scrollPos, i));
 
     setPos(npos);
-    setActiveIndex(pos.indexOf(0));
+    setActiveIndex(
+      pos
+        .map((x: number) => (x < threshold && x > -threshold ? 0 : x))
+        .indexOf(0)
+    );
   };
 
-  const line = (
-    <div className="pl-[81px] -mt-2 -mb-2 flex-grow z-0">
-      <div className="h-full border-l-2 border-gray"></div>
-    </div>
-  );
-
   return (
-    <div className="flex flex-col justify-center" ref={topRef}>
-      <div className="flex flex-row w-screen justify-center">
+    <div className="flex flex-col justify-center">
+      <div className="flex flex-row w-screen justify-center ">
         <div className="max-w-screen-md w-screen text-neutral-900 text-5xl font-semibold leading-10 pb-10">
           {title}
         </div>
@@ -58,18 +56,22 @@ export default function ScrollStepper({ steps, title, topRef }: any) {
         }
         onScroll={onScroll}
       >
-        <div className="max-w-screen-sm w-screen " >
+        <div className="h-[400vh] w-full max-w-screen-md border-r-2">
           {steps.map((s: any, index: number) => (
             <div
+              key={index}
               className={
-                'z-50 fixed top-1/3  left-[23%] duration-500 max-w-md ' +
-                (index == activeIndex ? 'text-black' : 'text-gray-600 blur-sm ')
+                'z-50 fixed top-[40%] duration-500 max-w-lg ' +
+                (index === activeIndex
+                  ? 'text-black'
+                  : 'text-gray-600 blur-sm ')
               }
               style={{
                 transform: `translateY(${getTranslation(
                   index,
                   activeIndex
                 )}px)`,
+                opacity: pos[index] > 300 || pos[index] < -300 ? 0 : 1,
               }}
             >
               <div className="text-xl font-semibold leading-7">{s.title}</div>
@@ -79,39 +81,63 @@ export default function ScrollStepper({ steps, title, topRef }: any) {
             </div>
           ))}
         </div>
-        <div className="h-[500vh] flex flex-col justify-between ">
-          {line}
+        <div className="">
           {steps.map((s: any, index: number) => (
-            <div className="flex">
-              <div
-                key={index}
-                ref={(el) => (itemsRef.current[index] = el)}
-                className={
-                  'z-50 fixed top-1/2' +
-                  (pos[index] === 0 ? '' : ' text-gray-500')
-                }
-                style={{ transform: `translateY(${pos[index]}px)` }}
-              >
-                <div className={'flex flex-row '}>
-                  <div>
-                    <div className="w-[56px] text-right text-blue-950 text-base font-medium leading-normal">
-                      {s.date}
-                    </div>
+            <div
+              key={index}
+              className={
+                '-ml-[114px] z-50 fixed top-1/2' +
+                (pos[index] === 0 ? '' : ' text-gray-500')
+              }
+              style={{
+                transform: `translateY(${pos[index]}px)`,
+                opacity: pos[index] > 300 || pos[index] < -300 ? 1 : 1,
+              }}
+            >
+              <div className={'flex flex-row'}>
+                <div className="flex flex-row group justify-between">
+                  <div
+                    className={
+                      'w-[40px] text-right text-base font-medium leading-normal duration-200 translate-x-[55px] ' +
+                      (index === activeIndex
+                        ? 'group-hover:-translate-x-0'
+                        : '')
+                    }
+                  >
+                    {s.dateFrom}
                   </div>
-                  <div className="pl-4 flex flex-col justify-center z-10">
-                    <div className="h-4 w-5 flex flex-row justify-center align-middle">
-                      <div
-                        className={
-                          'h-5 w-5 rounded-2xl  bg-indigo-700 hover:bg-indigo-500 ' +
-                          (pos[index] === 0 || 'bg-indigo-300 ')
-                        }
-                      ></div>
-                    </div>
+                  <div
+                    className={
+                      'pl-1 pr-1 invisible ' +
+                      (index === activeIndex
+                        ? 'group-hover:visible'
+                        : '')
+                    }
+                  >
+                    -
                   </div>
-                  <div className="pl-3">
-                    <div className="w-36 text-left text-blue-950 text-base font-medium leading-normal">
-                      {s.location}
-                    </div>
+                  <div
+                    className={
+                      `w-[40px] text-right text-base font-medium leading-normal invisible ` +
+                      (index === activeIndex ? 'group-hover:visible' : '')
+                    }
+                  >
+                    {s.dateTo}
+                  </div>
+                </div>
+                <div className="pl-3 flex flex-col justify-center z-10">
+                  <div className="h-3 w-3 flex flex-row justify-center align-middle">
+                    <div
+                      className={
+                        'h-3 w-3 rounded-2xl  bg-indigo-700 hover:bg-indigo-500 ' +
+                        (pos[index] === 0 || 'bg-indigo-300')
+                      }
+                    ></div>
+                  </div>
+                </div>
+                <div className="pl-3">
+                  <div className="w-36 text-left text-base font-medium leading-normal">
+                    {s.location}
                   </div>
                 </div>
               </div>
@@ -119,6 +145,7 @@ export default function ScrollStepper({ steps, title, topRef }: any) {
           ))}
         </div>
       </div>
+      <div className="h-20" ref={topRef}></div>
     </div>
   );
 }

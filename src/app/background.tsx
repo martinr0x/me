@@ -25,7 +25,9 @@ export const backgroundSteps = [
 export const workExpierenceSteps = [
   {
     title: 'Software Engineer @ Celonis',
-    date: '2022',
+    dateFrom: '2022',
+    dateTo: 'now',
+
     location: 'Munich, Germany',
     description: (
       <ul className="list-disc pl-5">
@@ -51,7 +53,8 @@ export const workExpierenceSteps = [
 
   {
     title: 'Student Software Engineer @ qbound',
-    date: '2020',
+    dateFrom: '2020',
+    dateTo: '2021',
     location: 'Munich, Germany',
     description: (
       <ul className="list-disc pl-5">
@@ -70,7 +73,27 @@ export const workExpierenceSteps = [
   },
   {
     title: 'Research Assistant @ Technical University Munich',
-    date: '2019',
+    dateFrom: '2019',
+    dateTo:'2020',
+    location: 'Munich, Germany',
+    description: (
+      <ul className="list-disc pl-5">
+        <li>
+          Designed and integrated parallel solutions for compute-intensive
+          simulation applications. Evaluated the resulting performance benefits
+          and scaling capabilities on a cluster of Many-Core CPUs.
+        </li>
+        <li>
+          Published the results in the 2020 IEEE/ACM 3rd Annual Parallel
+          Applications Workshop: Alternatives To MPI+X (PAW-ATM).
+        </li>
+      </ul>
+    ),
+  },
+  {
+    title: 'Student Software Engineer @ Oregano Systems',
+    dateFrom: '2019',
+    dateTo:'2020',
     location: 'Munich, Germany',
     description: (
       <ul className="list-disc pl-5">

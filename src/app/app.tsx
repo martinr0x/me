@@ -8,23 +8,21 @@ import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import ScrollStepper from './scroll-stepper';
 
 function useOnScreen(ref: RefObject<HTMLElement>) {
-  const [isIntersecting, setIntersecting] = useState(false);
 
-  const observer = useMemo(
-    () =>
-      new IntersectionObserver(([entry]) =>
-        setIntersecting(entry.isIntersecting)
-      ),
-    [ref]
-  );
+  const [isIntersecting, setIntersecting] = useState(false)
+
+  const observer = useMemo(() => new IntersectionObserver(
+    ([entry]) => setIntersecting(entry.isIntersecting)
+  ), [ref])
+
 
   useEffect(() => {
-    if (!ref?.current) return;
-    observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [observer, ref]);
+    if(ref.current)
+    observer.observe(ref.current)
+    return () => observer.disconnect()
+  }, [])
 
-  return isIntersecting;
+  return isIntersecting
 }
 
 export function App() {
@@ -45,7 +43,7 @@ export function App() {
       <div
         className={
           'w-screen fixed top-0 flex-row flex justify-end p-3 translate-x-1/2 blur-md transition-all duration-500 ' +
-          (!(isVisible || isVisible2) || 'translate-x-0 blur-0')
+          (isVisible2 ? 'show':'')
         }
       >
         <a href="https://www.linkedin.com/in/martinbogusz/">
