@@ -1,22 +1,21 @@
+import { Socket } from 'dgram';
 import { useRef, useState } from 'react';
 
 export default function ScrollStepper({ steps, title, topRef }: any) {
-  const scale = 1;
-  const scrollMax = 1000;
   const threshold = 25;
-  const scrollTotal = scale * scrollMax;
-  const step = scrollTotal / steps.length;
-  const [pos, setPos] = useState(steps.map(() => scrollMax));
+  const maxTranslatePos = 2000;
+  const [pos, setPos] = useState(steps.map(() => maxTranslatePos));
   const [activeIndex, setActiveIndex] = useState(-1);
 
-  const calcPos = (scrollPos: number, index: number) => {
+  const calcPos = (scrollMax:number, scrollPos: number, index: number) => {
+    const step = (scrollMax+threshold) / (steps.length+1);
     const current = step * (index + 1);
 
-    let pos = (scrollTotal * (current - scrollPos) ) / current;
+    let pos = (maxTranslatePos * (current - scrollPos) ) / current;
     const noScroll = step * (index + 2) - threshold;
 
     if (scrollPos >= noScroll) {
-      pos = (scrollTotal * (noScroll - scrollPos)) / current;
+      pos = (maxTranslatePos * (noScroll - scrollPos)) / current;
     } else {
       pos = Math.max(0, pos);
     }
@@ -31,9 +30,13 @@ export default function ScrollStepper({ steps, title, topRef }: any) {
     if (activeIndex + 1 === index) return 400;
     return 800;
   };
-  const onScroll = (e: { currentTarget: { scrollTop: number } }) => {
+  const onScroll = (e: { currentTarget: {
+    clientHeight: any;
+    scrollHeight: any; scrollTop: number 
+} }) => {
     const scrollPos = e.currentTarget.scrollTop;
-    const npos = pos.map((_: unknown, i: number) => calcPos(scrollPos, i));
+    const scrollMax=  e.currentTarget.scrollHeight - e.currentTarget.clientHeight;
+    const npos = pos.map((_: unknown, i: number) => calcPos(scrollMax,scrollPos, i));
 
     setPos(npos);
     setActiveIndex(
@@ -56,7 +59,7 @@ export default function ScrollStepper({ steps, title, topRef }: any) {
         }
         onScroll={onScroll}
       >
-        <div className="h-[400vh] w-full max-w-screen-md border-r-2">
+        <div className="h-[300vh] w-full max-w-screen-md border-r-2">
           {steps.map((s: any, index: number) => (
             <div
               key={index}
