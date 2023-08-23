@@ -1,5 +1,6 @@
 import { Socket } from 'dgram';
 import { useRef, useState } from 'react';
+import PrimaryButton from './components/atoms/button/primary';
 
 export default function ScrollStepper({ steps, title, topRef }: any) {
   const threshold = 25;
@@ -7,11 +8,11 @@ export default function ScrollStepper({ steps, title, topRef }: any) {
   const [pos, setPos] = useState(steps.map(() => maxTranslatePos));
   const [activeIndex, setActiveIndex] = useState(-1);
 
-  const calcPos = (scrollMax:number, scrollPos: number, index: number) => {
-    const step = (scrollMax+threshold) / (steps.length+1);
+  const calcPos = (scrollMax: number, scrollPos: number, index: number) => {
+    const step = (scrollMax + threshold) / (steps.length + 1);
     const current = step * (index + 1);
 
-    let pos = (maxTranslatePos * (current - scrollPos) ) / current;
+    let pos = (maxTranslatePos * (current - scrollPos)) / current;
     const noScroll = step * (index + 2) - threshold;
 
     if (scrollPos >= noScroll) {
@@ -30,13 +31,19 @@ export default function ScrollStepper({ steps, title, topRef }: any) {
     if (activeIndex + 1 === index) return 400;
     return 800;
   };
-  const onScroll = (e: { currentTarget: {
-    clientHeight: any;
-    scrollHeight: any; scrollTop: number 
-} }) => {
+  const onScroll = (e: {
+    currentTarget: {
+      clientHeight: any;
+      scrollHeight: any;
+      scrollTop: number;
+    };
+  }) => {
     const scrollPos = e.currentTarget.scrollTop;
-    const scrollMax=  e.currentTarget.scrollHeight - e.currentTarget.clientHeight;
-    const npos = pos.map((_: unknown, i: number) => calcPos(scrollMax,scrollPos, i));
+    const scrollMax =
+      e.currentTarget.scrollHeight - e.currentTarget.clientHeight;
+    const npos = pos.map((_: unknown, i: number) =>
+      calcPos(scrollMax, scrollPos, i)
+    );
 
     setPos(npos);
     setActiveIndex(
@@ -78,7 +85,8 @@ export default function ScrollStepper({ steps, title, topRef }: any) {
               }}
             >
               <div className="text-xl font-semibold leading-7">{s.title}</div>
-              <div className="pt-4 pb-8 font-normal text-base">
+              <div className='flex flex-row flex-wrap py-2'>{s.techstack.map(t => <PrimaryButton key={t}> {t}</PrimaryButton>)} </div>
+              <div className="py-2 font-normal text-base">
                 {s.description}
               </div>
             </div>
@@ -112,9 +120,7 @@ export default function ScrollStepper({ steps, title, topRef }: any) {
                   <div
                     className={
                       'pl-1 pr-1 invisible ' +
-                      (index === activeIndex
-                        ? 'group-hover:visible'
-                        : '')
+                      (index === activeIndex ? 'group-hover:visible' : '')
                     }
                   >
                     -

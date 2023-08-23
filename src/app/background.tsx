@@ -27,7 +27,16 @@ export const workExpierenceSteps = [
     title: 'Software Engineer @ Celonis',
     dateFrom: '2022',
     dateTo: 'now',
-
+    techstack: [
+      'Java',
+      'Spring',
+      'Postgres',
+      'Kubernetes',
+      'Datadog',
+      'ArgoCD',
+      'OAuth2',
+      'Microservices',
+    ],
     location: 'Munich, Germany',
     description: (
       <ul className="list-disc pl-5">
@@ -53,6 +62,16 @@ export const workExpierenceSteps = [
 
   {
     title: 'Student Software Engineer @ qbound',
+    techstack: [
+      'React',
+      'JavaScript',
+      'Redux',
+      'Node.js',
+      'MongoDB',
+      'GoLang',
+      'gRPC',
+    ],
+
     dateFrom: '2020',
     dateTo: '2021',
     location: 'Munich, Germany',
@@ -73,8 +92,19 @@ export const workExpierenceSteps = [
   },
   {
     title: 'Research Assistant @ Technical University Munich',
+    techstack: [
+      'C/C++',
+      'Python',
+      'Boost',
+      'MPI',
+      'HPX',
+      'Charm',
+      'MPP',
+      'OpenMP',
+    ],
+
     dateFrom: '2019',
-    dateTo:'2020',
+    dateTo: '2020',
     location: 'Munich, Germany',
     description: (
       <ul className="list-disc pl-5">
@@ -92,8 +122,10 @@ export const workExpierenceSteps = [
   },
   {
     title: 'Student Software Engineer @ Oregano Systems',
+    techstack: ['C/C++', 'JavaScript', 'PHP', 'Angular.js'],
+
     dateFrom: '2019',
-    dateTo:'2020',
+    dateTo: '2020',
     location: 'Munich, Germany',
     description: (
       <ul className="list-disc pl-5">
