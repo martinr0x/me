@@ -112,10 +112,10 @@ export default function ScrollStepper({ steps, title, topRef, visible }: any) {
                 <div className="flex flex-row group justify-between">
                   <div
                     className={
-                      'w-[40px] text-right text-base font-medium leading-normal translate-x-[55px] duration-200 ' +
+                      'w-[40px] text-right text-base font-medium leading-normal  duration-200 ' +
                       (index === activeIndex
                         ? '-translate-x-0'
-                        : '')
+                        : 'translate-x-[55px]')
                     }
                   >
                     {s.dateFrom}
