@@ -8,42 +8,41 @@ import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import ScrollStepper from './scroll-stepper';
 
 function useOnScreen(ref: RefObject<HTMLElement>) {
+  const [isIntersecting, setIntersecting] = useState(false);
 
-  const [isIntersecting, setIntersecting] = useState(false)
-
-  const observer = useMemo(() => new IntersectionObserver(
-    ([entry]) => setIntersecting(entry.isIntersecting)
-  ), [ref])
-
+  const observer = useMemo(
+    () =>
+      new IntersectionObserver(([entry]) =>
+        setIntersecting(entry.isIntersecting)
+      ),
+    [ref]
+  );
 
   useEffect(() => {
-    if(ref.current)
-    observer.observe(ref.current)
-    return () => observer.disconnect()
-  }, [])
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
 
-  return isIntersecting
+  return isIntersecting;
 }
 
 export function App() {
   const refWorkExpierence = useRef<HTMLDivElement>(null);
   const refBackground = useRef<HTMLDivElement>(null);
-
-  const isVisible = useOnScreen(refBackground);
-  const isVisible2 = useOnScreen(refWorkExpierence);
-
+  const isVisible = useOnScreen(refWorkExpierence);
+  
   const scroll = (ref: any) => (e: any) => {
     e.preventDefault();
     e.stopPropagation();
     ref.current?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
   };
-
+ 
   return (
-    <div className="w-screen h-screen snap-mandatory snap-y overflow-scroll">
+    <div className="w-screen h-screen snap-mandatory snap-y overflow-scroll" >
       <div
         className={
           'w-screen fixed top-0 flex-row flex justify-end p-3 translate-x-1/2 blur-md transition-all duration-500 ' +
-          (isVisible2 ? 'show':'')
+          (isVisible ? 'show' : '')
         }
       >
         <a href="https://www.linkedin.com/in/martinbogusz/">
@@ -73,7 +72,6 @@ export function App() {
             </div>
           </div>
         </div> */}
-        <div></div>
         <div className="w-screen h-screen flex flex-row justify-center">
           <div className="max-w-screen-md flex flex-col justify-center">
             <div className="flex flex-row pb-24 ">
@@ -159,17 +157,30 @@ export function App() {
       </div> */}
       <div
         className={
-          'snap-start w-screen h-screen justify-center flex flex-row ' +
-          (isVisible2 ? 'visible' : 'invisible')
+          'snap-start w-screen h-screen justify-center flex flex-row ' 
+       
         }
       >
         <ScrollStepper
           left={false}
           checked={true}
+          visible={isVisible}
           title={'Work Expierence'}
           topRef={refWorkExpierence}
           steps={workExpierenceSteps}
         />
+      </div>
+      <div className="snap-always snap-start w-screen h-screen flex flex-col justify-center">
+        <div className="w-screen h-screen flex flex-row justify-center">
+          <div className="max-w-screen-md flex flex-col justify-center">
+            <div className='text-neutral-900 text-6xl font-semibold font-inter leading-[48px]'>
+              You like what you see?
+            </div>
+            <div className='pt-4 text-6xl font-semibold font-inter leading-[48px] text-center text-blue'>
+              Contact Me
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -124,19 +124,18 @@ export const workExpierenceSteps = [
     title: 'Student Software Engineer @ Oregano Systems',
     techstack: ['C/C++', 'JavaScript', 'PHP', 'Angular.js'],
 
-    dateFrom: '2019',
-    dateTo: '2020',
+    dateFrom: '2017',
+    dateTo: '2019',
     location: 'Munich, Germany',
     description: (
       <ul className="list-disc pl-5">
         <li>
-          Designed and integrated parallel solutions for compute-intensive
-          simulation applications. Evaluated the resulting performance benefits
-          and scaling capabilities on a cluster of Many-Core CPUs.
+          Created a web application for real time monitoring and configuration
+          of clock synchronization hardware.
         </li>
         <li>
-          Published the results in the 2020 IEEE/ACM 3rd Annual Parallel
-          Applications Workshop: Alternatives To MPI+X (PAW-ATM).
+          This enabled the replacement of the native legacy application with an
+          easily deployable web based solution.
         </li>
       </ul>
     ),

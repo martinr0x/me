@@ -1,8 +1,8 @@
 import { Socket } from 'dgram';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import PrimaryButton from './components/atoms/button/primary';
 
-export default function ScrollStepper({ steps, title, topRef }: any) {
+export default function ScrollStepper({ steps, title, topRef, visible }: any) {
   const threshold = 25;
   const maxTranslatePos = 2000;
   const [pos, setPos] = useState(steps.map(() => maxTranslatePos));
@@ -62,7 +62,8 @@ export default function ScrollStepper({ steps, title, topRef }: any) {
       </div>
       <div
         className={
-          'flex flex-row justify-center font-inter w-screen h-1/2 overflow-scroll'
+          'flex flex-row justify-center font-inter w-screen h-1/2 overflow-scroll ' +
+          (visible ? 'visible' : 'duration-75 invisible')
         }
         onScroll={onScroll}
       >
@@ -85,10 +86,12 @@ export default function ScrollStepper({ steps, title, topRef }: any) {
               }}
             >
               <div className="text-xl font-semibold leading-7">{s.title}</div>
-              <div className='flex flex-row flex-wrap py-2'>{s.techstack.map(t => <PrimaryButton key={t}> {t}</PrimaryButton>)} </div>
-              <div className="py-2 font-normal text-base">
-                {s.description}
+              <div className="flex flex-row flex-wrap py-2">
+                {s.techstack.map((t: any) => (
+                  <PrimaryButton key={t}> {t}</PrimaryButton>
+                ))}{' '}
               </div>
+              <div className="py-2 font-normal text-base">{s.description}</div>
             </div>
           ))}
         </div>
@@ -109,9 +112,9 @@ export default function ScrollStepper({ steps, title, topRef }: any) {
                 <div className="flex flex-row group justify-between">
                   <div
                     className={
-                      'w-[40px] text-right text-base font-medium leading-normal duration-200 translate-x-[55px] ' +
+                      'w-[40px] text-right text-base font-medium leading-normal translate-x-[55px] duration-200 ' +
                       (index === activeIndex
-                        ? 'group-hover:-translate-x-0'
+                        ? '-translate-x-0'
                         : '')
                     }
                   >
@@ -119,16 +122,16 @@ export default function ScrollStepper({ steps, title, topRef }: any) {
                   </div>
                   <div
                     className={
-                      'pl-1 pr-1 invisible ' +
-                      (index === activeIndex ? 'group-hover:visible' : '')
+                      'pl-1 pr-1 duration-100 ' +
+                      (index === activeIndex ? 'visible' : 'invisible')
                     }
                   >
                     -
                   </div>
                   <div
                     className={
-                      `w-[40px] text-right text-base font-medium leading-normal invisible ` +
-                      (index === activeIndex ? 'group-hover:visible' : '')
+                      `w-[40px] text-right text-base font-medium leading-normal duration-100 ` +
+                      (index === activeIndex ? 'visible' : 'invisible')
                     }
                   >
                     {s.dateTo}
