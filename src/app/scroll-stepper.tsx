@@ -67,7 +67,7 @@ export default function ScrollStepper({ steps, title, topRef, visible }: any) {
         }
         onScroll={onScroll}
       >
-        <div className="h-[300vh] w-full max-w-screen-md border-r-2">
+        <div className="h-[280vh] w-full max-w-screen-md border-r-2">
           {steps.map((s: any, index: number) => (
             <div
               key={index}
