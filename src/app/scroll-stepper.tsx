@@ -1,8 +1,7 @@
-import { Socket } from 'dgram';
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import PrimaryButton from './components/atoms/button/primary';
 
-export default function ScrollStepper({ steps, title, topRef, visible }: any) {
+export default function ScrollStepper({ steps, title, topRef }: any) {
   const threshold = 25;
   const maxTranslatePos = 2000;
   const [pos, setPos] = useState(steps.map(() => maxTranslatePos));
@@ -55,24 +54,31 @@ export default function ScrollStepper({ steps, title, topRef, visible }: any) {
 
   return (
     <div className="flex flex-col justify-center">
-      <div className="flex flex-row w-screen justify-center ">
-        <div className="max-w-screen-md w-screen text-neutral-900 text-5xl font-semibold leading-10 pb-10">
+            <div ref={topRef}></div>
+      <div className="flex flex-row w-screen justify-center">
+        {/* <div className="max-w-screen-md w-screen text-neutral-900 text-5xl font-semibold leading-10 pb-10">
           {title}
-        </div>
+        </div> */}
       </div>
+     
       <div
         className={
-          'flex flex-row justify-center font-inter w-screen h-1/2 overflow-scroll ' +
-          (visible ? 'visible' : 'duration-75 invisible')
+          'flex flex-row justify-center font-inter w-screen h-full overflow-scroll ' 
         }
         onScroll={onScroll}
       >
-        <div className="h-[280vh] w-full max-w-screen-md border-r-2">
+        <div className="h-[1000vh] w-full max-w-screen-lg relative">
+          <div className={'w-full justify-center flex flex-row  duration-500 sticky top-1/2 ' +  (pos[0] > threshold ? 'visible': '-translate-y-[100vh]')} >
+
+        <div className='text-neutral-900 text-6xl font-semibold font-inter leading-[48px]' > 
+            {title}
+        </div>
+          </div>
           {steps.map((s: any, index: number) => (
             <div
               key={index}
               className={
-                'z-50 fixed top-[40%] duration-500 max-w-lg ' +
+                'z-50 sticky top-[40%] duration-500 max-w-lg ' +
                 (index === activeIndex
                   ? 'text-black'
                   : 'text-gray-600 blur-sm ')
@@ -94,13 +100,11 @@ export default function ScrollStepper({ steps, title, topRef, visible }: any) {
               <div className="py-2 font-normal text-base">{s.description}</div>
             </div>
           ))}
-        </div>
-        <div className="">
           {steps.map((s: any, index: number) => (
             <div
               key={index}
               className={
-                '-ml-[114px] z-50 fixed top-1/2' +
+                ' z-50 sticky top-1/2' +
                 (pos[index] === 0 ? '' : ' text-gray-500')
               }
               style={{
@@ -108,11 +112,11 @@ export default function ScrollStepper({ steps, title, topRef, visible }: any) {
                 opacity: pos[index] > 300 || pos[index] < -300 ? 1 : 1,
               }}
             >
-              <div className={'flex flex-row'}>
+              <div className={'flex flex-row justify-end'}>
                 <div className="flex flex-row group justify-between">
                   <div
                     className={
-                      'w-[40px] text-right text-base font-medium leading-normal  duration-200 ' +
+                      'w-[40px] text-right text-base font-medium leading-normal duration-200 ' +
                       (index === activeIndex
                         ? '-translate-x-0'
                         : 'translate-x-[55px]')
@@ -123,15 +127,19 @@ export default function ScrollStepper({ steps, title, topRef, visible }: any) {
                   <div
                     className={
                       'pl-1 pr-1 duration-100 ' +
-                      (index === activeIndex ? 'visible' : 'invisible')
+                      (index === activeIndex 
+                        ? 'visible'
+                        : 'invisible')
                     }
                   >
                     -
                   </div>
                   <div
                     className={
-                      `w-[40px] text-right text-base font-medium leading-normal duration-100 ` +
-                      (index === activeIndex ? 'visible' : 'invisible')
+                      `w-[40px] text-right text-base font-medium leading-normal  ` +
+                      (index === activeIndex 
+                        ? 'visible'
+                        : 'invisible')
                     }
                   >
                     {s.dateTo}
@@ -156,8 +164,9 @@ export default function ScrollStepper({ steps, title, topRef, visible }: any) {
             </div>
           ))}
         </div>
+
       </div>
-      <div className="h-20" ref={topRef}></div>
+      <div className="" ></div>
     </div>
   );
 }

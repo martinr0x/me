@@ -27,9 +27,9 @@ function useOnScreen(ref: RefObject<HTMLElement>) {
 }
 
 export function App() {
-  const refWorkExpierence = useRef<HTMLDivElement>(null);
+  const refIntro = useRef<HTMLDivElement>(null);
   const refBackground = useRef<HTMLDivElement>(null);
-  const isVisible = useOnScreen(refWorkExpierence);
+  const isVisible = useOnScreen(refIntro);
   
   const scroll = (ref: any) => (e: any) => {
     e.preventDefault();
@@ -42,7 +42,7 @@ export function App() {
       <div
         className={
           'w-screen fixed top-0 flex-row flex justify-end p-3 translate-x-1/2 blur-md transition-all duration-500 ' +
-          (isVisible ? 'show' : '')
+          (!isVisible ? 'show' : '')
         }
       >
         <a href="https://www.linkedin.com/in/martinbogusz/">
@@ -83,7 +83,7 @@ export function App() {
               </div>
 
               <div className="pl-8 flex-1">
-                <div className="flex flex-row justify-start">
+                <div className="flex flex-row justify-start" ref={refIntro}>
                   <div className="w-[50%] typewriter text-neutral-900 text-6xl font-semibold font-inter leading-[48px]">
                     Hi there,
                   </div>
@@ -155,10 +155,10 @@ export function App() {
           />
         </div>
       </div> */}
+         
       <div
         className={
           'snap-start w-screen h-screen justify-center flex flex-row ' 
-       
         }
       >
         <ScrollStepper
@@ -166,7 +166,6 @@ export function App() {
           checked={true}
           visible={isVisible}
           title={'Work Expierence'}
-          topRef={refWorkExpierence}
           steps={workExpierenceSteps}
         />
       </div>
