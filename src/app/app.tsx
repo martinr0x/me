@@ -59,19 +59,6 @@ export function App() {
         </a>
       </div>
       <div className="snap-always snap-start w-screen h-screen flex flex-col justify-center">
-        {/* <div className="flex justify-center pt-5 pb-10">
-          <div className="w-[284px] h-10 px-6 py-2 bg-white rounded-3xl shadow border border-zinc-100 justify-start items-start gap-8 inline-flex">
-            <div className="text-indigo-600 text-base font-medium leading-normal">
-              About me
-            </div>
-            <div className="text-blue-950 text-base font-medium leading-normal">
-              Projects
-            </div>
-            <div className="text-blue-950 text-base font-medium leading-normal">
-              Blog
-            </div>
-          </div>
-        </div> */}
         <div className="w-screen h-screen flex flex-row justify-center">
           <div className="max-w-screen-md flex flex-col justify-center">
             <div className="flex flex-row pb-24 ">
@@ -158,7 +145,7 @@ export function App() {
          
       <div
         className={
-          'snap-start w-screen h-screen justify-center flex flex-row ' 
+          'snap-always snap-start w-screen h-screen justify-center flex flex-row ' 
         }
       >
         <ScrollStepper

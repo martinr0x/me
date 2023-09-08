@@ -2,20 +2,19 @@ import { useState } from 'react';
 import PrimaryButton from './components/atoms/button/primary';
 
 export default function ScrollStepper({ steps, title, topRef }: any) {
-  const threshold = 25;
-  const maxTranslatePos = 2000;
+  const threshold = 20;
+  const maxTranslatePos = 1000;
   const [pos, setPos] = useState(steps.map(() => maxTranslatePos));
   const [activeIndex, setActiveIndex] = useState(-1);
 
-  const calcPos = (scrollMax: number, scrollPos: number, index: number) => {
-    const step = (scrollMax + threshold) / (steps.length + 1);
-    const current = step * (index + 1);
-
-    let pos = (maxTranslatePos * (current - scrollPos)) / current;
-    const noScroll = step * (index + 2) - threshold;
-
-    if (scrollPos >= noScroll) {
-      pos = (maxTranslatePos * (noScroll - scrollPos)) / current;
+  const calcPos = (step: number, scrollPos: number, index: number) => {
+   
+    const current = step * index ;
+    scrollPos -= current;
+    let pos =  (step - scrollPos);
+    const noScroll = (step * 2)- threshold;
+    if (scrollPos >= noScroll && index !== steps.length-1) {
+      pos =  (noScroll - scrollPos);
     } else {
       pos = Math.max(0, pos);
     }
@@ -40,8 +39,10 @@ export default function ScrollStepper({ steps, title, topRef }: any) {
     const scrollPos = e.currentTarget.scrollTop;
     const scrollMax =
       e.currentTarget.scrollHeight - e.currentTarget.clientHeight;
+      const step = scrollMax / (steps.length+1);
+    console.log(scrollPos);
     const npos = pos.map((_: unknown, i: number) =>
-      calcPos(scrollMax, scrollPos, i)
+      calcPos(step, scrollPos, i)
     );
 
     setPos(npos);
@@ -54,25 +55,24 @@ export default function ScrollStepper({ steps, title, topRef }: any) {
 
   return (
     <div className="flex flex-col justify-center">
-            <div ref={topRef}></div>
-      <div className="flex flex-row w-screen justify-center">
-        {/* <div className="max-w-screen-md w-screen text-neutral-900 text-5xl font-semibold leading-10 pb-10">
-          {title}
-        </div> */}
-      </div>
-     
+      <div className="flex flex-row w-screen justify-center"></div>
+
       <div
         className={
-          'flex flex-row justify-center font-inter w-screen h-full overflow-scroll ' 
+          'flex flex-row justify-center font-inter w-screen h-full overflow-scroll '
         }
         onScroll={onScroll}
       >
-        <div className="h-[1000vh] w-full max-w-screen-lg relative">
-          <div className={'w-full justify-center flex flex-row  duration-500 sticky top-1/2 ' +  (pos[0] > threshold ? 'visible': '-translate-y-[100vh]')} >
-
-        <div className='text-neutral-900 text-6xl font-semibold font-inter leading-[48px]' > 
-            {title}
-        </div>
+        <div className="h-[800vh] w-full max-w-screen-lg relative">
+          <div
+            className={
+              'w-full justify-center flex flex-row  duration-1000 sticky top-1/2 ' +
+              (pos[0] > threshold ? 'visible' : '-translate-y-[100vh]')
+            }
+          >
+            <div className="text-neutral-900 text-6xl font-semibold font-inter leading-[48px]">
+              {title}
+            </div>
           </div>
           {steps.map((s: any, index: number) => (
             <div
@@ -127,9 +127,7 @@ export default function ScrollStepper({ steps, title, topRef }: any) {
                   <div
                     className={
                       'pl-1 pr-1 duration-100 ' +
-                      (index === activeIndex 
-                        ? 'visible'
-                        : 'invisible')
+                      (index === activeIndex ? 'visible' : 'invisible')
                     }
                   >
                     -
@@ -137,9 +135,7 @@ export default function ScrollStepper({ steps, title, topRef }: any) {
                   <div
                     className={
                       `w-[40px] text-right text-base font-medium leading-normal  ` +
-                      (index === activeIndex 
-                        ? 'visible'
-                        : 'invisible')
+                      (index === activeIndex ? 'visible' : 'invisible')
                     }
                   >
                     {s.dateTo}
@@ -164,9 +160,8 @@ export default function ScrollStepper({ steps, title, topRef }: any) {
             </div>
           ))}
         </div>
-
       </div>
-      <div className="" ></div>
+      <div className=""></div>
     </div>
   );
 }
