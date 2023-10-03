@@ -143,7 +143,7 @@ export function App() {
         </div>
       </div> */}
          
-      <div
+      <div id="work"
         className={
           'snap-always snap-start w-screen h-screen justify-center flex flex-row ' 
         }

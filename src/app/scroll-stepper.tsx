@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import PrimaryButton from './components/atoms/button/primary';
 
-export default function ScrollStepper({ steps, title, topRef }: any) {
+export default function ScrollStepper({ steps, title }: any) {
   const threshold = 20;
   const maxTranslatePos = 1000;
   const [pos, setPos] = useState(steps.map(() => maxTranslatePos));
@@ -88,7 +88,7 @@ export default function ScrollStepper({ steps, title, topRef }: any) {
                   index,
                   activeIndex
                 )}px)`,
-                opacity: pos[index] > 300 || pos[index] < -300 ? 0 : 1,
+                opacity: pos[index] !== 0 ? 0 : 1,
               }}
             >
               <div className="text-xl font-semibold leading-7">{s.title}</div>
@@ -161,7 +161,6 @@ export default function ScrollStepper({ steps, title, topRef }: any) {
           ))}
         </div>
       </div>
-      <div className=""></div>
     </div>
   );
 }
