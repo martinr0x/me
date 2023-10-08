@@ -32,8 +32,6 @@ export const workExpierenceSteps = [
       'Spring',
       'Postgres',
       'Kubernetes',
-      'Datadog',
-      'ArgoCD',
       'OAuth2',
       'Microservices',
     ],
@@ -63,8 +61,8 @@ export const workExpierenceSteps = [
   {
     title: 'Student Software Engineer @ qbound',
     techstack: [
-      'React',
       'JavaScript',
+      'React',
       'Redux',
       'Node.js',
       'MongoDB',
@@ -98,8 +96,6 @@ export const workExpierenceSteps = [
       'Boost',
       'MPI',
       'HPX',
-      'Charm',
-      'MPP',
       'OpenMP',
     ],
 

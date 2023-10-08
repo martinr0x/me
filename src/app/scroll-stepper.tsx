@@ -40,7 +40,6 @@ export default function ScrollStepper({ steps, title }: any) {
     const scrollMax =
       e.currentTarget.scrollHeight - e.currentTarget.clientHeight;
       const step = scrollMax / (steps.length+1);
-    console.log(scrollPos);
     const npos = pos.map((_: unknown, i: number) =>
       calcPos(step, scrollPos, i)
     );
@@ -55,11 +54,9 @@ export default function ScrollStepper({ steps, title }: any) {
 
   return (
     <div className="flex flex-col justify-center">
-      <div className="flex flex-row w-screen justify-center"></div>
-
       <div
         className={
-          'flex flex-row justify-center font-inter w-screen h-full overflow-scroll '
+          'flex flex-row justify-center font-inter w-screen h-full overflow-scroll scroll-smooth'
         }
         onScroll={onScroll}
       >
