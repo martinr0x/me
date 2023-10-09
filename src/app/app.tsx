@@ -173,45 +173,6 @@ export function App() {
       >
         <Nutshell/>
       </div>
-      <div
-        className={
-          'snap-always snap-start w-screen h-screen justify-center flex flex-row'
-        }
-      >
-        <div className="flex flex-col justify-center w-full max-w-screen-lg">
-          <div className="text-neutral-900 text-6xl text-center font-semibold font-inter leading-[48px] mb-8">
-            In a Nutshell
-          </div>
-          <div className="flex flex-row justify-between">
-            <div className="w-[311px]">
-              <div className="text-neutral-900 text-3xl font-semibold font-inter leading-[48px] ">
-                Software Engineering
-              </div>
-              Contributed and developed multiple frontend & backend services at
-              Celonis, qbound and Oregano systems. <br></br>
-              Created performance oriented and parallel solutions for HPC
-              clusters.
-            </div>
-            <div className="w-[311px]">
-              <div className="text-neutral-900 text-3xl font-semibold font-inter leading-[48px] ">
-                IT Security
-              </div>
-              Designed and implemented a secure application for qbound.
-              Participated in multiple CTFs and achieved second place out of 77
-              teams in the Developer Student Club Munich CTF. Implemented a
-              trust framework on top of the GNUnet open source project as part
-              of my master’s thesis.
-            </div>
-            <div className="w-[311px]">
-              <div className="text-neutral-900 text-3xl font-semibold font-inter leading-[48px] ">
-                Performance
-              </div>
-              Co-founded and leading the Munich Handstand Society, a community
-              with over 100 members.
-            </div>
-          </div>
-        </div>
-      </div>
       <div className="snap-always snap-start w-screen h-screen flex flex-col justify-center">
         <div className="w-screen h-screen flex flex-row justify-center">
           <div className="max-w-screen-md flex flex-col justify-center">
