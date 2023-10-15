@@ -39,14 +39,9 @@ export const workExpierenceSteps = [
     description: (
       <ul className="list-disc pl-5">
         <li>
-          Successfully developed and deployed a user lifecycle management
-          service (SCIM) that significantly improved customer experience by
-          streamlining the integration of pre-existing user bases with the
-          platform.
-        </li>
-        <li>
-          Designed and constructed an OAuth 2.0 server, which enabled secure and
-          industry-standard integration of third-party applications.
+        Engineered and designed a robust system to facilitate scalable and secure platform integration via OAuth2. 
+        Following its successful launch, I provided guidance to several teams on adopting the new system for product development. 
+        This initiative notably enhanced the customer and developer experience, rendering application integrations more scalable, secure, and enterprise-ready.
         </li>
         <li>
           Contributed to enhancing the system's reliability and stability by
@@ -68,6 +63,7 @@ export const workExpierenceSteps = [
       'MongoDB',
       'GoLang',
       'gRPC',
+      'WireGuard'
     ],
 
     dateFrom: '2020',

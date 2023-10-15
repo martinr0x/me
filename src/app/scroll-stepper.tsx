@@ -63,11 +63,11 @@ export default function ScrollStepper({ steps, title }: any) {
         <div className="h-[800vh] w-full max-w-screen-lg relative">
           <div
             className={
-              'w-full justify-center flex flex-row  duration-1000 sticky top-1/2 ' +
-              (pos[0] > threshold ? 'visible' : '-translate-y-[100vh]')
+              'w-full justify-center flex flex-row  duration-700 sticky top-1/2 ' +
+              (pos[0] > threshold ? 'text-neutral-900' : '-translate-y-40 text-neutral-100')
             }
           >
-            <div className="text-neutral-900 text-6xl font-semibold font-inter leading-[48px]">
+            <div className="text-6xl font-semibold font-inter leading-[48px]">
               {title}
             </div>
           </div>
@@ -75,7 +75,7 @@ export default function ScrollStepper({ steps, title }: any) {
             <div
               key={index}
               className={
-                'z-50 sticky top-[40%] duration-500 max-w-lg ' +
+                'z-50 sticky top-[45%] duration-500 max-w-lg ' +
                 (index === activeIndex
                   ? 'text-black'
                   : 'text-gray-600 blur-sm ')
@@ -101,7 +101,7 @@ export default function ScrollStepper({ steps, title }: any) {
             <div
               key={index}
               className={
-                ' z-50 sticky top-1/2' +
+                ' z-50 sticky top-[55%]' +
                 (pos[index] === 0 ? '' : ' text-gray-500')
               }
               style={{
@@ -114,7 +114,7 @@ export default function ScrollStepper({ steps, title }: any) {
                   <div
                     className={
                       'w-[40px] text-right text-base font-medium leading-normal duration-200 ' +
-                      (index === activeIndex
+                      (pos[index] === 0
                         ? '-translate-x-0'
                         : 'translate-x-[55px]')
                     }
@@ -124,7 +124,7 @@ export default function ScrollStepper({ steps, title }: any) {
                   <div
                     className={
                       'pl-1 pr-1 duration-100 ' +
-                      (index === activeIndex ? 'visible' : 'invisible')
+                      (pos[index] === 0 ? 'visible' : 'invisible')
                     }
                   >
                     -
@@ -132,7 +132,7 @@ export default function ScrollStepper({ steps, title }: any) {
                   <div
                     className={
                       `w-[40px] text-right text-base font-medium leading-normal  ` +
-                      (index === activeIndex ? 'visible' : 'invisible')
+                      (pos[index] === 0 ? 'visible' : 'invisible')
                     }
                   >
                     {s.dateTo}
