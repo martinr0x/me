@@ -2,11 +2,6 @@
 import { RefObject, useEffect, useMemo, useRef, useState } from 'react';
 import { workExpierenceSteps } from './background';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faGithub,
-  faLinkedin,
-  faTwitter,
-} from '@fortawesome/free-brands-svg-icons';
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import ScrollStepper from './scroll-stepper';
 import Nutshell from './nutshell';
@@ -60,7 +55,7 @@ export function App() {
               <div className="flex-initial w-80 h-80 rounded-md">
                 <img
                   className="hover:scale-105 transition duration-500 cursor-pointer object-cover rounded-full"
-                  src="portrait-martin.jpg"
+                  src="/me/portrait-martin.jpg"
                 ></img>
               </div>
 
