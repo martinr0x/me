@@ -68,8 +68,7 @@ export function App() {
                   <div className="typewriter2">I'm Martin.</div>
                 </div>
                 <div className="pt-4 pb-4 font-normal text-[26px] font-inter leading-8 text-1">
-                  My name is Martin Bogusz. I work as a software engineer at
-                  Celonis.
+                  My name is Martin Bogusz. I work as a software engineer.
                 </div>
                 <div className="pb-4 font-normal text-[18px] font-inter leading-7">
                   Since I was a kid I was facinated with all tech things. Fast

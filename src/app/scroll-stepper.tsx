@@ -29,13 +29,8 @@ export default function ScrollStepper({ steps, title }: any) {
     if (activeIndex + 1 === index) return 400;
     return 800;
   };
-  const onScroll = (e: {
-    currentTarget: {
-      clientHeight: any;
-      scrollHeight: any;
-      scrollTop: number;
-    };
-  }) => {
+  const onScroll = (e: React.UIEvent<HTMLElement>
+  ) => {
     const scrollPos = e.currentTarget.scrollTop;
     const scrollMax =
       e.currentTarget.scrollHeight - e.currentTarget.clientHeight;
@@ -51,7 +46,7 @@ export default function ScrollStepper({ steps, title }: any) {
         .indexOf(0)
     );
   };
-
+ 
   return (
     <div className="flex flex-col justify-center">
       <div
