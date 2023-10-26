@@ -8,13 +8,12 @@ export default function ScrollStepper({ steps, title }: any) {
   const [activeIndex, setActiveIndex] = useState(-1);
 
   const calcPos = (step: number, scrollPos: number, index: number) => {
-   
-    const current = step * index ;
+    const current = step * index;
     scrollPos -= current;
-    let pos =  (step - scrollPos);
-    const noScroll = (step * 2)- threshold;
-    if (scrollPos >= noScroll && index !== steps.length-1) {
-      pos =  (noScroll - scrollPos);
+    let pos = step - scrollPos;
+    const noScroll = step * 2 - threshold;
+    if (scrollPos >= noScroll && index !== steps.length - 1) {
+      pos = noScroll - scrollPos;
     } else {
       pos = Math.max(0, pos);
     }
@@ -29,12 +28,11 @@ export default function ScrollStepper({ steps, title }: any) {
     if (activeIndex + 1 === index) return 400;
     return 800;
   };
-  const onScroll = (e: React.UIEvent<HTMLElement>
-  ) => {
+  const onScroll = (e: React.UIEvent<HTMLElement>) => {
     const scrollPos = e.currentTarget.scrollTop;
     const scrollMax =
       e.currentTarget.scrollHeight - e.currentTarget.clientHeight;
-      const step = scrollMax / (steps.length+1);
+    const step = scrollMax / (steps.length + 1);
     const npos = pos.map((_: unknown, i: number) =>
       calcPos(step, scrollPos, i)
     );
@@ -47,9 +45,6 @@ export default function ScrollStepper({ steps, title }: any) {
     );
   };
 
-
-  
- 
   return (
     <div className="flex flex-col justify-center">
       <div
@@ -62,7 +57,9 @@ export default function ScrollStepper({ steps, title }: any) {
           <div
             className={
               'w-full justify-center flex flex-row  duration-700 sticky top-1/2 ' +
-              (pos[0] > threshold ? 'text-neutral-900' : '-translate-y-40 text-neutral-100')
+              (pos[0] > threshold
+                ? 'text-neutral-900'
+                : '-translate-y-40 text-neutral-100')
             }
           >
             <div className="text-6xl font-semibold font-inter leading-[48px]">

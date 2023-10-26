@@ -3,49 +3,49 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 import PrimaryButton from './components/atoms/button/primary';
 export default function Nutshell() {
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  const [pos, setPos] = useState(0);
   const [count, setCount] = useState(0);
-  const onScroll = (e: {
-    currentTarget: {
-      clientHeight: any;
-      scrollHeight: any;
-      scrollTop: number;
-    };
-  }) => {
-    const scrollPos = e.currentTarget.scrollTop;
-    const scrollMax =
-      e.currentTarget.scrollHeight - e.currentTarget.clientHeight;
-    console.log((scrollPos * 100) / scrollMax);
-    setPos((scrollPos * 100) / scrollMax);
-  };
-  let wheelEventEndTimeout : any; 
-  let count1 = 0;
-  let active = false;
-  let lastDir = 0;
-  const onWheel = (e:WheelEvent ) => {
-    e.preventDefault();
-    const dir = e.deltaY> 0? 1: -1;
 
-    if(!active || lastDir !== dir ){
-     active = true;
-     lastDir =dir  ;
-     count1 +=lastDir ;
-     console.log(count1);
-     setCount(count1);
+  let wheelEventEndTimeout: any;
+  let countReal = 0;
+  let lastDir = 0;
+  const cbRef: Ref<HTMLDivElement> = useRef(null);
+
+  const onWheel = (e: WheelEvent) => {
+    const dir = e.deltaY > 0 ? 1 : -1;
+    const countActual = countReal + dir;
+    console.log(dir + ' actual count ' + countActual);
+    if (countActual + dir < 5 && countActual >= -1) {
+      console.log('prevet');
+      e.preventDefault();
+    } else {
+      return;
+    }
+
+    if (lastDir !== dir) {
+      lastDir = dir;
+      countReal += lastDir;
+      countReal = Math.max(countReal, -1);
+      console.log(countReal);
+      setCount(countReal);
     }
     clearTimeout(wheelEventEndTimeout);
     wheelEventEndTimeout = setTimeout(() => {
-        active =false;
-    }, 100);
-  }
+      lastDir = 0;
+      if (cbRef.current)
+        cbRef.current.scrollTop =
+          countReal + dir > 3
+            ? cbRef.current.scrollHeight - cbRef.current.clientHeight
+            : 0;
+    }, 150);
+  };
 
-  const cbRef: Ref<HTMLDivElement> = useRef(null);
   useEffect(() => {
-    if(!cbRef.current)return; 
-    cbRef.current?.addEventListener("wheel", onWheel, {passive: false});
-    return () => {cbRef.current?.removeEventListener("wheel", onWheel) };
-}, []); 
+    if (!cbRef.current) return;
+    cbRef.current?.addEventListener('wheel', onWheel, { passive: false });
+    return () => {
+      cbRef.current?.removeEventListener('wheel', onWheel);
+    };
+  }, []);
   return (
     <div className="flex flex-col justify-center">
       {count}
@@ -53,10 +53,9 @@ export default function Nutshell() {
         className={
           'flex flex-row justify-center font-inter w-screen h-full overflow-scroll scroll-smooth snap-y snap-mandatory'
         }
-        onScroll={onScroll} ref={cbRef}
+        ref={cbRef}
       >
         <div className="h-[800vh] w-full max-w-screen-lg relative">
-
           <div
             className={
               'w-full justify-center flex flex-row flex-initial duration-700 sticky top-1/2 overflow-hidden ' +
@@ -220,11 +219,7 @@ export default function Nutshell() {
                 ))}
               </div>
             </div>
-            <div
-              className={
-                'flex flex-row justify-between ' + (pos > 70 ? '' : '')
-              }
-            >
+            <div className={'flex flex-row justify-between '}>
               <div
                 className={
                   'w-[311px] duration-1000 ' +
