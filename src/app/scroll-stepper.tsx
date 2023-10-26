@@ -46,6 +46,9 @@ export default function ScrollStepper({ steps, title }: any) {
         .indexOf(0)
     );
   };
+
+
+  
  
   return (
     <div className="flex flex-col justify-center">

@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { Ref, useEffect, useRef, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 import PrimaryButton from './components/atoms/button/primary';
 export default function Nutshell() {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   const [pos, setPos] = useState(0);
+  const [count, setCount] = useState(0);
   const onScroll = (e: {
     currentTarget: {
       clientHeight: any;
@@ -18,27 +19,54 @@ export default function Nutshell() {
     console.log((scrollPos * 100) / scrollMax);
     setPos((scrollPos * 100) / scrollMax);
   };
+  let wheelEventEndTimeout : any; 
+  let count1 = 0;
+  let active = false;
+  let lastDir = 0;
+  const onWheel = (e:WheelEvent ) => {
+    e.preventDefault();
+    const dir = e.deltaY> 0? 1: -1;
 
+    if(!active || lastDir !== dir ){
+     active = true;
+     lastDir =dir  ;
+     count1 +=lastDir ;
+     console.log(count1);
+     setCount(count1);
+    }
+    clearTimeout(wheelEventEndTimeout);
+    wheelEventEndTimeout = setTimeout(() => {
+        active =false;
+    }, 100);
+  }
+
+  const cbRef: Ref<HTMLDivElement> = useRef(null);
+  useEffect(() => {
+    if(!cbRef.current)return; 
+    cbRef.current?.addEventListener("wheel", onWheel, {passive: false});
+    return () => {cbRef.current?.removeEventListener("wheel", onWheel) };
+}, []); 
   return (
     <div className="flex flex-col justify-center">
+      {count}
       <div
         className={
           'flex flex-row justify-center font-inter w-screen h-full overflow-scroll scroll-smooth snap-y snap-mandatory'
         }
-        onScroll={onScroll}
+        onScroll={onScroll} ref={cbRef}
       >
         <div className="h-[800vh] w-full max-w-screen-lg relative">
 
           <div
             className={
               'w-full justify-center flex flex-row flex-initial duration-700 sticky top-1/2 overflow-hidden ' +
-              (pos > 0 ? '-translate-y-40' : '')
+              (count > 0 ? '-translate-y-40' : '')
             }
           >
             <div
               className={
                 'text-6xl font-semibold font-inter duration-1000 ' +
-                (pos > 0 ? 'text-neutral-100' : 'text-neutral-900 ')
+                (count > 0 ? 'text-neutral-100' : 'text-neutral-900 ')
               }
             >
               In a Nutshell
@@ -47,13 +75,13 @@ export default function Nutshell() {
           <div
             className={
               'w-full justify-center flex flex-row sticky top-[45%] duration-1000 ' +
-              (pos === 0 ? 'translate-x-[100vw]' : '')
+              (count === 0 ? 'translate-x-[100vw]' : '')
             }
           >
             <div
               className={
                 'flex flex-col w-full duration-1000 ' +
-                (pos > 50 ? ' -translate-x-[100vw]' : '')
+                (count > 1 ? ' -translate-x-[100vw]' : '')
               }
             >
               <div className="text-neutral-900 text-4xl font-semibold font-inter leading-[48px] text-center">
@@ -65,7 +93,7 @@ export default function Nutshell() {
                 <div
                   className={
                     'w-[45%] duration-1000 delay-500 ' +
-                    (pos === 0 ? 'translate-y-[100vh]' : '')
+                    (count > 0 ? '' : 'translate-y-[100vh]')
                   }
                 >
                   <div className="text-neutral-900 text-xl font-semibold font-inter">
@@ -84,7 +112,7 @@ export default function Nutshell() {
                 <div
                   className={
                     'w-[45%] duration-1000 delay-700 ' +
-                    (pos == 0 ? 'translate-y-[100vh]' : '')
+                    (count > 0 ? '' : 'translate-y-[100vh]')
                   }
                 >
                   <div className="text-neutral-900 text-xl font-semibold font-inter">
@@ -101,7 +129,7 @@ export default function Nutshell() {
                 <div
                   className={
                     'w-[45%] duration-1000 delay-[900ms] ' +
-                    (pos == 0 ? 'translate-y-[100vh]' : '')
+                    (count > 0 ? '' : 'translate-y-[100vh]')
                   }
                 >
                   <div className="text-neutral-900 text-xl font-semibold font-inter">
@@ -124,7 +152,7 @@ export default function Nutshell() {
           <div
             className={
               'flex flex-col justify-between sticky top-[45%] duration-1000 ' +
-              (pos < 50 ? 'translate-x-[200vh]' : '')
+              (count > 1 ? '' : 'translate-x-[100vw]')
             }
           >
             <div className="text-neutral-900 text-4xl font-semibold font-inter leading-[48px] text-center">
@@ -140,7 +168,7 @@ export default function Nutshell() {
               <div
                 className={
                   'w-[311px] duration-1000 ' +
-                  (pos < 70 ? 'translate-y-[100vh]' : '')
+                  (count > 1 ? '' : 'translate-y-[200vh]')
                 }
               >
                 <div className="text-neutral-900 text-3xl font-semibold font-inter leading-[48px] ">
@@ -168,7 +196,7 @@ export default function Nutshell() {
               <div
                 className={
                   'w-[311px] duration-1000 ' +
-                  (pos < 70 ? 'translate-y-[100vh]' : '')
+                  (count > 1 ? '' : 'translate-y-[200vh]')
                 }
               >
                 <div className="text-neutral-900 text-3xl font-semibold font-inter leading-[48px] ">
@@ -181,7 +209,7 @@ export default function Nutshell() {
               <div
                 className={
                   'w-[311px] duration-1000 ' +
-                  (pos < 70 ? 'translate-y-[100vh]' : '')
+                  (count > 1 ? '' : 'translate-y-[200vh]')
                 }
               >
                 <div className="text-neutral-900 text-3xl font-semibold font-inter leading-[48px] ">
@@ -200,7 +228,7 @@ export default function Nutshell() {
               <div
                 className={
                   'w-[311px] duration-1000 ' +
-                  (pos < 50 || pos > 90 ? 'delay-300 translate-y-[100vh]' : '')
+                  (count > 2 ? '' : 'translate-y-[200vh]')
                 }
               >
                 <div className="text-neutral-900 text-3xl font-semibold font-inter leading-[48px] ">
@@ -213,7 +241,7 @@ export default function Nutshell() {
               <div
                 className={
                   'w-[311px] duration-1000 delay-500 ' +
-                  (pos < 50 || pos > 90 ? 'translate-y-[100vh]' : '')
+                  (count > 2 ? '' : 'translate-y-[200vh]')
                 }
               >
                 <div className="text-neutral-900 text-3xl font-semibold font-inter leading-[48px] ">
@@ -227,7 +255,7 @@ export default function Nutshell() {
               <div
                 className={
                   'w-[311px] duration-1000 delay-700 ' +
-                  (pos < 50 || pos > 90 ? 'translate-y-[100vh]' : '')
+                  (count > 2 ? '' : 'translate-y-[200vh]')
                 }
               >
                 <div className="text-neutral-900 text-3xl font-semibold font-inter leading-[48px] ">
