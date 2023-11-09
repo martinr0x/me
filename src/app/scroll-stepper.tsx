@@ -70,7 +70,7 @@ export default function ScrollStepper({ steps, title }: any) {
             <div
               key={index}
               className={
-                'z-50 sticky top-[45%] duration-500 max-w-lg ' +
+                'z-50 sticky top-[45%] duration-700 max-w-lg ' +
                 (index === activeIndex
                   ? 'text-black'
                   : 'text-gray-600 blur-sm ')

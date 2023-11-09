@@ -54,7 +54,7 @@ export function App() {
             <div className="flex flex-row pb-24 ">
               <div className="flex-initial w-80 h-80 rounded-md">
                 <img
-                  className="hover:scale-105 transition duration-500 cursor-pointer object-cover rounded-full"
+                  className="cursor-pointer object-cover rounded-full"
                   src="/me/portrait-martin.jpg"
                 ></img>
               </div>
