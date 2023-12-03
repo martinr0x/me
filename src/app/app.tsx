@@ -39,7 +39,7 @@ export function App() {
   };
 
   return (
-    <div className="w-screen h-screen snap-mandatory snap-y overflow-scroll antialiased">
+    <div className="w-screen h-screen snap-mandatory snap-y overflow-scroll antialiased overflow-x-hidden">
       <div
         className={
           'w-screen fixed top-0 flex-row flex justify-end p-3 translate-x-1/2 blur-md transition-all duration-500 ' +
@@ -52,16 +52,19 @@ export function App() {
         <div className="w-screen h-screen flex flex-row justify-center ">
           <div className="max-w-screen-md flex flex-col justify-center">
             <div className="flex flex-row pb-24 ">
-              <div className="flex-initial w-80 h-80 rounded-md">
+              <div className='flex-initial flex flex-col justify-center align-middle'>
+                
+              <div className="flex-initial w-80 h-80 rounded-full  overflow-hidden ">
                 <img
-                  className="cursor-pointer object-cover rounded-full"
-                  src="/me/portrait-martin.jpg"
+                  className="cursor-pointer object-cover -translate-y-12"
+                  src="/me/portrait-martin2.jpg"
                 ></img>
+              </div>
               </div>
 
               <div className="pl-8 flex-1">
                 <div
-                  className="flex flex-row justify-start text-6xl font-semibold font-inter leading-[48px]"
+                  className="flex flex-col justify-start text-6xl font-semibold font-inter leading-[48px]"
                   ref={refIntro}
                 >
                   <div className="typewriter ">Hi there,</div>
@@ -74,25 +77,18 @@ export function App() {
                   Since I was a kid I was facinated with all tech things. Fast
                   forward to today, this facination turned into a career. I love
                   solving hard problems and I am dedicated to build great
-                  products that are used by millions. If you're curious to learn
+                  products that are used by millions. <br/>If you're curious to learn
                   more about who I am and delve into my technical background,
                   scroll further down this page.
                 </div>
-                <div>
+                <div className=''>
                   <Contacts anchor="justify-left" />
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div className="flex flex-row justify-center">
-          <button className="animate-bounce" onClick={scroll(refContactMe)}>
-            <FontAwesomeIcon
-              className="text-4xl text-primary"
-              icon={faArrowDown}
-            ></FontAwesomeIcon>
-          </button>
-        </div>
+      
       </div>
 
       <div

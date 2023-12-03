@@ -15,7 +15,7 @@
   overflow: hidden; /* Ensures the content is not revealed until the animation */
   border-right: 0.15em solid rgb(255, 255, 255); /* The typwriter cursor */
   white-space: nowrap;
-  max-width: 232px;
+  max-width: 240px;
   animation: hidden 2.2s step-end, typing 2.2s steps(40, end) 2.2s,
     blink-caret 0.75s step-end 2.2s 2;
 }
