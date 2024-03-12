@@ -28,9 +28,10 @@ module.exports = {
         secondary: "#130F61",
         tertiary: "#E8EAF5"
       },
-      // fontFamily: {
-      //   'inter': ['Inter']
-      // },
+      fontFamily: {
+        'inter': ['Inter'],
+        'raleway': ['Raleway']
+      },
     },
   },
   plugins: [
