@@ -37,11 +37,14 @@ export const workExpierenceSteps = [
     ],
     location: 'Munich, Germany',
     description: (
-      <ul className="list-disc pl-5">
+      <ul className=" pl-5">
         <li>
-        Engineered and designed a robust system to facilitate scalable and secure platform integration via OAuth2. 
-        Following its successful launch, I provided guidance to several teams on adopting the new system for product development. 
-        This initiative notably enhanced the customer and developer experience, rendering application integrations more scalable, secure, and enterprise-ready.
+          Engineered and designed a robust system to facilitate scalable and
+          secure platform integration via OAuth2. Following its successful
+          launch, I provided guidance to several teams on adopting the new
+          system for product development. This initiative notably enhanced the
+          customer and developer experience, rendering application integrations
+          more scalable, secure, and enterprise-ready.
         </li>
         <li>
           Contributed to enhancing the system's reliability and stability by
@@ -63,14 +66,14 @@ export const workExpierenceSteps = [
       'MongoDB',
       'GoLang',
       'gRPC',
-      'WireGuard'
+      'WireGuard',
     ],
 
     dateFrom: '2020',
     dateTo: '2021',
     location: 'Munich, Germany',
     description: (
-      <ul className="list-disc pl-5">
+      <ul className=" pl-5">
         <li>
           Developed a web application for managing and monitoring internal
           resources and services, resulting in a 30% reduction in downtime and
@@ -86,20 +89,13 @@ export const workExpierenceSteps = [
   },
   {
     title: 'Research Assistant @ Technical University Munich',
-    techstack: [
-      'C/C++',
-      'Python',
-      'Boost',
-      'MPI',
-      'HPX',
-      'OpenMP',
-    ],
+    techstack: ['C/C++', 'Python', 'Boost', 'MPI', 'HPX', 'OpenMP'],
 
     dateFrom: '2019',
     dateTo: '2020',
     location: 'Munich, Germany',
     description: (
-      <ul className="list-disc pl-5">
+      <ul className=" pl-5">
         <li>
           Designed and integrated parallel solutions for compute-intensive
           simulation applications. Evaluated the resulting performance benefits
@@ -120,7 +116,7 @@ export const workExpierenceSteps = [
     dateTo: '2019',
     location: 'Munich, Germany',
     description: (
-      <ul className="list-disc pl-5">
+      <ul className=" pl-5">
         <li>
           Created a web application for real time monitoring and configuration
           of clock synchronization hardware.
