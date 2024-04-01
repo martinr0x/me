@@ -2,6 +2,7 @@ import { RefObject, useRef, useState } from 'react';
 import { workExpierenceSteps } from './background';
 import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Contacts from './contacts';
 
 export function App() {
   const ref: RefObject<HTMLDivElement> = useRef(null);
@@ -23,8 +24,7 @@ export function App() {
         const step = document.getElementById(`step-${index}`);
         if (!step) return false;
         const { y, height } = step.getBoundingClientRect();
-        console.log(`[${index}]` + yDot + ':' + y + ' ' + height);
-        console.log(yDot - y < 20);
+
         return yDot > y && yDot < y + height;
       })
     );
@@ -40,7 +40,7 @@ export function App() {
   };
   return (
     <div
-      className="flex flex-col antialiased overflow-x-hidden"
+      className="flex flex-col antialiased overflow-x-hidden scroll-smooth"
       onScroll={handleScroll}
       onWheel={handleScroll}
     >
@@ -75,83 +75,99 @@ export function App() {
               </div>
             </div>
             <div className="flex flex-row justify-center">
-              <div
+              {/* <div
                 className="fixed mt-[0px] -mr-[14px] rounded-full z-50 -translate-y-[294px]   left-[25%]  -translate-x-24 duration-300 "
                 style={{
                   opacity: diff < 300 ? 0 : 1,
                 }}
               >
                 Background
-              </div>
+              </div> */}
               <div
                 className="fixed mt-[0px] -ml-[6px] left-[25%] rounded-full z-50 h-3 w-3 bg-blue -translate-y-72 opacity-100"
                 ref={ref}
               ></div>
               <div
                 className={
-                  'fixed mt-[0px]   left-[25%] -mr-[14px] rounded-full z-50 -translate-y-[294px] translate-x-14'
+                  'fixed mt-[0px]   left-[25%] -mr-[14px] rounded-full z-50 -translate-y-[294px] translate-x-14 font-inter'
                 }
                 style={{ opacity: active >= 0 ? 1 : 0 }}
               >
-                {workExpierenceSteps[active]?.dateFrom}
+                {workExpierenceSteps[active]?.dateFrom} -{' '}
+                {workExpierenceSteps[active]?.dateTo}
               </div>
               {/* <div className=" bottom-0 border-r-2 border-black h-full left-[30.6%] pb-24 -mt-72 z-20 pb-72"></div> */}
             </div>
           </div>
         </div>
-        <div
-          className={'duration-100 flex flex-col '}
-          style={{
-            opacity: diff < 300 ? 1 : Math.max(0, 100 - (diff - 300)) / 100,
-          }}
-        >
-          <img
-            className="w-[40vw] h-[80vh] cursor-pointer object-cover rounded-bl-[120px]"
-            src="/me/portrait-martin2.jpg"
-          ></img>
-          <div className="pl-16 mt-8 flex flex-row  font-inter text-base justify-center">
-            <a className="mr-8 pr-8 font-bold border-r-2 border-black">
-              Software Engineering
-            </a>
-            <a className="mr-8 pr-8 marker: border-r-2 border-black">
-              Performance
-            </a>
-            <a className="mr-8">Security</a>
+        <div className="flex flex-row-reverse justify-start">
+          <div
+            className={'duration-100 flex flex-col '}
+            style={{
+              opacity: diff < 300 ? 1 : Math.max(0, 100 - (diff - 300)) / 100,
+            }}
+          >
+            <img
+              className="w-[40vw] h-[80vh] cursor-pointer object-cover rounded-bl-[120px]"
+              src="/me/portrait-martin2.jpg"
+            ></img>
+            <div className="pl-16 mt-8 flex flex-row  font-inter text-base justify-center">
+              <a className="mr-8 pr-8 font-bold border-r-2 border-black">
+                Software Engineering
+              </a>
+              <a className="mr-8 pr-8 marker: border-r-2 border-black">
+                Performance
+              </a>
+              <a className="mr-8">Security</a>
+            </div>
           </div>
         </div>
       </div>
       <div className="flex flex-row w-screen h-full relative">
         <div
-          className="sticky bottom-0 border-r-[1px] border-black left-[25%] pb-24 -mt-72 z-20 pb-72"
+          className="sticky bottom-0 border-r-[1px] border-black left-[25%] pb-24 -mt-[27vh] z-20 pb-72"
           ref={ref2}
         ></div>
+
         <div className="w-[35%]"></div>
-        <div className="flex flex-col">
-          <div className="h-[10vh] min-h-[30vh]"></div>
+
+        <div className="flex flex-col relative">
+          <div className="h-[20vh] min-h-[30vh]"></div>
+          <div className="sticky bottom-0 font-raleway text-6xl  mb-[10vh]">
+            Background
+          </div>
           {workExpierenceSteps.map((step, index) => (
             <div
               className={
                 'w-[800px] mb-[10vh] duration-300 ' +
-                (active === index ? 'blur-none  translate-x-7  ' : 'blur-sm')
+                (active === index
+                  ? 'opacity-100  translate-x-7  '
+                  : 'opacity-30')
                 // +  (visible[index] ? ' opacity-100' : ' opacity-0')
               }
               key={index}
               id={`step-${index}`}
             >
-              <div className="text-4xl mb-6 font-inter font-semibold">
+              <div className="text-4xl font-inter font-semibold">
+                {step.company}
+              </div>
+              <div className="text-2xl font-inter font-semibold mb-6 uppercase text-blue">
                 {step.title}
               </div>
+              {/* <div className="font-inter text-base text-gray-500 mb-6 ">
+                {step.dateFrom} - {step.dateTo}
+              </div> */}
               <div className="font-raleway text-base">{step.description}</div>
             </div>
           ))}
           <div className="h-[20vh] min-h-[20vh]"></div>
         </div>
       </div>
-      <div className="flex flex-row justify-center align-middle w-screen border-b-[1px] border-t-[1px] border-black h-[40vh]">
-        <div className="flex flex-col justify-center">
-          <div className="grid grid-flow-col justify-between max-w-screen-xl">
+      {/* <div className="flex flex-row justify-center align-middle w-screen border-b-[1px] border-t-[1px] border-black h-[40vh]">
+        <div className="flex flex-col justify-center max-w-[80%]">
+          <div className="grid grid-flow-col justify-between gap-16">
             <div>
-              <div className="text-neutral-900 text-xl font-semibold font-inter">
+              <div className="text-neutral-900 text-xl font-semibold font-inter ">
                 Master
                 <div className="text-neutral-500 font-normal text-sm">
                   {' '}
@@ -192,8 +208,25 @@ export function App() {
             </div>
           </div>
         </div>
+      </div> */}
+      {/* <div className="h-screen"></div> */}
+      <div className="w-screen h-screen flex flex-row justify-center">
+        <div className="max-w-screen-lg flex flex-col justify-center">
+          <div className="font-bold text-[86px] font-inter mb-12 leading-[106px]">
+            Let's work together.
+          </div>
+          {/* <div className="pt-4 pb-4 text-5xl font-semibold font-inter leading-[48px] text-center">
+              Contact Me
+            </div> */}
+          <Contacts />
+        </div>
       </div>
-      <div className="h-screen"></div>
+      <div className="w-full flex flex-row justify-center text-neutral-700 font-inter text-sm">
+        Made with Tailwind CSS & React
+      </div>
+      <div className="w-full flex flex-row justify-center font-inter text-sm  font-semibold">
+        © 2023 All rights reserved. – Coded by Martin Bogusz
+      </div>
     </div>
   );
 }

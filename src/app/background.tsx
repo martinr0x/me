@@ -24,7 +24,8 @@ export const backgroundSteps = [
 
 export const workExpierenceSteps = [
   {
-    title: 'Software Engineer @ Celonis',
+    company: 'Celonis',
+    title: 'Software Engineer',
     dateFrom: '2022',
     dateTo: 'now',
     techstack: [
@@ -57,7 +58,8 @@ export const workExpierenceSteps = [
   },
 
   {
-    title: 'Student Software Engineer @ qbound',
+    company: 'qbound',
+    title: 'Student Software Engineer',
     techstack: [
       'JavaScript',
       'React',
@@ -88,7 +90,8 @@ export const workExpierenceSteps = [
     ),
   },
   {
-    title: 'Research Assistant @ Technical University Munich',
+    title: 'Research Assistant',
+    company: 'Technical University Munich',
     techstack: ['C/C++', 'Python', 'Boost', 'MPI', 'HPX', 'OpenMP'],
 
     dateFrom: '2019',
@@ -109,7 +112,8 @@ export const workExpierenceSteps = [
     ),
   },
   {
-    title: 'Student Software Engineer @ Oregano Systems',
+    title: 'Student Software Engineer',
+    company: 'Oregano Systems',
     techstack: ['C/C++', 'JavaScript', 'PHP', 'Angular.js'],
 
     dateFrom: '2017',
