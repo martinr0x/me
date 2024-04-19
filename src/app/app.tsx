@@ -9,11 +9,15 @@ export function App() {
   const ref2: RefObject<HTMLDivElement> = useRef(null);
   const [active, setActive] = useState(-1);
   const [visible, setVisible] = useState(workExpierenceSteps.map((x) => false));
+  const [dotVisible, setDotVisible] = useState(100);
   const [diff, setDiff] = useState(0);
 
   const handleScroll = (x: any) => {
     const yDot = ref.current?.getBoundingClientRect().y;
-    if (!yDot) return;
+    const yLine = ref2?.current?.getBoundingClientRect().y;
+    const yHeight = ref2?.current?.getBoundingClientRect().height;
+
+    if (!yDot || !yLine || !yHeight) return;
     const yFirstPage = ref2.current
       ? ref2.current.getBoundingClientRect().y
       : 0;
@@ -37,6 +41,8 @@ export function App() {
         return Math.abs(yDot - y) < 100 || yDot > y;
       })
     );
+    console.log(yLine);
+    setDotVisible(Math.min(yLine + yHeight - yDot));
   };
   return (
     <div
@@ -84,7 +90,10 @@ export function App() {
                 Background
               </div> */}
               <div
-                className="fixed mt-[0px] -ml-[6px] left-[25%] rounded-full z-50 h-3 w-3 bg-blue -translate-y-72 opacity-100"
+                className={
+                  'fixed mt-[0px] -ml-[6px] left-[25%] rounded-full z-50 h-3 w-3 bg-blue -translate-y-[268px]  duration-100 '
+                }
+                style={{ opacity: dotVisible }}
                 ref={ref}
               ></div>
               <div
@@ -212,7 +221,7 @@ export function App() {
       {/* <div className="h-screen"></div> */}
       <div className="w-screen h-screen flex flex-row justify-center">
         <div className="max-w-screen-lg flex flex-col justify-center">
-          <div className="font-bold text-[86px] font-inter mb-12 leading-[106px]">
+          <div className="font-bold text-[86px] font-raleway mb-12 leading-[106px]">
             Let's work together.
           </div>
           {/* <div className="pt-4 pb-4 text-5xl font-semibold font-inter leading-[48px] text-center">
@@ -221,7 +230,7 @@ export function App() {
           <Contacts />
         </div>
       </div>
-      <div className="w-full flex flex-row justify-center text-neutral-700 font-inter text-sm">
+      <div className="w-full flex flex-row justify-center text-neutral-700 font-raleway text-sm">
         Made with Tailwind CSS & React
       </div>
       <div className="w-full flex flex-row justify-center font-inter text-sm  font-semibold">
