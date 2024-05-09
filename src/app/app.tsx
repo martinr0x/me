@@ -91,7 +91,7 @@ export function App() {
               </div> */}
               <div
                 className={
-                  'fixed mt-[0px] -ml-[6px] left-[25%] rounded-full z-50 h-3 w-3 bg-blue -translate-y-[268px]  duration-100 '
+                  'fixed mt-[0px] -ml-[6px] left-[25%] rounded-full z-50 h-3 w-3 bg-blue -translate-y-[294px]  duration-100 '
                 }
                 style={{ opacity: dotVisible }}
                 ref={ref}
@@ -172,8 +172,11 @@ export function App() {
           <div className="h-[20vh] min-h-[20vh]"></div>
         </div>
       </div>
-      {/* <div className="flex flex-row justify-center align-middle w-screen border-b-[1px] border-t-[1px] border-black h-[40vh]">
+      <div className="flex flex-row justify-center align-middle w-screen h-screen">
         <div className="flex flex-col justify-center max-w-[80%]">
+          <div className="font-raleway text-6xl mb-[10vh] w-full text-center">
+            Academia
+          </div>
           <div className="grid grid-flow-col justify-between gap-16">
             <div>
               <div className="text-neutral-900 text-xl font-semibold font-inter ">
@@ -217,7 +220,7 @@ export function App() {
             </div>
           </div>
         </div>
-      </div> */}
+      </div>
       {/* <div className="h-screen"></div> */}
       <div className="w-screen h-screen flex flex-row justify-center">
         <div className="max-w-screen-lg flex flex-col justify-center">
@@ -233,7 +236,7 @@ export function App() {
       <div className="w-full flex flex-row justify-center text-neutral-700 font-raleway text-sm">
         Made with Tailwind CSS & React
       </div>
-      <div className="w-full flex flex-row justify-center font-inter text-sm  font-semibold">
+      <div className="w-full flex flex-row justify-center font-raleway text-sm  font-semibold">
         © 2023 All rights reserved. – Coded by Martin Bogusz
       </div>
     </div>
