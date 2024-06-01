@@ -96,7 +96,7 @@ export function App() {
                 style={{ opacity: dotVisible }}
                 ref={ref}
               ></div>
-              <div
+              {/* <div
                 className={
                   'fixed mt-[0px]   left-[25%] -mr-[14px] rounded-full z-50 -translate-y-[294px] translate-x-14 font-inter'
                 }
@@ -104,7 +104,7 @@ export function App() {
               >
                 {workExpierenceSteps[active]?.dateFrom} -{' '}
                 {workExpierenceSteps[active]?.dateTo}
-              </div>
+              </div> */}
               {/* <div className=" bottom-0 border-r-2 border-black h-full left-[30.6%] pb-24 -mt-72 z-20 pb-72"></div> */}
             </div>
           </div>
@@ -148,25 +148,30 @@ export function App() {
           {workExpierenceSteps.map((step, index) => (
             <div
               className={
-                'w-[800px] mb-[10vh] duration-300 ' +
+                'w-[800px] pb-[8vh] mb-[2vh] duration-300 ' +
                 (active === index
                   ? 'opacity-100  translate-x-7  '
                   : 'opacity-30')
-                // +  (visible[index] ? ' opacity-100' : ' opacity-0')
               }
               key={index}
               id={`step-${index}`}
             >
-              <div className="text-4xl font-inter font-semibold">
-                {step.company}
-              </div>
-              <div className="text-2xl font-inter font-semibold mb-6 uppercase text-blue">
-                {step.title}
-              </div>
-              {/* <div className="font-inter text-base text-gray-500 mb-6 ">
+              <div>
+                <div className="text-4xl font-inter font-semibold">
+                  {step.company}
+                </div>
+                <div className="text-2xl font-inter font-semibold  uppercase text-blue">
+                  {step.title}
+                </div>
+                <div className="mb-6">
+                  {workExpierenceSteps[index]?.dateFrom} -{' '}
+                  {workExpierenceSteps[index]?.dateTo}
+                </div>
+                {/* <div className="font-inter text-base text-gray-500 mb-6 ">
                 {step.dateFrom} - {step.dateTo}
               </div> */}
-              <div className="font-raleway text-base">{step.description}</div>
+                <div className="font-raleway text-base">{step.description}</div>
+              </div>
             </div>
           ))}
           <div className="h-[20vh] min-h-[20vh]"></div>
@@ -224,7 +229,7 @@ export function App() {
       {/* <div className="h-screen"></div> */}
       <div className="w-screen h-screen flex flex-row justify-center">
         <div className="max-w-screen-lg flex flex-col justify-center">
-          <div className="font-bold text-[86px] font-raleway mb-12 leading-[106px]">
+          <div className="font-bold text-[86px] font-inter text-left mb-12 leading-[106px]">
             Let's work together.
           </div>
           {/* <div className="pt-4 pb-4 text-5xl font-semibold font-inter leading-[48px] text-center">
