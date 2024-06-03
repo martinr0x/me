@@ -44,6 +44,76 @@ export function App() {
     console.log(yLine);
     setDotVisible(Math.min(yLine + yHeight - yDot));
   };
+
+  const renderWorksteps = (workExpierenceSteps) => {
+    return workExpierenceSteps.map((step, index) => {
+      if (step?.jobs) {
+        return (
+          <div
+            className={
+              'w-[800px] pb-[8vh] mb-[2vh] duration-300 ' +
+              (active === index
+                ? 'opacity-100  translate-x-7 blur-none  '
+                : 'opacity-30  blur-sm')
+            }
+            key={index}
+            id={`step-${index}`}
+          >
+            <div className="">
+              <div className="text-4xl font-inter font-semibold">
+                {step.company}
+              </div>
+              <div className="text-2xl font-inter font-semibold  uppercase text-blue mb-5">
+                {step.title}
+              </div>
+              {step.jobs.map((s) => (
+                <div className="mb-[2vh]">
+                  <div className="text-2xl font-inter font-semibold ">
+                    {s.title} /{' '}
+                    <a className="opacity-30">
+                      {s.dateFrom} - {s.dateTo}{' '}
+                    </a>
+                  </div>
+                  <div className="mb-6"></div>
+
+                  <div className="font-raleway text-base">{s.description}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      }
+      return (
+        <div
+          className={
+            'w-[800px] pb-[8vh] mb-[2vh] duration-300 ' +
+            (active === index
+              ? 'opacity-100  translate-x-7 blur-none  '
+              : 'opacity-30  blur-sm')
+          }
+          key={index}
+          id={`step-${index}`}
+        >
+          <div>
+            <div className="text-4xl font-inter font-semibold">
+              {step.company}
+            </div>
+            <div className="text-2xl font-inter font-semibold  uppercase text-blue">
+              {step.title}
+            </div>
+            <div className="mb-6">
+              {workExpierenceSteps[index]?.dateFrom} -{' '}
+              {workExpierenceSteps[index]?.dateTo}
+            </div>
+            {/* <div className="font-inter text-base text-gray-500 mb-6 ">
+          {step.dateFrom} - {step.dateTo}
+        </div> */}
+            <div className="font-raleway text-base">{step.description}</div>
+          </div>
+        </div>
+      );
+    });
+  };
   return (
     <div
       className="flex flex-col antialiased overflow-x-hidden scroll-smooth"
@@ -59,7 +129,7 @@ export function App() {
               <a className="mr-8">Projects</a>
             </div>
             <div
-              className={'duration-100 '}
+              className={'duration-100 pb-36 max-w-[440px]'}
               style={{
                 opacity: diff < 300 ? 1 : Math.max(0, 100 - (diff - 300)) / 100,
               }}
@@ -81,14 +151,6 @@ export function App() {
               </div>
             </div>
             <div className="flex flex-row justify-center">
-              {/* <div
-                className="fixed mt-[0px] -mr-[14px] rounded-full z-50 -translate-y-[294px]   left-[25%]  -translate-x-24 duration-300 "
-                style={{
-                  opacity: diff < 300 ? 0 : 1,
-                }}
-              >
-                Background
-              </div> */}
               <div
                 className={
                   'fixed mt-[0px] -ml-[6px] left-[25%] rounded-full z-50 h-3 w-3 bg-blue -translate-y-[294px]  duration-100 '
@@ -117,8 +179,9 @@ export function App() {
             }}
           >
             <img
-              className="w-[40vw] h-[80vh] cursor-pointer object-cover rounded-bl-[120px]"
+              className="w-[50vw] h-[90vh] cursor-pointer object-cover"
               src="/me/portrait-martin2.jpg"
+              onLoad={() => console.log('loaded')}
             ></img>
             <div className="pl-16 mt-8 flex flex-row  font-inter text-base justify-center">
               <a className="mr-8 pr-8 font-bold border-r-2 border-black">
@@ -142,86 +205,69 @@ export function App() {
 
         <div className="flex flex-col relative">
           <div className="h-[20vh] min-h-[30vh]"></div>
-          <div className="sticky bottom-0 font-raleway text-6xl  mb-[10vh]">
+          {/* <div className="sticky bottom-0 font-bold text-[64px] font-raleway text-left mb-12 leading-[106px]  mb-[10vh]">
             Background
-          </div>
-          {workExpierenceSteps.map((step, index) => (
-            <div
-              className={
-                'w-[800px] pb-[8vh] mb-[2vh] duration-300 ' +
-                (active === index
-                  ? 'opacity-100  translate-x-7  '
-                  : 'opacity-30')
-              }
-              key={index}
-              id={`step-${index}`}
-            >
-              <div>
-                <div className="text-4xl font-inter font-semibold">
-                  {step.company}
-                </div>
-                <div className="text-2xl font-inter font-semibold  uppercase text-blue">
-                  {step.title}
-                </div>
-                <div className="mb-6">
-                  {workExpierenceSteps[index]?.dateFrom} -{' '}
-                  {workExpierenceSteps[index]?.dateTo}
-                </div>
-                {/* <div className="font-inter text-base text-gray-500 mb-6 ">
-                {step.dateFrom} - {step.dateTo}
-              </div> */}
-                <div className="font-raleway text-base">{step.description}</div>
-              </div>
-            </div>
-          ))}
-          <div className="h-[20vh] min-h-[20vh]"></div>
+          </div> */}
+          {renderWorksteps(workExpierenceSteps)}
+          <div className="h-[20vh] min-h-[30vh]"></div>
         </div>
       </div>
-      <div className="flex flex-row justify-center align-middle w-screen h-screen">
-        <div className="flex flex-col justify-center max-w-[80%]">
-          <div className="font-raleway text-6xl mb-[10vh] w-full text-center">
-            Academia
-          </div>
-          <div className="grid grid-flow-col justify-between gap-16">
-            <div>
-              <div className="text-neutral-900 text-xl font-semibold font-inter ">
-                Master
-                <div className="text-neutral-500 font-normal text-sm">
-                  {' '}
-                  2022 - 2019
+      <div className="flex flex-col justify-center align-middle w-screen h-screen bg-white text-white snap-center">
+        <div className="flex flex-row justify-center align-middle w-screen h-[50vh] bg-blue text-white">
+          <div className="flex flex-col justify-center max-w-[80%]">
+            <div className="grid grid-flow-row  grid-cols-3 grid-rows-3 gap-x-16">
+              <div></div>
+              <div className="font-raleway text-6xl w-full text-left row-span-1">
+                Academia
+              </div>
+              <div></div>
+              <div className="row-span-2 col-span-1">
+                <div className="text-white text-2xl font-inter font-semibold pb-5">
+                  Master
+                  <div className="text-white font-normal text-base pt-1">
+                    2022 - 2019 |{' '}
+                    <a className="font-semibold">TUM, Munich, Bavaria</a>
+                  </div>
+                </div>
+                <div className="text-base leading-6 font-normal font-raleway">
+                  Focus on IT Security, Software Engineering and High
+                  Performance Computing. Wrote my master’s thesis about “Secure,
+                  decentralized trust establishment in self-sovereign
+                  identity(SSI) systems.” at the Fraunhofer Institute for
+                  Applied and Integrated Security (AISEC)
                 </div>
               </div>
-              Focus on IT Security, Software Engineering and High Performance
-              Computing. Wrote my master’s thesis about “Secure, decentralized
-              trust establishment in self-sovereign identity(SSI) systems.” at
-              the Fraunhofer Institute for Applied and Integrated Security
-              (AISEC)
-            </div>
-            <div>
-              <div className="text-neutral-900 text-xl font-semibold font-inter">
-                Bachelor
-                <div className="text-neutral-500 font-normal text-sm">
-                  {' '}
-                  2019 - 2016
+              <div className="row-span-2 col-span-1">
+                <div className="text-white text-2xl font-inter font-semibold pb-5">
+                  Bachelor
+                  <div className="text-white font-normal text-base pt-1">
+                    2019 - 2016 |{' '}
+                    <a className="font-semibold">TUM, Munich, Bavaria</a>
+                  </div>
+                </div>
+                <div className="text-base leading-6 font-normal font-raleway">
+                  Minor in Economics. Focus on IT Security and AI. Bachelor’s
+                  thesis “Exploring Modern Runtime Systems for the
+                  SWE-Framework”.
                 </div>
               </div>
-              Minor in Economics. Focus on IT Security and AI. Bachelor’s thesis
-              “Exploring Modern Runtime Systems for the SWE-Framework”.
-            </div>
-            <div>
-              <div className="text-neutral-900 text-xl font-semibold font-inter">
-                Research
-                <div className="text-neutral-500 font-normal text-sm">
-                  {' '}
-                  2019 - 2020
+              <div className="row-span-2 col-span-1">
+                <div className="text-white text-2xl font-inter font-semibold pb-5">
+                  Research
+                  <div className="text-white font-normal text-base pt-1">
+                    2019 - 2020 |{' '}
+                    <a className="font-semibold">TUM, Munich, Bavaria</a>
+                  </div>
                 </div>
+                <div className="text-base leading-6 font-normal font-raleway">
+                  Worked on parallel computing approaches for high performance
+                  applications. The results were published in the 2020 IEEE/ACM
+                  3rd Annual Parallel Applications Workshop.{' '}
+                </div>
+                <a href="https://ieeexplore.ieee.org/document/9307099">
+                  <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+                </a>
               </div>
-              Worked on parallel computing approaches for high performance
-              applications. The results were published in the 2020 IEEE/ACM 3rd
-              Annual Parallel Applications Workshop.{' '}
-              <a href="https://ieeexplore.ieee.org/document/9307099">
-                <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
-              </a>
             </div>
           </div>
         </div>
@@ -229,7 +275,7 @@ export function App() {
       {/* <div className="h-screen"></div> */}
       <div className="w-screen h-screen flex flex-row justify-center">
         <div className="max-w-screen-lg flex flex-col justify-center">
-          <div className="font-bold text-[86px] font-inter text-left mb-12 leading-[106px]">
+          <div className="font-bold text-[86px] font-raleway text-left mb-12 leading-[106px]">
             Let's work together.
           </div>
           {/* <div className="pt-4 pb-4 text-5xl font-semibold font-inter leading-[48px] text-center">

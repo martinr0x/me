@@ -1,3 +1,5 @@
+import { title } from 'process';
+
 export const backgroundSteps = [
   {
     title: 'Highschool',
@@ -26,35 +28,61 @@ export const workExpierenceSteps = [
   {
     company: 'Celonis',
     title: 'Software Engineer',
-    dateFrom: '2022',
-    dateTo: 'now',
-    techstack: [
-      'Java',
-      'Spring',
-      'Postgres',
-      'Kubernetes',
-      'OAuth2',
-      'Microservices',
+    jobs: [
+      {
+        title: 'Core Engine Performance',
+        dateFrom: 'Oct 2023',
+        dateTo: 'now',
+        techstack: [],
+        location: 'Munich, Germany',
+        description: (
+          <ul className="">
+            <li>
+              Addressing performance challenges across all layers of a
+              proprietary in-memory analytical database (OLAP), with a primary
+              focus on data sharding and horizontal scaling to meet growing data
+              demands. My daily work includes root cause & algorithmic analysis,
+              debugging and micro optimizations. Contributed to building a
+              micro-benchmarking infrastructure to detect regressions. Achieved
+              a 90% reduction in allocation time by efficiently allocating large
+              arrays on NUMA systems.
+            </li>
+          </ul>
+        ),
+      },
+      {
+        title: 'Identity Management',
+        dateFrom: '2022',
+        dateTo: 'Oct 2023',
+        techstack: [
+          'Java',
+          'Spring',
+          'Postgres',
+          'Kubernetes',
+          'OAuth2',
+          'Microservices',
+        ],
+        location: 'Munich, Germany',
+        description: (
+          <ul className="">
+            <li>
+              Engineered and designed a robust system to facilitate scalable and
+              secure platform integration via OAuth2. Following its successful
+              launch, I provided guidance to several teams on adopting the new
+              system for product development. This initiative notably enhanced
+              the customer and developer experience, rendering application
+              integrations more scalable, secure, and enterprise-ready.
+            </li>
+            <li>
+              Contributed to enhancing the system's reliability and stability by
+              undertaking various projects and initiatives. Achieved a 90%
+              reduction in p90 latency for the API gateway by implementing a
+              series of optimizations and performance improvements.
+            </li>
+          </ul>
+        ),
+      },
     ],
-    location: 'Munich, Germany',
-    description: (
-      <ul className=" pl-5">
-        <li>
-          Engineered and designed a robust system to facilitate scalable and
-          secure platform integration via OAuth2. Following its successful
-          launch, I provided guidance to several teams on adopting the new
-          system for product development. This initiative notably enhanced the
-          customer and developer experience, rendering application integrations
-          more scalable, secure, and enterprise-ready.
-        </li>
-        <li>
-          Contributed to enhancing the system's reliability and stability by
-          undertaking various projects and initiatives. Achieved a 90% reduction
-          in p90 latency for the API gateway by implementing a series of
-          optimizations and performance improvements.
-        </li>
-      </ul>
-    ),
   },
 
   {
@@ -75,7 +103,7 @@ export const workExpierenceSteps = [
     dateTo: '2021',
     location: 'Munich, Germany',
     description: (
-      <ul className=" pl-5">
+      <ul className="">
         <li>
           Developed a web application for managing and monitoring internal
           resources and services, resulting in a 30% reduction in downtime and
@@ -98,7 +126,7 @@ export const workExpierenceSteps = [
     dateTo: '2020',
     location: 'Munich, Germany',
     description: (
-      <ul className=" pl-5">
+      <ul className="">
         <li>
           Designed and integrated parallel solutions for compute-intensive
           simulation applications. Evaluated the resulting performance benefits
@@ -120,7 +148,7 @@ export const workExpierenceSteps = [
     dateTo: '2019',
     location: 'Munich, Germany',
     description: (
-      <ul className=" pl-5">
+      <ul className="">
         <li>
           Created a web application for real time monitoring and configuration
           of clock synchronization hardware.
