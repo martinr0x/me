@@ -39,13 +39,15 @@ export const workExpierenceSteps = [
           <ul className="">
             <li>
               Addressing performance challenges across all layers of a
-              proprietary in-memory analytical database (OLAP), with a primary
-              focus on data sharding and horizontal scaling to meet growing data
-              demands. My daily work includes root cause & algorithmic analysis,
-              debugging and micro optimizations. Contributed to building a
-              micro-benchmarking infrastructure to detect regressions. Achieved
-              a 90% reduction in allocation time by efficiently allocating large
-              arrays on NUMA systems.
+              proprietary analytical database (OLAP), with primary focus on
+              horizontal scaling to meet growing data demands and performance
+              monitoring. My daily work includes root cause and algorithmic
+              analysis, debugging, and micro-optimizations.
+            </li>
+            <li>
+              I contributed to building a micro-benchmarking infrastructure to
+              detect regressions and implemented several optimizations that
+              resulted in up to 50x performance improvements.
             </li>
           </ul>
         ),

@@ -68,11 +68,11 @@ export function App() {
               </div>
               {step.jobs.map((s) => (
                 <div className="mb-[2vh]">
-                  <div className="text-2xl font-inter font-semibold ">
-                    {s.title} /{' '}
-                    <a className="opacity-30">
-                      {s.dateFrom} - {s.dateTo}{' '}
-                    </a>
+                  <div className="text-2xl font-inter font-semibold uppercase ">
+                    {s.title}
+                  </div>
+                  <div className="opacity-30 normal-case">
+                    {s.dateFrom} - {s.dateTo}{' '}
                   </div>
                   <div className="mb-6"></div>
 
@@ -275,7 +275,7 @@ export function App() {
       {/* <div className="h-screen"></div> */}
       <div className="w-screen h-screen flex flex-row justify-center">
         <div className="max-w-screen-lg flex flex-col justify-center">
-          <div className="font-bold text-[86px] font-raleway text-left mb-12 leading-[106px]">
+          <div className="font-bold text-[86px] font-inter text-left mb-12 leading-[106px]">
             Let's work together.
           </div>
           {/* <div className="pt-4 pb-4 text-5xl font-semibold font-inter leading-[48px] text-center">
