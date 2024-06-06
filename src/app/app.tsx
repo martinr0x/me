@@ -71,7 +71,7 @@ export function App() {
                   <div className="text-2xl font-inter font-semibold uppercase ">
                     {s.title}
                   </div>
-                  <div className="opacity-30 normal-case">
+                  <div className="normal-case">
                     {s.dateFrom} - {s.dateTo}{' '}
                   </div>
                   <div className="mb-6"></div>
@@ -120,6 +120,16 @@ export function App() {
       onScroll={handleScroll}
       onWheel={handleScroll}
     >
+      <div
+        className={
+          'fixed top-0 right-0 duration-300 m-4 ' +
+          ((diff < 300 ? 1 : Math.max(0, 100 - (diff - 300)) / 100) === 0
+            ? 'translate-x-0'
+            : 'translate-x-40')
+        }
+      >
+        <Contacts />
+      </div>
       <div className={'flex flex-row w-screen h-screen relative duration-200 '}>
         <div className="flex flex-row text-center justify-center flex-grow ">
           <div className="flex flex-col justify-between">
@@ -153,21 +163,11 @@ export function App() {
             <div className="flex flex-row justify-center">
               <div
                 className={
-                  'fixed mt-[0px] -ml-[6px] left-[25%] rounded-full z-50 h-3 w-3 bg-blue -translate-y-[294px]  duration-100 '
+                  'fixed mt-[0px] -ml-[8px] left-[25%] rounded-full z-50 h-4 w-4 bg-blue -translate-y-[294px]  duration-100 '
                 }
                 style={{ opacity: dotVisible }}
                 ref={ref}
               ></div>
-              {/* <div
-                className={
-                  'fixed mt-[0px]   left-[25%] -mr-[14px] rounded-full z-50 -translate-y-[294px] translate-x-14 font-inter'
-                }
-                style={{ opacity: active >= 0 ? 1 : 0 }}
-              >
-                {workExpierenceSteps[active]?.dateFrom} -{' '}
-                {workExpierenceSteps[active]?.dateTo}
-              </div> */}
-              {/* <div className=" bottom-0 border-r-2 border-black h-full left-[30.6%] pb-24 -mt-72 z-20 pb-72"></div> */}
             </div>
           </div>
         </div>
@@ -205,9 +205,6 @@ export function App() {
 
         <div className="flex flex-col relative">
           <div className="h-[20vh] min-h-[30vh]"></div>
-          {/* <div className="sticky bottom-0 font-bold text-[64px] font-raleway text-left mb-12 leading-[106px]  mb-[10vh]">
-            Background
-          </div> */}
           {renderWorksteps(workExpierenceSteps)}
           <div className="h-[20vh] min-h-[30vh]"></div>
         </div>
@@ -272,15 +269,12 @@ export function App() {
           </div>
         </div>
       </div>
-      {/* <div className="h-screen"></div> */}
       <div className="w-screen h-screen flex flex-row justify-center">
         <div className="max-w-screen-lg flex flex-col justify-center">
           <div className="font-bold text-[86px] font-inter text-left mb-12 leading-[106px]">
             Let's work together.
           </div>
-          {/* <div className="pt-4 pb-4 text-5xl font-semibold font-inter leading-[48px] text-center">
-              Contact Me
-            </div> */}
+
           <Contacts />
         </div>
       </div>

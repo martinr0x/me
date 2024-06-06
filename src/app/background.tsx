@@ -88,7 +88,7 @@ export const workExpierenceSteps = [
   },
 
   {
-    company: 'qbound',
+    company: 'qbound (acquired by trusteq)',
     title: 'Student Software Engineer',
     techstack: [
       'JavaScript',
