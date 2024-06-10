@@ -2,89 +2,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* You can add global styles to this file, and also import other style files */
-/* Your styles goes here. */
-.typewriter {
-  overflow: hidden; /* Ensures the content is not revealed until the animation */
-  border-right: 0.15em solid rgb(255, 255, 255); /* The typwriter cursor */
-  white-space: nowrap;
-  max-width: 210px;
-  animation: typing 2s steps(50, end), blink-caret 0.75s step-end 2;
-}
-.typewriter2 {
-  overflow: hidden; /* Ensures the content is not revealed until the animation */
-  border-right: 0.15em solid rgb(255, 255, 255); /* The typwriter cursor */
-  white-space: nowrap;
-  max-width: 240px;
-  animation: hidden 2.2s step-end, typing 2.2s steps(40, end) 2.2s,
-    blink-caret 0.75s step-end 2.2s 2;
-}
 
-
-.text-intro {
-  transition: all 1s;
-  
-  animation-name: invisible;
-  animation-delay: 4.2s;
-  animation-duration: 0.2s;
-  animation-fill-mode: backwards;
-  animation-timing-function: ease-out;
+.vibrate {
+  color: rgb(0, 0, 0);
+  animation: changeColor ease;
+  animation-iteration-count: 1;
+  animation-duration: 4s;
+  animation-fill-mode: both;
 }
-/* The typing effect */
-@keyframes typing {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
-}
-@keyframes hidden {
-  from,
-  to {
-    width: 0%;
-  }
-}
-@keyframes invisible {
+@keyframes changeColor {
   0% {
-    transform: translateX(100%);
-    filter: blur(5px);
-    opacity: 0;
+    color: rgb(0, 0, 0);
   }
-  100% {
-    transform: translateX(0);
-    filter: blur(0);
-    opacity: 1;
-  }
-}
-@keyframes fade-in {
-  from {
-    opacity: 0%;
-  }
-  to {
-    opacity: 100%;
-  }
-}
-/* The typewriter cursor effect */
-@keyframes blink-caret {
-  from {
-    border-color: transparent;
-  }
-  to {
-    border-color: rgb(0, 0, 0);
-  }
-  50% {
-    border-color: rgb(0, 0, 0);
-  }
-}
 
-.hidden-left {
-  opacity: 0;
-  transform: translateX(-100%);
-  filter: blur(10px);
-}
-.show {
-  opacity: 1;
-  filter: blur(0);
-  transform: translateX(0);
+  50% {
+    color: grey;
+  }
+
+  100% {
+    color: rgb(0, 0, 0);
+  }
 }

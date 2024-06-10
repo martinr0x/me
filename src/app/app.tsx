@@ -1,27 +1,36 @@
 import { RefObject, useRef, useState } from 'react';
-import { workExpierenceSteps } from './background';
+import { computerScienceWords, workExpierenceSteps } from './background';
 import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Contacts from './contacts';
+import LoadingScreen from './loadingScreen';
 
 export function App() {
-  const ref: RefObject<HTMLDivElement> = useRef(null);
-  const ref2: RefObject<HTMLDivElement> = useRef(null);
+  const refBackgroundDot: RefObject<HTMLDivElement> = useRef(null);
+  const refBackgroundTimeline: RefObject<HTMLDivElement> = useRef(null);
+  const refCallToActionPage: RefObject<HTMLDivElement> = useRef(null);
+
   const [active, setActive] = useState(-1);
-  const [visible, setVisible] = useState(workExpierenceSteps.map((x) => false));
   const [dotVisible, setDotVisible] = useState(100);
+  const [contactsVisible, setContactsVisible] = useState(false);
   const [diff, setDiff] = useState(0);
 
   const handleScroll = (x: any) => {
-    const yDot = ref.current?.getBoundingClientRect().y;
-    const yLine = ref2?.current?.getBoundingClientRect().y;
-    const yHeight = ref2?.current?.getBoundingClientRect().height;
+    const yDot = refBackgroundDot.current?.getBoundingClientRect().y;
+    const yLine = refBackgroundTimeline?.current?.getBoundingClientRect().y;
+    const yHeight =
+      refBackgroundTimeline?.current?.getBoundingClientRect().height;
+    const yHeightCallToAction =
+      refCallToActionPage?.current?.getBoundingClientRect().height;
+
+    setContactsVisible(
+      (diff < 300 ? 1 : Math.max(0, 100 - (diff - 300)) / 100) === 0
+    );
 
     if (!yDot || !yLine || !yHeight) return;
-    const yFirstPage = ref2.current
-      ? ref2.current.getBoundingClientRect().y
+    const yFirstPage = refBackgroundTimeline.current
+      ? refBackgroundTimeline.current.getBoundingClientRect().y
       : 0;
-    console.log(Math.abs(yDot - yFirstPage));
     setDiff(Math.abs(yDot - yFirstPage));
     setActive(
       workExpierenceSteps.findIndex((_, index) => {
@@ -33,16 +42,7 @@ export function App() {
       })
     );
 
-    setVisible(
-      workExpierenceSteps.map((_, index) => {
-        const step = document.getElementById(`step-${index}`);
-        if (!step) return false;
-        const { y } = step.getBoundingClientRect();
-        return Math.abs(yDot - y) < 100 || yDot > y;
-      })
-    );
-    console.log(yLine);
-    setDotVisible(Math.min(yLine + yHeight - yDot));
+    setDotVisible(yLine + yHeight - yDot);
   };
 
   const renderWorksteps = (workExpierenceSteps) => {
@@ -105,9 +105,6 @@ export function App() {
               {workExpierenceSteps[index]?.dateFrom} -{' '}
               {workExpierenceSteps[index]?.dateTo}
             </div>
-            {/* <div className="font-inter text-base text-gray-500 mb-6 ">
-          {step.dateFrom} - {step.dateTo}
-        </div> */}
             <div className="font-raleway text-base">{step.description}</div>
           </div>
         </div>
@@ -116,16 +113,15 @@ export function App() {
   };
   return (
     <div
-      className="flex flex-col antialiased overflow-x-hidden scroll-smooth"
+      className="relative flex flex-col antialiased overflow-x-hidden"
       onScroll={handleScroll}
       onWheel={handleScroll}
     >
+      <LoadingScreen words={computerScienceWords} />
       <div
         className={
           'fixed top-0 right-0 duration-300 m-4 ' +
-          ((diff < 300 ? 1 : Math.max(0, 100 - (diff - 300)) / 100) === 0
-            ? 'translate-x-0'
-            : 'translate-x-40')
+          (contactsVisible ? 'translate-x-0' : 'translate-x-48')
         }
       >
         <Contacts />
@@ -163,10 +159,10 @@ export function App() {
             <div className="flex flex-row justify-center">
               <div
                 className={
-                  'fixed mt-[0px] -ml-[8px] left-[25%] rounded-full z-50 h-4 w-4 bg-blue -translate-y-[294px]  duration-100 '
+                  'fixed mt-[0px] -ml-[8px] left-[25%] rounded-full z-50 h-4 w-4 bg-blue -translate-y-[294px] hover:bg-indigo-700 duration-100 '
                 }
                 style={{ opacity: dotVisible }}
-                ref={ref}
+                ref={refBackgroundDot}
               ></div>
             </div>
           </div>
@@ -198,7 +194,7 @@ export function App() {
       <div className="flex flex-row w-screen h-full relative">
         <div
           className="sticky bottom-0 border-r-[1px] border-black left-[25%] pb-24 -mt-[27vh] z-20 pb-72"
-          ref={ref2}
+          ref={refBackgroundTimeline}
         ></div>
 
         <div className="w-[35%]"></div>
@@ -269,7 +265,10 @@ export function App() {
           </div>
         </div>
       </div>
-      <div className="w-screen h-screen flex flex-row justify-center">
+      <div
+        className="w-screen h-screen flex flex-row justify-center"
+        ref={refCallToActionPage}
+      >
         <div className="max-w-screen-lg flex flex-col justify-center">
           <div className="font-bold text-[86px] font-inter text-left mb-12 leading-[106px]">
             Let's work together.
