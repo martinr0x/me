@@ -14,7 +14,7 @@ export function App() {
   const [dotVisible, setDotVisible] = useState(100);
   const [contactsVisible, setContactsVisible] = useState(false);
   const [diff, setDiff] = useState(0);
-
+  const [visible, setVisible] = useState(false);
   const handleScroll = (x: any) => {
     const yDot = refBackgroundDot.current?.getBoundingClientRect().y;
     const yLine = refBackgroundTimeline?.current?.getBoundingClientRect().y;
@@ -117,7 +117,7 @@ export function App() {
       onScroll={handleScroll}
       onWheel={handleScroll}
     >
-      <LoadingScreen words={computerScienceWords} />
+      <LoadingScreen words={computerScienceWords} setVisible={setVisible} />
       <div
         className={
           'fixed top-0 right-0 duration-300 m-4 ' +
@@ -129,10 +129,17 @@ export function App() {
       <div className={'flex flex-row w-screen h-screen relative duration-200 '}>
         <div className="flex flex-row text-center justify-center flex-grow ">
           <div className="flex flex-col justify-between">
-            <div className="mt-10 flex flex-row justify-left font-inter text-base">
-              <a className="mr-8 font-bold">About me</a>
-              <a className="mr-8">Background</a>
-              <a className="mr-8">Projects</a>
+            <div className="mt-10 overflow-hidden">
+              <div
+                className={
+                  ' flex flex-row justify-left font-inter text-base duration-300  ' +
+                  (visible || '-translate-y-16')
+                }
+              >
+                <a className="mr-8 font-bold">About me</a>
+                <a className="mr-8">Background</a>
+                <a className="">Projects</a>
+              </div>
             </div>
             <div
               className={'duration-100 pb-36 max-w-[440px]'}
@@ -140,20 +147,54 @@ export function App() {
                 opacity: diff < 300 ? 1 : Math.max(0, 100 - (diff - 300)) / 100,
               }}
             >
-              <div className="font-bold text-[86px] font-inter text-left mb-12 leading-[106px]">
-                Hi there, <br></br>
-                I'm Martin.
+              <div className="overflow-hidden">
+                <div
+                  className={
+                    'font-bold text-[86px] font-inter text-left mb-12 leading-[106px] duration-300 ' +
+                    (visible || '-translate-y-48')
+                  }
+                >
+                  Hi there, <br></br>
+                  I'm Martin.
+                </div>
               </div>
-              <div className="text-left text-base leading-6 font-normal font-raleway">
-                <article className="font-semibold">
-                  I am a software engineer.{' '}
-                </article>
-                Since I was a kid I was fascinated with all tech things.{' '}
-                <br></br>
-                Fast forward to today, this fascination turned into a career.
-                <br></br>
-                If you're curious to learn more about me, scroll further down
-                this page.<br></br>
+
+              <div className="text-left text-base leading-6 font-normal font-raleway overflow-hidden">
+                <div className="overflow-hidden">
+                  <article
+                    className={
+                      'font-semibold duration-300 ' +
+                      (visible || '-translate-y-10')
+                    }
+                  >
+                    I am a software engineer.{' '}
+                  </article>
+                </div>
+
+                <div className="overflow-hidden">
+                  <article
+                    className={'duration-300 ' + (visible || '-translate-y-10')}
+                  >
+                    Since I was a kid I was fascinated with all tech things.{' '}
+                  </article>
+                </div>
+                <div className="overflow-hidden">
+                  <article
+                    className={'duration-300 ' + (visible || '-translate-y-10')}
+                  >
+                    Fast forward to today, this fascination turned into a
+                    career.
+                  </article>
+                </div>
+
+                <div className="overflow-hidden">
+                  <article
+                    className={'duration-300 ' + (visible || '-translate-y-10')}
+                  >
+                    If you're curious to learn more about me, scroll further
+                    down this page.
+                  </article>
+                </div>
               </div>
             </div>
             <div className="flex flex-row justify-center">
@@ -169,24 +210,40 @@ export function App() {
         </div>
         <div className="flex flex-row-reverse justify-start">
           <div
-            className={'duration-100 flex flex-col '}
+            className={'duration-100 flex flex-col overflow-hidden '}
             style={{
               opacity: diff < 300 ? 1 : Math.max(0, 100 - (diff - 300)) / 100,
             }}
           >
             <img
-              className="w-[50vw] h-[90vh] cursor-pointer object-cover"
+              className={'w-[50vw] h-[90vh] cursor-pointer object-cover'}
               src="/me/portrait-martin2.jpg"
-              onLoad={() => console.log('loaded')}
             ></img>
-            <div className="pl-16 mt-8 flex flex-row  font-inter text-base justify-center">
-              <a className="mr-8 pr-8 font-bold border-r-2 border-black">
+            <div className="pl-16 mt-8 flex flex-row  font-inter text-base justify-center overflow-hidden">
+              <a
+                className={
+                  'mr-8 pr-8 font-bold border-r-2 border-black duration-300 ' +
+                  (visible || '-translate-y-10')
+                }
+              >
                 Software Engineering
               </a>
-              <a className="mr-8 pr-8 marker: border-r-2 border-black">
+              <a
+                c
+                className={
+                  'mr-8 pr-8  border-r-2 border-black duration-300 ' +
+                  (visible || '-translate-y-10')
+                }
+              >
                 Performance
               </a>
-              <a className="mr-8">Security</a>
+              <a
+                className={
+                  'mr-8 duration-300 ' + (visible || '-translate-y-10')
+                }
+              >
+                Security
+              </a>
             </div>
           </div>
         </div>
