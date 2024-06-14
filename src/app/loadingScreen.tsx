@@ -12,7 +12,10 @@ export default function LoadingScreen(props) {
       setCounter((c) => {
         if (c >= 100) {
           clearInterval(intervalId);
-          setTimeout(() => setVisible(true), 600);
+          // setTimeout(() => setVisible(true), 600);
+          setTimeout(() => {
+            document.getElementById('loading-screen')?.classList.add('hidden');
+          }, 2000);
         }
         const count = Math.min(100, c + randomNumber(1, 4));
 
@@ -21,13 +24,14 @@ export default function LoadingScreen(props) {
 
       const rnd = randomNumber(0, words.length);
 
-      document.getElementById(`test-${rnd}`)?.classList.add('vibrate');
+      document.getElementById(`word-${rnd}`)?.classList.add('vibrate');
     }, 100);
     return () => clearInterval(intervalId);
   }, []);
 
   return (
     <div
+      id={'loading-screen'}
       className={
         'fixed w-screen h-screen flex flex-row flex-wrap p-20 justify-between z-[9999] bg-white delay-500 duration-500 ease-in ' +
         (counter < 100 || 'opacity-0')
@@ -41,7 +45,7 @@ export default function LoadingScreen(props) {
       >
         {words.map((w, index) => (
           <div
-            id={`test-${index}`}
+            id={`word-${index}`}
             className={
               'p-2 text-4xl font-raleway duration-500 ease-in text-gray-200 '
             }

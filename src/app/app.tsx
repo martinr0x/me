@@ -1,4 +1,4 @@
-import { RefObject, useRef, useState } from 'react';
+import { RefObject, useEffect, useRef, useState } from 'react';
 import { computerScienceWords, workExpierenceSteps } from './background';
 import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -20,18 +20,12 @@ export function App() {
     const yLine = refBackgroundTimeline?.current?.getBoundingClientRect().y;
     const yHeight =
       refBackgroundTimeline?.current?.getBoundingClientRect().height;
-    const yHeightCallToAction =
-      refCallToActionPage?.current?.getBoundingClientRect().height;
-
-    setContactsVisible(
-      (diff < 300 ? 1 : Math.max(0, 100 - (diff - 300)) / 100) === 0
-    );
 
     if (!yDot || !yLine || !yHeight) return;
     const yFirstPage = refBackgroundTimeline.current
       ? refBackgroundTimeline.current.getBoundingClientRect().y
       : 0;
-    setDiff(Math.abs(yDot - yFirstPage));
+    // setDiff(Math.abs(yDot - yFirstPage));
     setActive(
       workExpierenceSteps.findIndex((_, index) => {
         const step = document.getElementById(`step-${index}`);
@@ -44,14 +38,31 @@ export function App() {
 
     setDotVisible(yLine + yHeight - yDot);
   };
+  useEffect(() => {
+    let options = {
+      root: null,
+      threshold: 0.6,
+    };
+    let observer = new IntersectionObserver((o) => {
+      setContactsVisible(!o[0].isIntersecting);
+      setVisible(o[0].isIntersecting);
+      console.log(o);
+    }, options);
 
+    observer.observe(document.getElementById('intro'));
+    observer.observe(document.getElementById('call-to-action'));
+
+    // document
+    //   .querySelectorAll('.background-item')
+    //   .forEach((e) => observer.observe(e));
+  }, []);
   const renderWorksteps = (workExpierenceSteps) => {
     return workExpierenceSteps.map((step, index) => {
       if (step?.jobs) {
         return (
           <div
             className={
-              'w-[800px] pb-[8vh] mb-[2vh] duration-300 ' +
+              'background-item w-[800px] pb-[8vh] mb-[2vh] duration-300 ' +
               (active === index
                 ? 'opacity-100  translate-x-7 blur-none  '
                 : 'opacity-30  blur-sm')
@@ -86,7 +97,7 @@ export function App() {
       return (
         <div
           className={
-            'w-[800px] pb-[8vh] mb-[2vh] duration-300 ' +
+            'background-item w-[800px] pb-[8vh] mb-[2vh] duration-300 ' +
             (active === index
               ? 'opacity-100  translate-x-7 blur-none  '
               : 'opacity-30  blur-sm')
@@ -126,7 +137,10 @@ export function App() {
       >
         <Contacts />
       </div>
-      <div className={'flex flex-row w-screen h-screen relative duration-200 '}>
+      <div
+        id="intro"
+        className={'flex flex-row w-screen h-screen relative duration-200 '}
+      >
         <div className="flex flex-row text-center justify-center flex-grow ">
           <div className="flex flex-col justify-between">
             <div className="mt-10 overflow-hidden">
@@ -159,8 +173,8 @@ export function App() {
                 </div>
               </div>
 
-              <div className="text-left text-base leading-6 font-normal font-raleway overflow-hidden">
-                <div className="overflow-hidden">
+              <div className="text-left text-base leading-6 font-normal font-raleway overflow-hidden  ">
+                <div className="overflow-hidden  ease-out ">
                   <article
                     className={
                       'font-semibold duration-300 ' +
@@ -187,9 +201,9 @@ export function App() {
                   </article>
                 </div>
 
-                <div className="overflow-hidden">
+                <div className="overflow-hidden ">
                   <article
-                    className={'duration-300 ' + (visible || '-translate-y-10')}
+                    className={'duration-300 ' + (visible || '-translate-y-16')}
                   >
                     If you're curious to learn more about me, scroll further
                     down this page.
@@ -199,6 +213,7 @@ export function App() {
             </div>
             <div className="flex flex-row justify-center">
               <div
+                id="dot"
                 className={
                   'fixed mt-[0px] -ml-[8px] left-[25%] rounded-full z-50 h-4 w-4 bg-blue -translate-y-[294px] hover:bg-indigo-700 duration-100 '
                 }
@@ -208,21 +223,19 @@ export function App() {
             </div>
           </div>
         </div>
-        <div className="flex flex-row-reverse justify-start">
-          <div
-            className={'duration-100 flex flex-col overflow-hidden '}
-            style={{
-              opacity: diff < 300 ? 1 : Math.max(0, 100 - (diff - 300)) / 100,
-            }}
-          >
+        <div className="flex flex-row-reverse justify-start duration-300 ">
+          <div className={'duration-100 flex flex-col overflow-hidden '}>
             <img
-              className={'w-[50vw] h-[90vh] cursor-pointer object-cover'}
+              className={
+                'w-[50vw] h-[90vh] cursor-pointer object-cover duration-300 ease-in ' +
+                (visible || '-translate-y-20')
+              }
               src="/me/portrait-martin2.jpg"
             ></img>
             <div className="pl-16 mt-8 flex flex-row  font-inter text-base justify-center overflow-hidden">
               <a
                 className={
-                  'mr-8 pr-8 font-bold border-r-2 border-black duration-300 ' +
+                  'mr-8 pr-8 font-bold border-r-2 border-black duration-300 ease-in ' +
                   (visible || '-translate-y-10')
                 }
               >
@@ -231,7 +244,7 @@ export function App() {
               <a
                 c
                 className={
-                  'mr-8 pr-8  border-r-2 border-black duration-300 ' +
+                  'mr-8 pr-8  border-r-2 border-black duration-300 ease-in ' +
                   (visible || '-translate-y-10')
                 }
               >
@@ -239,7 +252,7 @@ export function App() {
               </a>
               <a
                 className={
-                  'mr-8 duration-300 ' + (visible || '-translate-y-10')
+                  'mr-8 duration-300 ease-in ' + (visible || '-translate-y-10')
                 }
               >
                 Security
@@ -255,9 +268,14 @@ export function App() {
         ></div>
 
         <div className="w-[35%]"></div>
-
         <div className="flex flex-col relative">
           <div className="h-[20vh] min-h-[30vh]"></div>
+
+          <div className="font-raleway text-6xl w-full text-left">
+            Background
+          </div>
+          <div className="h-[20vh] min-h-[20vh]"></div>
+
           {renderWorksteps(workExpierenceSteps)}
           <div className="h-[20vh] min-h-[30vh]"></div>
         </div>
@@ -323,8 +341,8 @@ export function App() {
         </div>
       </div>
       <div
+        id="call-to-action"
         className="w-screen h-screen flex flex-row justify-center"
-        ref={refCallToActionPage}
       >
         <div className="max-w-screen-lg flex flex-col justify-center">
           <div className="font-bold text-[86px] font-inter text-left mb-12 leading-[106px]">
