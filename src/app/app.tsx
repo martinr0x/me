@@ -1,5 +1,9 @@
 import { RefObject, useEffect, useRef, useState } from 'react';
-import { computerScienceWords, workExpierenceSteps } from './background';
+import {
+  computerScienceWords,
+  softwareEngineeringTerms,
+  workExpierenceSteps,
+} from './background';
 import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Contacts from './contacts';
@@ -8,12 +12,10 @@ import LoadingScreen from './loadingScreen';
 export function App() {
   const refBackgroundDot: RefObject<HTMLDivElement> = useRef(null);
   const refBackgroundTimeline: RefObject<HTMLDivElement> = useRef(null);
-  const refCallToActionPage: RefObject<HTMLDivElement> = useRef(null);
 
   const [active, setActive] = useState(-1);
   const [dotVisible, setDotVisible] = useState(100);
   const [contactsVisible, setContactsVisible] = useState(false);
-  const [diff, setDiff] = useState(0);
   const [visible, setVisible] = useState(false);
   const handleScroll = (x: any) => {
     const yDot = refBackgroundDot.current?.getBoundingClientRect().y;
@@ -22,10 +24,7 @@ export function App() {
       refBackgroundTimeline?.current?.getBoundingClientRect().height;
 
     if (!yDot || !yLine || !yHeight) return;
-    const yFirstPage = refBackgroundTimeline.current
-      ? refBackgroundTimeline.current.getBoundingClientRect().y
-      : 0;
-    // setDiff(Math.abs(yDot - yFirstPage));
+
     setActive(
       workExpierenceSteps.findIndex((_, index) => {
         const step = document.getElementById(`step-${index}`);
@@ -41,12 +40,11 @@ export function App() {
   useEffect(() => {
     let options = {
       root: null,
-      threshold: 0.6,
+      threshold: 0.4,
     };
     let observer = new IntersectionObserver((o) => {
       setContactsVisible(!o[0].isIntersecting);
       setVisible(o[0].isIntersecting);
-      console.log(o);
     }, options);
 
     observer.observe(document.getElementById('intro'));
@@ -128,7 +126,7 @@ export function App() {
       onScroll={handleScroll}
       onWheel={handleScroll}
     >
-      <LoadingScreen words={computerScienceWords} setVisible={setVisible} />
+      <LoadingScreen words={softwareEngineeringTerms} setVisible={setVisible} />
       <div
         className={
           'fixed top-0 right-0 duration-300 m-4 ' +
@@ -146,7 +144,7 @@ export function App() {
             <div className="mt-10 overflow-hidden">
               <div
                 className={
-                  ' flex flex-row justify-left font-inter text-base duration-300  ' +
+                  ' flex flex-row justify-left font-inter text-base duration-500  ' +
                   (visible || '-translate-y-16')
                 }
               >
@@ -155,16 +153,11 @@ export function App() {
                 <a className="">Projects</a>
               </div>
             </div>
-            <div
-              className={'duration-100 pb-36 max-w-[440px]'}
-              style={{
-                opacity: diff < 300 ? 1 : Math.max(0, 100 - (diff - 300)) / 100,
-              }}
-            >
+            <div className={'duration-100 pb-36 max-w-[440px]'}>
               <div className="overflow-hidden">
                 <div
                   className={
-                    'font-bold text-[86px] font-inter text-left mb-12 leading-[106px] duration-300 ' +
+                    'font-bold text-[86px] font-inter text-left mb-12 leading-[106px] duration-500 ' +
                     (visible || '-translate-y-48')
                   }
                 >
@@ -174,10 +167,10 @@ export function App() {
               </div>
 
               <div className="text-left text-base leading-6 font-normal font-raleway overflow-hidden  ">
-                <div className="overflow-hidden  ease-out ">
+                <div className="overflow-hidden ">
                   <article
                     className={
-                      'font-semibold duration-300 ' +
+                      'font-semibold duration-500 ' +
                       (visible || '-translate-y-10')
                     }
                   >
@@ -187,14 +180,14 @@ export function App() {
 
                 <div className="overflow-hidden">
                   <article
-                    className={'duration-300 ' + (visible || '-translate-y-10')}
+                    className={'duration-500 ' + (visible || '-translate-y-10')}
                   >
                     Since I was a kid I was fascinated with all tech things.{' '}
                   </article>
                 </div>
                 <div className="overflow-hidden">
                   <article
-                    className={'duration-300 ' + (visible || '-translate-y-10')}
+                    className={'duration-500 ' + (visible || '-translate-y-10')}
                   >
                     Fast forward to today, this fascination turned into a
                     career.
@@ -203,7 +196,7 @@ export function App() {
 
                 <div className="overflow-hidden ">
                   <article
-                    className={'duration-300 ' + (visible || '-translate-y-16')}
+                    className={'duration-500 ' + (visible || '-translate-y-16')}
                   >
                     If you're curious to learn more about me, scroll further
                     down this page.
@@ -227,15 +220,15 @@ export function App() {
           <div className={'duration-100 flex flex-col overflow-hidden '}>
             <img
               className={
-                'w-[50vw] h-[90vh] cursor-pointer object-cover duration-300 ease-in ' +
-                (visible || '-translate-y-20')
+                'w-[50vw] h-[90vh] cursor-pointer object-cover duration-700 ' +
+                (visible || '-translate-y-96')
               }
               src="/me/portrait-martin2.jpg"
             ></img>
             <div className="pl-16 mt-8 flex flex-row  font-inter text-base justify-center overflow-hidden">
               <a
                 className={
-                  'mr-8 pr-8 font-bold border-r-2 border-black duration-300 ease-in ' +
+                  'mr-8 pr-8 font-bold border-r-2 border-black duration-500 ease-in ' +
                   (visible || '-translate-y-10')
                 }
               >
@@ -244,7 +237,7 @@ export function App() {
               <a
                 c
                 className={
-                  'mr-8 pr-8  border-r-2 border-black duration-300 ease-in ' +
+                  'mr-8 pr-8  border-r-2 border-black duration-500 ease-in ' +
                   (visible || '-translate-y-10')
                 }
               >
@@ -252,7 +245,7 @@ export function App() {
               </a>
               <a
                 className={
-                  'mr-8 duration-300 ease-in ' + (visible || '-translate-y-10')
+                  'mr-8 duration-500 ease-in ' + (visible || '-translate-y-10')
                 }
               >
                 Security

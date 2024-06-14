@@ -12,7 +12,6 @@ export default function LoadingScreen(props) {
       setCounter((c) => {
         if (c >= 100) {
           clearInterval(intervalId);
-          // setTimeout(() => setVisible(true), 600);
           setTimeout(() => {
             document.getElementById('loading-screen')?.classList.add('hidden');
           }, 2000);
@@ -33,7 +32,7 @@ export default function LoadingScreen(props) {
     <div
       id={'loading-screen'}
       className={
-        'fixed w-screen h-screen flex flex-row flex-wrap p-20 justify-between z-[9999] bg-white delay-500 duration-500 ease-in ' +
+        'fixed w-screen h-screen flex flex-row flex-wrap p-20 justify-between z-[9999] bg-white delay-500 duration-500 ease-in overflow-y-hidden' +
         (counter < 100 || 'opacity-0')
       }
     >
@@ -56,7 +55,7 @@ export default function LoadingScreen(props) {
         ))}
       </div>
 
-      <div className="fixed left-1/2 top-1/2 z-30 bg-white rounded-full h-64 w-64 font-inter  text-center flex justify-center items-center -mt-32 -ml-32 text-2xl">
+      <div className="fixed left-1/2 top-1/2 z-30 bg-white rounded-full h-48 w-48 font-inter  text-center flex justify-center items-center -mt-24 -ml-24 text-2xl">
         {counter}%
       </div>
     </div>
