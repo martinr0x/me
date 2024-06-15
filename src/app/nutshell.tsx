@@ -16,7 +16,7 @@ export default function Nutshell() {
     const countActual = countReal + dir;
     if (lastDir !== dir && countActual === -1) return;
     if (lastDir !== dir && countActual === 4) {
-      return; 
+      return;
     }
     if (countActual + dir < lastCount && countActual >= -1) {
       e.preventDefault();
@@ -89,7 +89,7 @@ export default function Nutshell() {
                   <div
                     className={
                       'grid-1 duration-1000 delay-500 ' +
-                      (count === 1? '' : 'translate-y-[100vh]')
+                      (count === 1 ? '' : 'translate-y-[100vh]')
                     }
                   >
                     <div className="text-neutral-900 text-xl font-semibold font-inter">
@@ -166,7 +166,7 @@ export default function Nutshell() {
                       <div
                         className={
                           'grid-1 pr-4 delay-700 duration-1000 ' +
-                          (count === 2? '' : 'translate-y-[200vh]')
+                          (count === 2 ? '' : 'translate-y-[200vh]')
                         }
                       >
                         <div className="text-neutral-900 text-3xl font-semibold font-inter leading-[48px] ">
@@ -181,9 +181,7 @@ export default function Nutshell() {
                       <div
                         className={
                           'grid-1 pr-4 delay-500 duration-1000 ' +
-                          (count === 2
-                            ? ''
-                            : 'translate-y-[200vh]')
+                          (count === 2 ? '' : 'translate-y-[200vh]')
                         }
                       >
                         <div className="text-neutral-900 text-3xl font-semibold font-inter leading-[48px] ">
@@ -220,7 +218,6 @@ export default function Nutshell() {
                             )
                           )}
                         </div>
-                        
                       </div>
                       <div
                         className={
@@ -267,9 +264,11 @@ export default function Nutshell() {
                         <div className="text-neutral-900 text-3xl font-semibold font-inter leading-[48px] ">
                           Software Engineering
                         </div>
-                        I successfuly built and launched reliable applications at Celonis, qbound and Oregano. 
-                        I worked on scaling and securing systems at Celonis and TUM. 
-                        Drove design decisions and collaborated with stakeholders to build better products. 
+                        I successfuly built and launched reliable applications
+                        at Celonis, qbound and Oregano. I worked on scaling and
+                        securing systems at Celonis and TUM. Drove design
+                        decisions and collaborated with stakeholders to build
+                        better products.
                         <br></br>
                       </div>
                       <div
@@ -296,9 +295,10 @@ export default function Nutshell() {
                         <div className="text-neutral-900 text-3xl font-semibold font-inter leading-[48px] ">
                           Teamwork & Leadership
                         </div>
-                        Engineering is nothing without people. 
-                        I worked together with multiple teams and individuals. 
-                        With clear communication and expectations we were able to consistently deliver with quality and on time. 
+                        Engineering is nothing without people. I worked together
+                        with multiple teams and individuals. With clear
+                        communication and expectations we were able to
+                        consistently deliver with quality and on time.
                         <br></br>
                         Co-founded and leading the Munich Handstand Society, a
                         community with over 100 members.
@@ -309,8 +309,6 @@ export default function Nutshell() {
               </div>
             </div>
           </div>
-
-       
         </div>
       </div>
     </div>

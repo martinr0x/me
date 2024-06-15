@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 export default function LoadingScreen(props) {
   const { words, setVisible } = props;
+
   const [counter, setCounter] = useState(0);
 
   const randomNumber = (min, max) => {
@@ -14,7 +15,9 @@ export default function LoadingScreen(props) {
           clearInterval(intervalId);
           setTimeout(() => {
             document.getElementById('loading-screen')?.classList.add('hidden');
-          }, 2000);
+            setVisible(true);
+            console.log('done');
+          }, 800);
         }
         const count = Math.min(100, c + randomNumber(1, 4));
 
@@ -46,7 +49,7 @@ export default function LoadingScreen(props) {
           <div
             id={`word-${index}`}
             className={
-              'p-2 text-4xl font-raleway duration-500 ease-in text-gray-200 '
+              'p-2 text-4xl font-raleway duration-500 ease-in text-gray-20'
             }
             key={index}
           >
@@ -55,7 +58,7 @@ export default function LoadingScreen(props) {
         ))}
       </div>
 
-      <div className="fixed left-1/2 top-1/2 z-30 bg-white rounded-full h-48 w-48 font-inter  text-center flex justify-center items-center -mt-24 -ml-24 text-2xl">
+      <div className="fixed left-1/2 top-1/2 z-30  h-40 w-40 font-inter  text-center flex justify-center items-center -mt-20 -ml-20 text-2xl radial">
         {counter}%
       </div>
     </div>

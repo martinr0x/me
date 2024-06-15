@@ -16,7 +16,13 @@ export function App() {
   const [active, setActive] = useState(-1);
   const [dotVisible, setDotVisible] = useState(100);
   const [contactsVisible, setContactsVisible] = useState(false);
+
   const [visible, setVisible] = useState(false);
+  let loaded = false;
+  const setLoaded = () => {
+    loaded = true;
+    setVisible(true);
+  };
   const handleScroll = (x: any) => {
     const yDot = refBackgroundDot.current?.getBoundingClientRect().y;
     const yLine = refBackgroundTimeline?.current?.getBoundingClientRect().y;
@@ -42,17 +48,16 @@ export function App() {
       root: null,
       threshold: 0.4,
     };
+
     let observer = new IntersectionObserver((o) => {
+      console.log(o);
       setContactsVisible(!o[0].isIntersecting);
-      setVisible(o[0].isIntersecting);
+      console.log(loaded);
+      setVisible(o[0].isIntersecting && loaded);
     }, options);
 
     observer.observe(document.getElementById('intro'));
     observer.observe(document.getElementById('call-to-action'));
-
-    // document
-    //   .querySelectorAll('.background-item')
-    //   .forEach((e) => observer.observe(e));
   }, []);
   const renderWorksteps = (workExpierenceSteps) => {
     return workExpierenceSteps.map((step, index) => {
@@ -126,7 +131,7 @@ export function App() {
       onScroll={handleScroll}
       onWheel={handleScroll}
     >
-      <LoadingScreen words={softwareEngineeringTerms} setVisible={setVisible} />
+      <LoadingScreen words={softwareEngineeringTerms} setVisible={setLoaded} />
       <div
         className={
           'fixed top-0 right-0 duration-300 m-4 ' +
@@ -157,12 +162,29 @@ export function App() {
               <div className="overflow-hidden">
                 <div
                   className={
-                    'font-bold text-[86px] font-inter text-left mb-12 leading-[106px] duration-500 ' +
-                    (visible || '-translate-y-48')
+                    'font-bold text-[86px] font-inter text-left mb-12 leading-[106px]'
                   }
                 >
-                  Hi there, <br></br>
-                  I'm Martin.
+                  <div className="overflow-hidden">
+                    <article
+                      className={
+                        ' duration-500 ' + (visible || '-translate-y-28')
+                      }
+                    >
+                      {' '}
+                      Hi there,
+                    </article>
+                  </div>
+                  <div className="overflow-hidden">
+                    <article
+                      className={
+                        'overflow-hidden duration-500 ' +
+                        (visible || '-translate-y-28')
+                      }
+                    >
+                      I'm Martin.
+                    </article>
+                  </div>
                 </div>
               </div>
 
