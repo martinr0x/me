@@ -19,7 +19,7 @@ export function App() {
 
   const [visible, setVisible] = useState(false);
   let loaded = false;
-  const setLoaded = () => {
+  const setPageLoaded = () => {
     loaded = true;
     setVisible(true);
   };
@@ -77,12 +77,12 @@ export function App() {
               <div className="text-4xl font-inter font-semibold">
                 {step.company}
               </div>
-              <div className="text-2xl font-inter font-semibold  uppercase text-blue mb-5">
+              <div className="text-sm font-inter font-medium uppercase text-blue mb-5">
                 {step.title}
               </div>
               {step.jobs.map((s) => (
                 <div className="mb-[2vh]">
-                  <div className="text-2xl font-inter font-semibold uppercase ">
+                  <div className="text-2xl font-inter font-semibold ">
                     {s.title}
                   </div>
                   <div className="normal-case">
@@ -112,7 +112,7 @@ export function App() {
             <div className="text-4xl font-inter font-semibold">
               {step.company}
             </div>
-            <div className="text-2xl font-inter font-semibold  uppercase text-blue">
+            <div className="text-sm font-inter font-medium uppercase text-blue mb-5">
               {step.title}
             </div>
             <div className="mb-6">
@@ -131,10 +131,13 @@ export function App() {
       onScroll={handleScroll}
       onWheel={handleScroll}
     >
-      <LoadingScreen words={softwareEngineeringTerms} setVisible={setLoaded} />
+      <LoadingScreen
+        words={softwareEngineeringTerms}
+        setPageLoaded={setPageLoaded}
+      />
       <div
         className={
-          'fixed top-0 right-0 duration-300 m-4 ' +
+          'fixed top-0 right-0 duration-300 m-4 z-[99] ' +
           (contactsVisible ? 'translate-x-0' : 'translate-x-48')
         }
       >
@@ -242,12 +245,12 @@ export function App() {
           <div className={'duration-100 flex flex-col overflow-hidden '}>
             <img
               className={
-                'w-[50vw] h-[90vh] cursor-pointer object-cover duration-700 ' +
+                'w-[50vw] h-[100vh] cursor-pointer object-cover duration-700 ' +
                 (visible || '-translate-y-96')
               }
               src="/me/portrait-martin2.jpg"
             ></img>
-            <div className="pl-16 mt-8 flex flex-row  font-inter text-base justify-center overflow-hidden">
+            {/* <div className="pl-16 mt-8 flex flex-row  font-inter text-base justify-center overflow-hidden">
               <a
                 className={
                   'mr-8 pr-8 font-bold border-r-2 border-black duration-500 ease-in ' +
@@ -272,7 +275,7 @@ export function App() {
               >
                 Security
               </a>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
@@ -286,10 +289,10 @@ export function App() {
         <div className="flex flex-col relative">
           <div className="h-[20vh] min-h-[30vh]"></div>
 
-          <div className="font-raleway text-6xl w-full text-left">
+          {/* <div className="font-raleway text-6xl w-full text-left">
             Background
-          </div>
-          <div className="h-[20vh] min-h-[20vh]"></div>
+          </div> */}
+          {/* <div className="h-[20vh] min-h-[20vh]"></div> */}
 
           {renderWorksteps(workExpierenceSteps)}
           <div className="h-[20vh] min-h-[30vh]"></div>

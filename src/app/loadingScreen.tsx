@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 export default function LoadingScreen(props) {
-  const { words, setVisible } = props;
+  const { words, setPageLoaded } = props;
 
   const [counter, setCounter] = useState(0);
 
@@ -15,7 +15,7 @@ export default function LoadingScreen(props) {
           clearInterval(intervalId);
           setTimeout(() => {
             document.getElementById('loading-screen')?.classList.add('hidden');
-            setVisible(true);
+            setPageLoaded(true);
             console.log('done');
           }, 800);
         }
@@ -35,7 +35,7 @@ export default function LoadingScreen(props) {
     <div
       id={'loading-screen'}
       className={
-        'fixed w-screen h-screen flex flex-row flex-wrap p-20 justify-between z-[9999] bg-white delay-500 duration-500 ease-in overflow-y-hidden' +
+        'fixed w-screen h-screen flex flex-row flex-wrap p-10 justify-between z-[99] bg-white delay-500 duration-500 ease-in overflow-y-hidden' +
         (counter < 100 || 'opacity-0')
       }
     >
@@ -49,7 +49,7 @@ export default function LoadingScreen(props) {
           <div
             id={`word-${index}`}
             className={
-              'p-2 text-4xl font-raleway duration-500 ease-in text-gray-20'
+              'p-2 text-xl font-raleway duration-500 ease-in text-white'
             }
             key={index}
           >
@@ -58,7 +58,7 @@ export default function LoadingScreen(props) {
         ))}
       </div>
 
-      <div className="fixed left-1/2 top-1/2 z-30  h-40 w-40 font-inter  text-center flex justify-center items-center -mt-20 -ml-20 text-2xl radial">
+      <div className="fixed top-1/2 left-1/2 -ml-16 -mt-16 h-32 w-32 bg-white rounded-full font-inter font-semibold text-center z-[999] flex justify-center items-center text-3xl">
         {counter}%
       </div>
     </div>
