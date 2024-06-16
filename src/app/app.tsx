@@ -138,7 +138,7 @@ export function App() {
                       (visible || '-translate-y-10')
                     }
                   >
-                    I am a software engineer.{' '}
+                    I am a software engineer.
                   </article>
                 </div>
 
@@ -146,7 +146,7 @@ export function App() {
                   <article
                     className={'duration-500 ' + (visible || '-translate-y-10')}
                   >
-                    Since I was a kid I was fascinated with all tech things.{' '}
+                    Since I was a kid I was fascinated with all tech things.
                   </article>
                 </div>
                 <div className="overflow-hidden">
@@ -172,7 +172,7 @@ export function App() {
               <div
                 id="dot"
                 className={
-                  'fixed mt-[0px] -ml-[8px] left-[25%] rounded-full z-50 h-4 w-4 bg-blue -translate-y-[294px] hover:bg-indigo-700 duration-100 '
+                  'fixed mt-[0px] -ml-[8px] left-[25%] rounded-full z-50 h-4 w-4 bg-blue -translate-y-[27vh] hover:bg-indigo-700 duration-100 '
                 }
                 style={{ opacity: dotVisible }}
                 ref={refBackgroundDot}
