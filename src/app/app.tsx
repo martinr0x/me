@@ -38,7 +38,6 @@ export function App() {
         return yDot > y && yDot < y + height;
       })
     );
-    console.log(yLine + ' ' + yDot);
     setTimeline(yLine < yDot);
     setDotVisible(yLine + yHeight - yDot);
   };
