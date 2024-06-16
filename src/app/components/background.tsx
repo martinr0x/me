@@ -1,11 +1,14 @@
 import { useEffect } from 'react';
 
-export default function Background(props) {
+export default function Background(props: {
+  workExpierence: any;
+  workExpierenceActiveIndex: any;
+}) {
   const { workExpierence, workExpierenceActiveIndex } = props;
   useEffect(() => {}, [workExpierenceActiveIndex]);
   return (
     <div id="background">
-      {workExpierence.map((step, index) => {
+      {workExpierence.map((step: any, index: number) => {
         if (step?.jobs) {
           return (
             <div
@@ -25,7 +28,7 @@ export default function Background(props) {
                 <div className="text-sm font-inter font-medium uppercase text-blue mb-5">
                   {step.title}
                 </div>
-                {step.jobs.map((s) => (
+                {step.jobs.map((s: any) => (
                   <div className="mb-[2vh]" key={s.title}>
                     <div className="text-2xl font-inter font-semibold ">
                       {s.title}

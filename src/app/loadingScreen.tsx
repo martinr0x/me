@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react';
 
-export default function LoadingScreen(props) {
+export default function LoadingScreen(props: {
+  words: any;
+  setPageLoaded: any;
+}) {
   const { words, setPageLoaded } = props;
 
   const [counter, setCounter] = useState(0);
 
-  const randomNumber = (min, max) => {
+  const randomNumber = (min: number, max: number) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
   useEffect(() => {
@@ -45,7 +48,7 @@ export default function LoadingScreen(props) {
           (counter < 100 || ' delay-200 opacity-0')
         }
       >
-        {words.map((w, index) => (
+        {words.map((w: string, index: number) => (
           <div
             id={`word-${index}`}
             className={

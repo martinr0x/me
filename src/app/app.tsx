@@ -51,9 +51,13 @@ export function App() {
       setContactsVisible(!o[0].isIntersecting);
       setVisible(o[0].isIntersecting && loaded);
     }, options);
+    const intro = document.getElementById('intro');
+    const cta = document.getElementById('call-to-action');
 
-    observer.observe(document.getElementById('intro'));
-    observer.observe(document.getElementById('call-to-action'));
+    if (intro && cta) {
+      observer.observe(intro);
+      observer.observe(cta);
+    }
   }, []);
 
   return (
