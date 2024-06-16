@@ -15,7 +15,7 @@ export default function Background(props: {
               className={
                 'background-item w-[800px] pb-[8vh] mb-[2vh] duration-300 ' +
                 (workExpierenceActiveIndex === index
-                  ? 'opacity-100  translate-x-7 blur-none  '
+                  ? 'opacity-100  blur-none  '
                   : 'opacity-30  blur-sm')
               }
               key={index}
@@ -52,7 +52,7 @@ export default function Background(props: {
             className={
               'background-item w-[800px] pb-[8vh] mb-[2vh] duration-300 ' +
               (workExpierenceActiveIndex === index
-                ? 'opacity-100  translate-x-7 blur-none  '
+                ? 'opacity-100 blur-none  '
                 : 'opacity-30  blur-sm')
             }
             key={index}

@@ -14,7 +14,7 @@ export function App() {
     useState(-1);
   const [dotVisible, setDotVisible] = useState(100);
   const [contactsVisible, setContactsVisible] = useState(false);
-
+  const [timeline, setTimeline] = useState(false);
   const [visible, setVisible] = useState(false);
   let loaded = false;
   const setPageLoaded = () => {
@@ -38,7 +38,8 @@ export function App() {
         return yDot > y && yDot < y + height;
       })
     );
-
+    console.log(yLine + ' ' + yDot);
+    setTimeline(yLine < yDot);
     setDotVisible(yLine + yHeight - yDot);
   };
   useEffect(() => {
@@ -200,6 +201,15 @@ export function App() {
                 </div>
               </div>
             </div>
+            <div
+              className={
+                'static left-[25%] -translate-y-[14vh] font-inter uppercase font-semibold overflow-hidden '
+              }
+            >
+              <div className={'duration-500 ' + (timeline || 'translate-y-10')}>
+                Timeline
+              </div>
+            </div>
             <div className="flex flex-row justify-center">
               <div
                 id="dot"
@@ -273,7 +283,7 @@ export function App() {
             workExpierenceActiveIndex={workExpierenceActiveIndex}
             workExpierence={workExpierence}
           />
-          <div className="h-[20vh] min-h-[30vh]"></div>
+          <div className="h-[20vh] min-h-[10vh]"></div>
         </div>
       </div>
 
