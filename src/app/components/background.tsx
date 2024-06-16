@@ -4,7 +4,7 @@ export default function Background(props) {
   const { workExpierence, workExpierenceActiveIndex } = props;
   useEffect(() => {}, [workExpierenceActiveIndex]);
   return (
-    <>
+    <div id="background">
       {workExpierence.map((step, index) => {
         if (step?.jobs) {
           return (
@@ -71,6 +71,6 @@ export default function Background(props) {
           </div>
         );
       })}
-    </>
+    </div>
   );
 }

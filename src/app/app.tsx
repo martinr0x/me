@@ -28,15 +28,7 @@ export function App() {
       refBackgroundTimeline?.current?.getBoundingClientRect().height;
 
     if (!yDot || !yLine || !yHeight) return;
-    console.log(
-      workExpierence.findIndex((_, index) => {
-        const step = document.getElementById(`step-${index}`);
-        if (!step) return false;
-        const { y, height } = step.getBoundingClientRect();
 
-        return yDot > y && yDot < y + height;
-      })
-    );
     setWorkExpierenceActiveIndex(
       workExpierence.findIndex((_, index) => {
         const step = document.getElementById(`step-${index}`);
@@ -95,9 +87,45 @@ export function App() {
                   (visible || '-translate-y-16')
                 }
               >
-                <a className="mr-8 font-bold">About me</a>
-                <a className="mr-8">Background</a>
-                <a className="">Projects</a>
+                <button className="mr-8 font-bold">About me</button>
+                <button
+                  className="mr-8"
+                  onClick={() => {
+                    document.getElementById('step-0')?.scrollIntoView({
+                      behavior: 'smooth',
+                      block: 'end',
+                      inline: 'nearest',
+                    });
+                    setWorkExpierenceActiveIndex(0);
+                  }}
+                >
+                  Background
+                </button>
+                <button
+                  className="mr-8"
+                  onClick={() => {
+                    document.getElementById('academia')?.scrollIntoView({
+                      behavior: 'smooth',
+                      block: 'end',
+                      inline: 'nearest',
+                    });
+                  }}
+                >
+                  Academia
+                </button>
+                <button
+                  className=""
+                  onClick={() => {
+                    document.getElementById('call-to-action')?.scrollIntoView({
+                      behavior: 'smooth',
+                      block: 'end',
+                      inline: 'nearest',
+                    });
+                    setDotVisible(0);
+                  }}
+                >
+                  Contact
+                </button>
               </div>
             </div>
             <div className={'duration-100 pb-36 max-w-[440px]'}>
@@ -181,14 +209,18 @@ export function App() {
           </div>
         </div>
         <div className="flex flex-row-reverse justify-start duration-300 ">
-          <div className={'duration-100 flex flex-col overflow-hidden '}>
-            <img
+          <div className="flex flex-col">
+            <div
               className={
-                'w-[50vw] h-[100vh] cursor-pointer object-cover duration-700 ' +
+                'flex flex-col overflow-hidden duration-700 w-[50vw] h-[100vh] ' +
                 (visible || '-translate-y-96')
               }
-              src="/me/portrait-martin2.jpg"
-            ></img>
+            >
+              <img
+                className={' cursor-pointer object-cover -translate-y-20'}
+                src="/me/portrait-martin2.jpg"
+              ></img>
+            </div>
             {/* <div className="pl-16 mt-8 flex flex-row  font-inter text-base justify-center overflow-hidden">
               <a
                 className={
@@ -243,6 +275,9 @@ export function App() {
 
       <AcademicsPage />
       <CtaPage />
+      <div className="w-full flex flex-row justify-center text-neutral-700 font-inter text-sm">
+        Made with Tailwind CSS & React
+      </div>
       <div className="w-full flex flex-row justify-center font-raleway text-sm  font-semibold">
         © 2023 All rights reserved. – Coded by Martin Bogusz
       </div>

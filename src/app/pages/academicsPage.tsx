@@ -3,7 +3,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function AcademicsPage() {
   return (
-    <div className="flex flex-col justify-center align-middle w-screen h-screen bg-white text-white snap-center">
+    <div
+      className="flex flex-col justify-center align-middle w-screen h-screen bg-white text-white snap-center"
+      id="academia"
+    >
       <div className="flex flex-row justify-center align-middle w-screen h-[50vh] bg-blue text-white">
         <div className="flex flex-col justify-center max-w-[80%]">
           <div className="grid grid-flow-row  grid-cols-3 grid-rows-3 gap-x-16">
