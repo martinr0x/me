@@ -16,10 +16,12 @@ export function App() {
   const [contactsVisible, setContactsVisible] = useState(false);
   const [timeline, setTimeline] = useState(false);
   const [visible, setVisible] = useState(false);
+  const [scrollLocked, setScrollLocked] = useState(true);
   let loaded = false;
   const setPageLoaded = () => {
     loaded = true;
     setVisible(true);
+    setScrollLocked(false);
   };
   const handleScroll = (x: any) => {
     const yDot = refBackgroundDot.current?.getBoundingClientRect().y;
@@ -38,8 +40,10 @@ export function App() {
         return yDot > y && yDot < y + height;
       })
     );
-    if (timeline !== yLine < yDot) {
-      setTimeline(yLine < yDot);
+    const newTimeline = Math.abs(yLine - yDot) > 10;
+    console.log(newTimeline);
+    if (timeline !== newTimeline) {
+      setTimeline(newTimeline);
     }
     setDotVisible(yLine + yHeight - yDot);
   };
@@ -64,7 +68,10 @@ export function App() {
 
   return (
     <div
-      className="relative flex flex-col antialiased overflow-x-hidden"
+      className={
+        'relative flex flex-col antialiased overflow-x-hidden ' +
+        (!scrollLocked || 'max-h-screen overflow-y-hidden')
+      }
       onScroll={handleScroll}
       onWheel={handleScroll}
     >
