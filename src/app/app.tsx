@@ -38,7 +38,9 @@ export function App() {
         return yDot > y && yDot < y + height;
       })
     );
-    setTimeline(yLine < yDot);
+    if (timeline !== yLine < yDot) {
+      setTimeline(yLine < yDot);
+    }
     setDotVisible(yLine + yHeight - yDot);
   };
   useEffect(() => {
@@ -200,15 +202,7 @@ export function App() {
                 </div>
               </div>
             </div>
-            <div
-              className={
-                'static left-[25%] -translate-y-[14vh] font-inter uppercase font-semibold overflow-hidden '
-              }
-            >
-              <div className={'duration-500 ' + (timeline || 'translate-y-10')}>
-                Timeline
-              </div>
-            </div>
+
             <div className="flex flex-row justify-center">
               <div
                 id="dot"
@@ -264,6 +258,20 @@ export function App() {
         </div>
       </div>
       <div className="flex flex-row w-screen h-full relative">
+        <div
+          className={
+            'sticky left-[25%] -mt-[30vh] -translate-x-10 font-inter uppercase font-semibold overflow-hidden'
+          }
+        >
+          <div
+            className={
+              'duration-500 ' +
+              (!timeline ? '-translate-y-10' : 'translate-y-0')
+            }
+          >
+            Timeline
+          </div>
+        </div>
         <div
           className="sticky bottom-0 border-r-[1px] border-black left-[25%] pb-24 -mt-[27vh] z-20 pb-72"
           ref={refBackgroundTimeline}
