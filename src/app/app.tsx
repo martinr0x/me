@@ -231,7 +231,7 @@ export function App() {
             >
               <img
                 className={' cursor-pointer object-cover -translate-y-20'}
-                src="/me/portrait-martin2.jpg"
+                src="/portrait-martin2.jpg"
               ></img>
             </div>
             {/* <div className="pl-16 mt-8 flex flex-row  font-inter text-base justify-center overflow-hidden">
