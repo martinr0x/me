@@ -251,31 +251,7 @@ export const softwareEngineeringTerms = [
   'Root Cause Analysis',
 ];
 
-export const backgroundSteps = [
-  {
-    title: 'Highschool',
-    date: '2015',
-    location: 'Vienna, Austria',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.',
-  },
-  {
-    title: 'Bachelor',
-    date: '2020',
-    location: 'Munich, Germany',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.',
-  },
-  {
-    title: 'Master',
-    date: '2022',
-    location: 'Munich, Germany',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.',
-  },
-];
-
-export const workExpierenceSteps = [
+export const workExpierence = [
   {
     company: 'Celonis',
     title: 'Software Engineer',
