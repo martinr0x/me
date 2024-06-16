@@ -19,7 +19,6 @@ export default function LoadingScreen(props: {
           setTimeout(() => {
             document.getElementById('loading-screen')?.classList.add('hidden');
             setPageLoaded(true);
-            console.log('done');
           }, 800);
         }
         const count = Math.min(100, c + randomNumber(1, 4));

@@ -41,7 +41,6 @@ export function App() {
       })
     );
     const newTimeline = Math.abs(yLine - yDot) > 10;
-    console.log(newTimeline);
     if (timeline !== newTimeline) {
       setTimeline(newTimeline);
     }
@@ -264,10 +263,10 @@ export function App() {
           </div>
         </div>
       </div>
-      <div className="flex flex-row w-screen h-full relative">
+      <div className="flex flex-row w-screen h-full">
         <div
           className={
-            'sticky left-[25%] -mt-[30vh] -translate-x-10 font-inter uppercase font-semibold overflow-hidden'
+            'sticky top-0 left-[25%] -mt-[30vh] -translate-x-10 font-inter uppercase font-semibold overflow-hidden'
           }
         >
           <div
