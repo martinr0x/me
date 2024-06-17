@@ -7,13 +7,13 @@ export default function Background(props: {
   const { workExpierence, workExpierenceActiveIndex } = props;
   useEffect(() => {}, [workExpierenceActiveIndex]);
   return (
-    <div id="background">
+    <div id="background ">
       {workExpierence.map((step: any, index: number) => {
         if (step?.jobs) {
           return (
             <div
               className={
-                'background-item w-[800px] pb-[8vh] mb-[2vh] duration-300 ' +
+                'background-item w-[40vw]  pb-[8vh] mb-[2vh]  duration-300 ' +
                 (workExpierenceActiveIndex === index
                   ? 'opacity-100  blur-none  '
                   : 'opacity-30  blur-sm')
@@ -50,7 +50,7 @@ export default function Background(props: {
         return (
           <div
             className={
-              'background-item w-[800px] pb-[8vh] mb-[2vh] duration-300 ' +
+              'background-item w-[40vw]  pb-[8vh] mb-[2vh] duration-300 ' +
               (workExpierenceActiveIndex === index
                 ? 'opacity-100 blur-none  '
                 : 'opacity-30  blur-sm')

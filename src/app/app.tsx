@@ -88,11 +88,13 @@ export function App() {
       </div>
       <div
         id="intro"
-        className={'flex flex-row w-screen h-screen relative duration-200 '}
+        className={
+          'flex flex-row w-screen h-screen relative duration-200 flex-wrap '
+        }
       >
-        <div className="flex flex-row text-center justify-center flex-grow ">
-          <div className="flex flex-col justify-between">
-            <div className="mt-10 overflow-hidden">
+        <div className="flex flex-row text-center justify-center flex-grow  max-w-[100vw] w-[100vw] sm:w-[50vw]">
+          <div className="flex flex-col justify-between  ">
+            <div className="mt-10 overflow-hidden invisible sm:visible">
               <div
                 className={
                   ' flex flex-row justify-left font-inter text-base duration-500  ' +
@@ -144,7 +146,7 @@ export function App() {
               <div className="overflow-hidden">
                 <div
                   className={
-                    'font-bold text-[86px] font-inter text-left mb-12 leading-[106px]'
+                    'font-bold text-[46px] md:text-[86px] font-inter text-left mb-12 leading-[66px] md:leading-[106px]'
                   }
                 >
                   <div className="overflow-hidden">
@@ -225,12 +227,12 @@ export function App() {
           <div className="flex flex-col">
             <div
               className={
-                'flex flex-col overflow-hidden duration-700 w-[50vw] h-[100vh] ' +
+                'flex flex-col overflow-hidden duration-700  w-[100vw] sm:w-[50vw] h-[100vh] ' +
                 (visible || '-translate-y-96')
               }
             >
               <img
-                className={' cursor-pointer object-cover -translate-y-20'}
+                className={'cursor-pointer object-cover'}
                 src="/portrait-martin2.jpg"
               ></img>
             </div>
@@ -283,8 +285,8 @@ export function App() {
           ref={refBackgroundTimeline}
         ></div>
 
-        <div className="w-[35%]"></div>
-        <div className="flex flex-col relative">
+        <div className="min-w-[35%]"></div>
+        <div className="flex flex-col">
           <div className="h-[20vh] min-h-[30vh]"></div>
 
           {/* <div className="font-raleway text-6xl w-full text-left">
