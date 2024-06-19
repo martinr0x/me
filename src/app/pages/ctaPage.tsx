@@ -7,7 +7,7 @@ export default function CtaPage() {
       className="w-screen h-screen flex flex-row justify-center"
     >
       <div className="max-w-screen-lg flex flex-col justify-center">
-        <div className="font-bold text-[86px] font-inter text-left mb-20 leading-[106px]">
+        <div className="font-bold text-[46px] sm:text-[86px] font-inter text-center sm:text-left mb-20 smleading-[106px] ">
           Let's work together.
         </div>
 

@@ -142,11 +142,11 @@ export function App() {
                 </button>
               </div>
             </div>
-            <div className={'duration-100 md:pb-36 max-w-[440px]'}>
+            <div className={'duration-100 px-8 sm:px-0 sm:pb-36 max-w-[440px]'}>
               <div className="overflow-hidden">
                 <div
                   className={
-                    'font-bold text-[46px] md:text-[86px] font-inter text-left mb-12 leading-[66px] md:leading-[106px]'
+                    'font-bold text-[46px] sm:text-[86px] font-inter text-left mb-4 sm:mb-12 leading-[66px] sm:leading-[106px]'
                   }
                 >
                   <div className="overflow-hidden">
@@ -215,7 +215,7 @@ export function App() {
               <div
                 id="dot"
                 className={
-                  'fixed mt-[0px] -ml-[8px] left-[25%] rounded-full z-50 h-4 w-4 bg-blue -translate-y-[27vh] hover:bg-indigo-700 duration-100 '
+                  'fixed mt-[0px] -ml-[8px] left-[25%] rounded-full z-50 h-4 w-4 bg-blue -translate-y-[27vh] hover:bg-indigo-700 duration-100 hidden sm:block '
                 }
                 style={{ opacity: dotVisible }}
                 ref={refBackgroundDot}
@@ -268,7 +268,7 @@ export function App() {
       <div className="flex flex-row w-screen h-full">
         <div
           className={
-            'sticky top-0 left-[25%] -mt-[30vh] -translate-x-10 font-inter uppercase font-semibold overflow-hidden'
+            'sticky top-0 left-[25%] -mt-[30vh] -translate-x-10 font-inter uppercase font-semibold overflow-hidden hidden sm:block'
           }
         >
           <div
@@ -281,11 +281,11 @@ export function App() {
           </div>
         </div>
         <div
-          className="sticky bottom-0 border-r-[1px] border-black left-[25%] pb-24 -mt-[27vh] z-20 pb-72"
+          className="sticky bottom-0 border-r-[1px] border-black left-[25%] pb-24 -mt-[27vh] z-20 pb-72 hidden sm:block"
           ref={refBackgroundTimeline}
         ></div>
 
-        <div className="min-w-[35%]"></div>
+        <div className="min-w-[35%] hidden sm:block"></div>
         <div className="flex flex-col">
           <div className="h-[20vh] min-h-[30vh]"></div>
 
@@ -298,7 +298,7 @@ export function App() {
             workExpierenceActiveIndex={workExpierenceActiveIndex}
             workExpierence={workExpierence}
           />
-          <div className="h-[20vh] min-h-[10vh]"></div>
+          <div className="h-[20vh] min-h-[10vh] hidden sm:block"></div>
         </div>
       </div>
 

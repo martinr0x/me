@@ -7,15 +7,15 @@ export default function AcademicsPage() {
       className="flex flex-col justify-center align-middle w-screen bg-white text-white snap-center"
       id="academia"
     >
-      <div className="flex flex-row justify-center align-middle w-screen h-[50vh] bg-blue text-white">
+      <div className="flex flex-row justify-center align-middle w-screen sm:h-[50vh] bg-blue text-white">
         <div className="flex flex-col justify-center max-w-[80%]">
-          <div className="grid grid-flow-row  grid-cols-3 grid-rows-1 gap-x-16">
+          <div className="grid grid-flow-row sm:grid-cols-3 grid-rows-1 gap-y-16 sm:gap-y-0 sm:gap-x-16 pt-16 pb-16 sm:pb-0 sm:pt-0">
             {/* <div></div>
             <div className="font-raleway text-6xl w-full text-left row-span-1">
               Academia
             </div>
             <div></div> */}
-            <div className="row-span-2 col-span-1">
+            <div className="col-span-3 sm:row-span-2 sm:col-span-1">
               <div className="text-white text-2xl font-inter font-semibold pb-5">
                 Master
                 <div className="text-white font-normal text-base pt-1">
@@ -31,7 +31,7 @@ export default function AcademicsPage() {
                 (AISEC)
               </div>
             </div>
-            <div className="row-span-2 col-span-1">
+            <div className="col-span-3 sm:row-span-2 sm:col-span-1">
               <div className="text-white text-2xl font-inter font-semibold pb-5">
                 Bachelor
                 <div className="text-white font-normal text-base pt-1">
@@ -44,7 +44,7 @@ export default function AcademicsPage() {
                 thesis “Exploring Modern Runtime Systems for the SWE-Framework”.
               </div>
             </div>
-            <div className="row-span-2 col-span-1">
+            <div className="col-span-3 sm:row-span-2 sm:col-span-1">
               <div className="text-white text-2xl font-inter font-semibold pb-5">
                 Research
                 <div className="text-white font-normal text-base pt-1">
