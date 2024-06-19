@@ -94,7 +94,7 @@ export function App() {
       >
         <div className="flex flex-row text-center justify-center flex-grow  max-w-[100vw] w-[100vw] sm:w-[50vw]">
           <div className="flex flex-col justify-between  ">
-            <div className="mt-10 overflow-hidden invisible sm:visible">
+            <div className="mt-10 overflow-hidden hidden sm:block">
               <div
                 className={
                   ' flex flex-row justify-left font-inter text-base duration-500  ' +
@@ -142,7 +142,7 @@ export function App() {
                 </button>
               </div>
             </div>
-            <div className={'duration-100 pb-36 max-w-[440px]'}>
+            <div className={'duration-100 md:pb-36 max-w-[440px]'}>
               <div className="overflow-hidden">
                 <div
                   className={
