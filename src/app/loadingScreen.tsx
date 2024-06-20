@@ -60,7 +60,7 @@ export default function LoadingScreen(props: {
         ))}
       </div>
 
-      <div className="fixed top-1/2 left-1/2 -ml-16 -mt-16 h-32 w-32 bg-white rounded-full font-inter font-semibold text-center z-[999] flex justify-center items-center text-3xl">
+      <div className="fixed top-1/2 left-1/2 -ml-16 -mt-16 h-32 w-32 rounded-full font-inter font-semibold text-center z-[999] flex justify-center items-center text-3xl radial">
         {counter}%
       </div>
     </div>
