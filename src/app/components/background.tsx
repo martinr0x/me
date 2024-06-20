@@ -25,7 +25,7 @@ export default function Background(props: {
                 <div className="text-2xl sm:text-4xl font-inter font-semibold">
                   {step.company}
                 </div>
-                <div className="text-sm font-inter font-medium uppercase text-blue mb-5">
+                <div className="text-sm font-inter font-medium uppercase text-blue">
                   {step.title}
                 </div>
                 {step.jobs.map((s: any) => (
@@ -62,7 +62,7 @@ export default function Background(props: {
               <div className="text-2xl sm:text-4xl font-inter font-semibold">
                 {step.company}
               </div>
-              <div className="text-sm font-inter font-medium uppercase text-blue mb-5">
+              <div className="text-sm font-inter font-medium uppercase text-blue">
                 {step.title}
               </div>
               <div className="mb-6">

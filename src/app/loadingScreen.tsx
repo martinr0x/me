@@ -11,7 +11,28 @@ export default function LoadingScreen(props: {
   const randomNumber = (min: number, max: number) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
+
+  const isElementInViewport = (el: any) => {
+    var rect = el.getBoundingClientRect();
+
+    return (
+      rect.top >= 0 &&
+      rect.left >= 0 &&
+      rect.bottom <=
+        (window.innerHeight ||
+          document.documentElement.clientHeight) /* or $(window).height() */ &&
+      rect.right <=
+        (window.innerWidth ||
+          document.documentElement.clientWidth) /* or $(window).width() */
+    );
+  };
   useEffect(() => {
+    const visibleWordsIndexes = words
+      .map((w: any, i: any) => i)
+      .filter((i: any) =>
+        isElementInViewport(document.getElementById(`word-${i}`))
+      );
+
     const intervalId = setInterval(() => {
       setCounter((c) => {
         if (c >= 100) {
@@ -26,7 +47,8 @@ export default function LoadingScreen(props: {
         return count;
       });
 
-      const rnd = randomNumber(0, words.length);
+      const rnd =
+        visibleWordsIndexes[randomNumber(0, visibleWordsIndexes.length)];
 
       document.getElementById(`word-${rnd}`)?.classList.add('vibrate');
     }, 100);
@@ -51,7 +73,7 @@ export default function LoadingScreen(props: {
           <div
             id={`word-${index}`}
             className={
-              'p-2 text-xl font-raleway duration-500 ease-in text-white'
+              ' text-base sm:text-xl font-raleway duration-500 ease-in text-white p-1'
             }
             key={index}
           >

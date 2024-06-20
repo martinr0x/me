@@ -142,7 +142,11 @@ export function App() {
                 </button>
               </div>
             </div>
-            <div className={'duration-100 px-8 sm:px-0 sm:pb-36 max-w-[440px]'}>
+            <div
+              className={
+                'duration-100 px-8 pb-8 pt-8 sm:pt-0 sm:px-0 sm:pb-36 max-w-[440px]'
+              }
+            >
               <div className="overflow-hidden">
                 <div
                   className={
@@ -304,10 +308,10 @@ export function App() {
 
       <AcademicsPage />
       <CtaPage />
-      <div className="w-full flex flex-row justify-center text-neutral-700 font-inter text-sm">
+      <div className="w-full flex flex-row justify-center text-neutral-700 font-raleway text-sm">
         Made with Tailwind CSS & React
       </div>
-      <div className="w-full flex flex-row justify-center font-raleway text-sm  font-semibold">
+      <div className="w-full flex flex-row justify-center font-raleway text-sm  font-normal">
         © 2023 All rights reserved. – Coded by Martin Bogusz
       </div>
     </div>
