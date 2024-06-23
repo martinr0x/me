@@ -80,11 +80,16 @@ export function App() {
       />
       <div
         className={
-          'fixed top-0 right-0 duration-300 m-4 z-[99] ' +
-          (contactsVisible ? 'translate-x-0' : 'translate-x-48')
+          'fixed top-0 right-0 duration-300 p-2 z-[99] w-full sm:w-0 flex flex-row-reverse ' +
+          (contactsVisible
+            ? 'translate-x-0 bg-white sm:bg-transparent'
+            : 'translate-x-[100vw]')
         }
       >
         <Contacts />
+        {/* <div className="mx-4 font-inter font-semibold text-left w-1/2">
+          Background
+        </div> */}
       </div>
       <div
         id="intro"

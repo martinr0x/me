@@ -230,11 +230,34 @@ export const workExpierence = [
         title: 'Core Engine Performance',
         dateFrom: 'Oct 2023',
         dateTo: 'now',
-        techstack: [],
+        techstack: [
+          'Java',
+          'Spring',
+          'Postgres',
+          'Kubernetes',
+          'OAuth2',
+          'Microservices',
+        ],
         location: 'Munich, Germany',
         description: (
-          <ul className="">
+          <ul className="mt-4">
             <li>
+              Specialized in performance optimization for a proprietary OLAP
+              analytical database.
+            </li>
+            <li>
+              Focused on scaling algorithms and performance monitoring to
+              enhance system efficiency.
+            </li>
+            <li>
+              Achieved up to 50x performance improvements through targeted
+              optimizations.
+            </li>
+            <li>
+              Developed an end-to-end benchmarking tool to measure and ensure
+              continuous performance gains.
+            </li>
+            {/* <li>
               Addressing performance challenges across all layers of a
               proprietary analytical database (OLAP), with primary focus on
               horizontal scaling to meet growing data demands and performance
@@ -245,7 +268,7 @@ export const workExpierence = [
               I contributed to building a micro-benchmarking infrastructure to
               detect regressions and implemented several optimizations that
               resulted in up to 50x performance improvements.
-            </li>
+            </li> */}
           </ul>
         ),
       },
@@ -263,7 +286,7 @@ export const workExpierence = [
         ],
         location: 'Munich, Germany',
         description: (
-          <ul className="">
+          <ul className="mt-4">
             <li>
               Engineered and designed a robust system to facilitate scalable and
               secure platform integration via OAuth2. Following its successful
@@ -302,7 +325,7 @@ export const workExpierence = [
     dateTo: '2021',
     location: 'Munich, Germany',
     description: (
-      <ul className="">
+      <ul className="mt-4">
         <li>
           Developed a web application for managing and monitoring internal
           resources and services, resulting in a 30% reduction in downtime and
@@ -325,7 +348,7 @@ export const workExpierence = [
     dateTo: '2020',
     location: 'Munich, Germany',
     description: (
-      <ul className="">
+      <ul className="mt-4">
         <li>
           Designed and integrated parallel solutions for compute-intensive
           simulation applications. Evaluated the resulting performance benefits
@@ -347,7 +370,7 @@ export const workExpierence = [
     dateTo: '2019',
     location: 'Munich, Germany',
     description: (
-      <ul className="">
+      <ul className="mt-4">
         <li>
           Created a web application for real time monitoring and configuration
           of clock synchronization hardware.
