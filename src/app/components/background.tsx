@@ -8,7 +8,6 @@ export default function Background(props: {
 }) {
   const { workExpierence, workExpierenceActiveIndex } = props;
 
-  const [expand, setExpand] = useState(workExpierence.map((_: any) => false));
   useEffect(() => {}, [workExpierenceActiveIndex]);
   return (
     <div id="background ">
