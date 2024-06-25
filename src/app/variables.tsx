@@ -231,23 +231,27 @@ export const workExpierence = [
         dateFrom: 'Oct 2023',
         dateTo: 'now',
         techstack: [
+          'C++',
+          'SQL',
           'Java',
-          'Spring',
-          'Postgres',
-          'Kubernetes',
-          'OAuth2',
-          'Microservices',
+          'OLAP',
+          'Database Engineering',
+          'Performance Optimization',
+          'Distributed Systems',
         ],
         location: 'Munich, Germany',
         description: (
           <ul className="mt-4">
             <li>
-              Specialized in performance optimization for a proprietary OLAP
+              Addressing performance challenges across all layers of a
+              proprietary analytical database (OLAP), with primary focus on
+              horizontal scaling to meet growing data demands and performance
+              monitoring performance optimization for a proprietary OLAP
               analytical database.
             </li>
             <li>
-              Focused on scaling algorithms and performance monitoring to
-              enhance system efficiency.
+              My daily work includes root cause and algorithmic analysis,
+              debugging, and micro-optimizations.
             </li>
             <li>
               Achieved up to 50x performance improvements through targeted
@@ -283,6 +287,8 @@ export const workExpierence = [
           'Kubernetes',
           'OAuth2',
           'Microservices',
+          'Authentication',
+          'Security',
         ],
         location: 'Munich, Germany',
         description: (
@@ -313,7 +319,6 @@ export const workExpierence = [
     techstack: [
       'JavaScript',
       'React',
-      'Redux',
       'Node.js',
       'MongoDB',
       'GoLang',
