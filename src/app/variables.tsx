@@ -347,7 +347,7 @@ export const workExpierence = [
   {
     title: 'Research Assistant',
     company: 'Technical University Munich',
-    techstack: ['C/C++', 'Python', 'Boost', 'MPI', 'HPX', 'OpenMP'],
+    techstack: ['C++', 'Python', 'Boost', 'MPI', 'HPX', 'OpenMP'],
 
     dateFrom: '2019',
     dateTo: '2020',
