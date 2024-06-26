@@ -10,13 +10,13 @@ export default function Background(props: {
 
   useEffect(() => {}, [workExpierenceActiveIndex]);
   return (
-    <div id="background ">
+    <div id="background " className="px-8 w-screen">
       {workExpierence.map((step: any, index: number) => {
         if (step?.jobs) {
           return (
             <div
               className={
-                'w-[100vw] p-8 sm:w-[40vw] sm:pb-[8vh] mb-[2vh]  duration-300 ' +
+                'w-full sm:w-[40vw] sm:pb-[8vh]  mb-16 sm:mb-[2vh]  duration-300 ' +
                 (workExpierenceActiveIndex === index
                   ? 'opacity-100  blur-none  '
                   : 'sm:opacity-30 sm:blur-sm')
@@ -28,11 +28,11 @@ export default function Background(props: {
                 <div className="text-2xl sm:text-4xl font-inter font-semibold">
                   {step.company}
                 </div>
-                <div className="text-sm font-inter font-medium uppercase text-blue mb-10">
+                <div className="text-sm font-inter font-medium uppercase text-blue mb-4 sm:mb-10">
                   {step.title}
                 </div>
                 {step.jobs.map((s: any) => (
-                  <div className="mb-10" key={s.title}>
+                  <div className="mb-4 sm:mb-10" key={s.title}>
                     <div className="text-base sm:text-2xl font-inter font-semibold mb-4">
                       {s.title} | {s.dateFrom} - {s.dateTo}{' '}
                     </div>
@@ -63,7 +63,7 @@ export default function Background(props: {
         return (
           <div
             className={
-              'w-[100vw] p-8 sm:w-[40vw] sm:pb-[8vh] mb-[2vh] duration-300 ' +
+              'w-full sm:w-[40vw] sm:pb-[8vh]  mb-16 sm:mb[2vh] duration-300 ' +
               (workExpierenceActiveIndex === index
                 ? 'opacity-100 blur-none  '
                 : 'sm:opacity-30 sm:blur-sm')
@@ -75,7 +75,7 @@ export default function Background(props: {
               <div className="text-2xl sm:text-4xl font-inter font-semibold">
                 {step.company}
               </div>
-              <div className="text-sm font-inter font-medium uppercase text-blue mb-10">
+              <div className="text-sm font-inter font-medium uppercase text-blue mb-4 sm:mb-10">
                 {step.dateFrom} - {step.dateTo}{' '}
               </div>
               <div className="text-base sm:text-2xl font-inter font-semibold mb-4">
