@@ -277,16 +277,18 @@ export function App() {
       <div className="flex flex-row w-screen h-full">
         <div
           className={
-            'sticky top-0 left-[25%] -mt-[30vh] -translate-x-10 font-inter uppercase font-semibold overflow-hidden hidden sm:block'
+            'sticky top-0 left-[25%] -mt-[30vh] -translate-x-10 font-inter uppercase font-semibold'
           }
         >
-          <div
-            className={
-              'duration-500 ' +
-              (!timeline ? '-translate-y-10' : 'translate-y-0')
-            }
-          >
-            Timeline
+          <div className="overflow-hidden hidden sm:block">
+            <div
+              className={
+                'duration-500 ' +
+                (!timeline ? '-translate-y-10' : 'translate-y-0')
+              }
+            >
+              Timeline
+            </div>
           </div>
         </div>
         <div
