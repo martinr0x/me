@@ -43,7 +43,7 @@ export default function AcademicsPage() {
               <div className="text-white text-2xl font-inter font-semibold pb-5">
                 Research
                 <div className="text-white font-normal text-base pt-1">
-                  2019 - 2020 |{' '}
+                  2020 - 2019 |{' '}
                   <a className="font-semibold">TUM, Munich, Bavaria</a>
                 </div>
               </div>

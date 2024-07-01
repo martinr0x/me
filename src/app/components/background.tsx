@@ -34,7 +34,7 @@ export default function Background(props: {
                 {step.jobs.map((s: any) => (
                   <div className="mb-4 sm:mb-10" key={s.title}>
                     <div className="text-base sm:text-2xl font-inter font-semibold mb-4">
-                      {s.title} | {s.dateFrom} - {s.dateTo}{' '}
+                      {s.title} | {s.dateTo} - {s.dateFrom}
                     </div>
                     <div className="flex flex-row text-base font-raleway mb-1 flex-wrap">
                       {s.techstack.join(' \\ ')}
@@ -76,7 +76,7 @@ export default function Background(props: {
                 {step.company}
               </div>
               <div className="text-sm font-inter font-medium uppercase text-blue mb-4 sm:mb-10">
-                {step.dateFrom} - {step.dateTo}{' '}
+                {step.dateTo} - {step.dateFrom}
               </div>
               <div className="text-base sm:text-2xl font-inter font-semibold mb-4">
                 {step.title}
