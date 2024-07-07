@@ -246,8 +246,7 @@ export const workExpierence = [
               Addressing performance challenges across all layers of a
               proprietary analytical database (OLAP), with primary focus on
               horizontal scaling to meet growing data demands and performance
-              monitoring performance optimization for a proprietary OLAP
-              analytical database.
+              monitoring.
             </li>
             <li>
               My daily work includes root cause and algorithmic analysis,
@@ -258,8 +257,8 @@ export const workExpierence = [
               optimizations.
             </li>
             <li>
-              Developed an end-to-end benchmarking tool to measure and ensure
-              continuous performance gains.
+              Developed an end-to-end benchmarking framework to measure and
+              ensure continuous performance gains.
             </li>
             {/* <li>
               Addressing performance challenges across all layers of a
