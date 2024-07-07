@@ -10,7 +10,7 @@ export default function Background(props: {
 
   useEffect(() => {}, [workExpierenceActiveIndex]);
   return (
-    <div id="background " className="px-8 w-screen">
+    <div id="background " className="px-8 w-screen z-50">
       {workExpierence.map((step: any, index: number) => {
         if (step?.jobs) {
           return (

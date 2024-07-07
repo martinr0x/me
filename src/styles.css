@@ -46,6 +46,11 @@ summary::-webkit-details-marker {
 }
 
 
+#mobile-menu[open] {
+  background-color: #295B6D;
+}
+
 details[open] > summary > div>  span > svg {
   transform: rotate(180deg);
+  color:white;
 }

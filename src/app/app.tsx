@@ -5,6 +5,8 @@ import LoadingScreen from './loadingScreen';
 import CtaPage from './pages/ctaPage';
 import AcademicsPage from './pages/academicsPage';
 import Background from './components/background';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 export function App() {
   const refBackgroundDot: RefObject<HTMLDivElement> = useRef(null);
@@ -55,6 +57,8 @@ export function App() {
     const observer = new IntersectionObserver((o) => {
       setContactsVisible(!o[0].isIntersecting);
       setVisible(o[0].isIntersecting && loaded);
+      document.getElementById('mobile-menu').open =
+        document.getElementById('mobile-menu').open && o[0].isIntersecting;
     }, options);
     const intro = document.getElementById('intro');
     const cta = document.getElementById('call-to-action');
@@ -80,16 +84,13 @@ export function App() {
       />
       <div
         className={
-          'fixed top-0 right-0 duration-300 p-2 z-[99] w-full sm:w-0 flex flex-row-reverse ' +
+          'fixed top-0 right-0 duration-300 py-2 px-4 z-[99] w-full sm:w-0 flex flex-row-reverse ' +
           (contactsVisible
             ? 'translate-x-0 bg-white sm:bg-transparent'
             : 'translate-x-[100vw]')
         }
       >
         <Contacts />
-        {/* <div className="mx-4 font-inter font-semibold text-left w-1/2">
-          Background
-        </div> */}
       </div>
       <div
         id="intro"
@@ -99,6 +100,67 @@ export function App() {
       >
         <div className="flex flex-row text-center justify-center flex-grow  max-w-[100vw] w-[100vw] sm:w-[50vw]">
           <div className="flex flex-col justify-between  ">
+            <details
+              id="mobile-menu"
+              className="font-raleway text-base px-4 py-2 bg-white w-screen duration-500 ease-out sm:hidden"
+            >
+              <summary className="justify-center ">
+                <div className="font-semibold text-white text-right">
+                  <span>
+                    <FontAwesomeIcon
+                      className="text-xl text-blue duration-300 "
+                      icon={faBars}
+                    ></FontAwesomeIcon>
+                  </span>
+                </div>
+              </summary>
+              <div className="flex flex-col mb-6 text-white">
+                <button className="font-bold mb-1">About me</button>
+                <button
+                  className="mb-1"
+                  onClick={() => {
+                    document.getElementById('mobile-menu').open = false;
+                    document.getElementById('step-0')?.scrollIntoView({
+                      behavior: 'smooth',
+                      block: 'end',
+                      inline: 'nearest',
+                    });
+                    setWorkExpierenceActiveIndex(0);
+                  }}
+                >
+                  Background
+                </button>
+                <button
+                  className="mb-1"
+                  onClick={() => {
+                    document.getElementById('mobile-menu').open = false;
+
+                    document.getElementById('academia')?.scrollIntoView({
+                      behavior: 'smooth',
+                      block: 'end',
+                      inline: 'nearest',
+                    });
+                  }}
+                >
+                  Academia
+                </button>
+                <button
+                  onClick={() => {
+                    document.getElementById('mobile-menu').open = false;
+
+                    document.getElementById('call-to-action')?.scrollIntoView({
+                      behavior: 'smooth',
+                      block: 'end',
+                      inline: 'nearest',
+                    });
+                    setDotVisible(0);
+                  }}
+                >
+                  Contact
+                </button>
+              </div>
+            </details>
+
             <div className="mt-10 overflow-hidden hidden sm:block">
               <div
                 className={
