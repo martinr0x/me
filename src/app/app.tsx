@@ -57,8 +57,8 @@ export function App() {
     const observer = new IntersectionObserver((o) => {
       setContactsVisible(!o[0].isIntersecting);
       setVisible(o[0].isIntersecting && loaded);
-      document.getElementById('mobile-menu').open =
-        document.getElementById('mobile-menu').open && o[0].isIntersecting;
+      const dialog: any = document.getElementById('mobile-menu');
+      dialog.open = dialog.open && o[0].isIntersecting;
     }, options);
     const intro = document.getElementById('intro');
     const cta = document.getElementById('call-to-action');
@@ -68,6 +68,10 @@ export function App() {
       observer.observe(cta);
     }
   }, []);
+  const resetMobileDialog = () => {
+    const dialog: any = document.getElementById('mobile-menu');
+    dialog.open = false;
+  };
 
   return (
     <div
@@ -119,7 +123,8 @@ export function App() {
                 <button
                   className="mb-1"
                   onClick={() => {
-                    document.getElementById('mobile-menu').open = false;
+                    resetMobileDialog();
+
                     document.getElementById('step-0')?.scrollIntoView({
                       behavior: 'smooth',
                       block: 'end',
@@ -133,7 +138,7 @@ export function App() {
                 <button
                   className="mb-1"
                   onClick={() => {
-                    document.getElementById('mobile-menu').open = false;
+                    resetMobileDialog();
 
                     document.getElementById('academia')?.scrollIntoView({
                       behavior: 'smooth',
@@ -146,7 +151,7 @@ export function App() {
                 </button>
                 <button
                   onClick={() => {
-                    document.getElementById('mobile-menu').open = false;
+                    resetMobileDialog();
 
                     document.getElementById('call-to-action')?.scrollIntoView({
                       behavior: 'smooth',
