@@ -245,33 +245,19 @@ export const workExpierence = [
             <li>
               Addressing performance challenges across all layers of a
               proprietary analytical database (OLAP), with primary focus on
-              horizontal scaling to meet growing data demands and performance
-              monitoring.
+              scalability topics, to meet growing data demands of our customers.
             </li>
             <li>
               My daily work includes root cause and algorithmic analysis,
               debugging, and micro-optimizations.
             </li>
             <li>
-              Achieved up to 50x performance improvements through targeted
-              optimizations.
+              Leveraged recent database research to design and implement a scalable aggregation framework for large queries (1M+ groups), achieving up to 15x reduction in P99 execution time using C++ and TBB.
             </li>
             <li>
               Developed an end-to-end benchmarking framework to measure and
               ensure continuous performance gains.
             </li>
-            {/* <li>
-              Addressing performance challenges across all layers of a
-              proprietary analytical database (OLAP), with primary focus on
-              horizontal scaling to meet growing data demands and performance
-              monitoring. My daily work includes root cause and algorithmic
-              analysis, debugging, and micro-optimizations.
-            </li>
-            <li>
-              I contributed to building a micro-benchmarking infrastructure to
-              detect regressions and implemented several optimizations that
-              resulted in up to 50x performance improvements.
-            </li> */}
           </ul>
         ),
       },
@@ -293,18 +279,10 @@ export const workExpierence = [
         description: (
           <ul className="mt-4">
             <li>
-              Engineered and designed a robust system to facilitate scalable and
-              secure platform integration via OAuth2. Following its successful
-              launch, I provided guidance to several teams on adopting the new
-              system for product development. This initiative notably enhanced
-              the customer and developer experience, rendering application
-              integrations more scalable, secure, and enterprise-ready.
+              Designed, built and launched a microservice that enables scalable and secure application integrations using Java, Spring Boot, Kubernetes, Postgres and OAuth2
             </li>
             <li>
-              Contributed to enhancing the system's reliability and stability by
-              undertaking various projects and initiatives. Achieved a 90%
-              reduction in p90 latency for the API gateway by implementing a
-              series of optimizations and performance improvements.
+              Guided five teams in utilizing the service to build products and assisted them in designing the integration, accelerating the migration and resulting in 70% of applications migrated within the first 6 months
             </li>
           </ul>
         ),
