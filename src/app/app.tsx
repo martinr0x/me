@@ -146,6 +146,23 @@ export function App() {
         <meta name="description" content="Portfolio of Martin Bogusz, a passionate software engineer. Learn more about my background, academic achievements, and how to contact me." />
         <meta property="og:title" content="Martin Bogusz – Software Engineer" />
         <meta property="og:description" content="Portfolio of Martin Bogusz, a passionate software engineer. Learn more about my background, academic achievements, and how to contact me." />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "Person",
+              "name": "Martin Bogusz",
+              "jobTitle": "Software Engineer",
+              "url": "https://martin.bogusz.dev",
+              "image": "https://martin.bogusz.dev/portrait-martin2.jpg",
+              "sameAs": [
+                "https://www.linkedin.com/in/martinbogusz/",
+                "https://github.com/martinr0x"
+              ]
+            }
+          `}
+        </script>
       </Helmet>
       <div
         className={
