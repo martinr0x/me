@@ -11,7 +11,6 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 export function App() {
   const refBackgroundDot: RefObject<HTMLDivElement> = useRef(null);
   const refBackgroundTimeline: RefObject<HTMLDivElement> = useRef(null);
-
   const [workExpierenceActiveIndex, setWorkExpierenceActiveIndex] =
     useState(-1);
   const [dotVisible, setDotVisible] = useState(100);
@@ -27,26 +26,32 @@ export function App() {
   };
   const handleScroll = (x: any) => {
     const yDot = refBackgroundDot.current?.getBoundingClientRect().y;
-    const yLine = refBackgroundTimeline?.current?.getBoundingClientRect().y;
-    const yHeight =
-      refBackgroundTimeline?.current?.getBoundingClientRect().height;
+    if (!yDot) return;
 
-    if (!yDot || !yLine || !yHeight) return;
+    const rect = refBackgroundTimeline.current?.getBoundingClientRect();
+    if (!rect || !yDot) return;
 
-    setWorkExpierenceActiveIndex(
-      workExpierence.findIndex((_, index) => {
-        const step = document.getElementById(`step-${index}`);
-        if (!step) return false;
-        const { y, height } = step.getBoundingClientRect();
+    const { y: yLine, height: yHeight } = rect;
+      
+    const newWorkExpierenceActiveIndex = workExpierence.findIndex((_, index) => {
+      const step = document.getElementById(`step-${index}`);
+      if (!step) return false;
+      const { y, height } = step.getBoundingClientRect();
 
-        return yDot > y && yDot < y + height;
-      })
-    );
+      return yDot > y && yDot < y + height;
+    });
+
+    if (newWorkExpierenceActiveIndex !== workExpierenceActiveIndex) {
+      setWorkExpierenceActiveIndex(newWorkExpierenceActiveIndex);
+    } 
+    
     const newTimeline = Math.abs(yLine - yDot) > 10;
     if (timeline !== newTimeline) {
       setTimeline(newTimeline);
     }
-    setDotVisible(yLine + yHeight - yDot);
+    if (dotVisible !== yLine + yHeight - yDot) {
+      setDotVisible(yLine + yHeight - yDot);
+    }
   };
   useEffect(() => {
     const options = {
@@ -350,12 +355,6 @@ export function App() {
         <div className="min-w-[35%] hidden sm:block"></div>
         <div className="flex flex-col">
           <div className="h-[20vh] min-h-[30vh]"></div>
-
-          {/* <div className="font-raleway text-6xl w-full text-left">
-            Background
-          </div> */}
-          {/* <div className="h-[20vh] min-h-[20vh]"></div> */}
-
           <Background
             workExpierenceActiveIndex={workExpierenceActiveIndex}
             workExpierence={workExpierence}
