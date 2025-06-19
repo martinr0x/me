@@ -1,0 +1,5 @@
+User-agent: *
+Disallow:
+
+# Uncomment the next line if you have a sitemap
+# Sitemap: https://yourdomain.com/sitemap.xml 
