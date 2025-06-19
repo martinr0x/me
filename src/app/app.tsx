@@ -11,6 +11,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 export function App() {
   const refBackgroundDot: RefObject<HTMLDivElement> = useRef(null);
   const refBackgroundTimeline: RefObject<HTMLDivElement> = useRef(null);
+
   const [workExpierenceActiveIndex, setWorkExpierenceActiveIndex] =
     useState(-1);
   const [dotVisible, setDotVisible] = useState(100);
