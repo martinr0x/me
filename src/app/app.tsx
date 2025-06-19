@@ -1,4 +1,4 @@
-import { RefObject, useEffect, useRef, useState } from 'react';
+import { RefObject, useEffect, useRef, useState, useCallback } from 'react';
 import { softwareEngineeringTerms, workExpierence } from './variables';
 import Contacts from './contacts';
 import LoadingScreen from './loadingScreen';
@@ -73,6 +73,65 @@ export function App() {
     dialog.open = false;
   };
 
+  // Navigation handlers (memoized)
+  const handleAboutMeClick = useCallback(() => {}, []);
+
+  const handleBackgroundClick = useCallback(() => {
+    resetMobileDialog();
+    document.getElementById('step-0')?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'end',
+      inline: 'nearest',
+    });
+    setWorkExpierenceActiveIndex(0);
+  }, [resetMobileDialog]);
+
+  const handleAcademiaClick = useCallback(() => {
+    resetMobileDialog();
+    document.getElementById('academia')?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'end',
+      inline: 'nearest',
+    });
+  }, [resetMobileDialog]);
+
+  const handleContactClick = useCallback(() => {
+    resetMobileDialog();
+    document.getElementById('call-to-action')?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'end',
+      inline: 'nearest',
+    });
+    setDotVisible(0);
+  }, [resetMobileDialog]);
+
+  // Desktop nav handlers (no resetMobileDialog)
+  const handleBackgroundClickDesktop = useCallback(() => {
+    document.getElementById('step-0')?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'end',
+      inline: 'nearest',
+    });
+    setWorkExpierenceActiveIndex(0);
+  }, []);
+
+  const handleAcademiaClickDesktop = useCallback(() => {
+    document.getElementById('academia')?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'end',
+      inline: 'nearest',
+    });
+  }, []);
+
+  const handleContactClickDesktop = useCallback(() => {
+    document.getElementById('call-to-action')?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'end',
+      inline: 'nearest',
+    });
+    setDotVisible(0);
+  }, []);
+
   return (
     <div
       className={
@@ -119,50 +178,10 @@ export function App() {
                 </div>
               </summary>
               <div className="flex flex-col mb-6 text-white">
-                <button className="font-bold mb-1">About me</button>
-                <button
-                  className="mb-1"
-                  onClick={() => {
-                    resetMobileDialog();
-
-                    document.getElementById('step-0')?.scrollIntoView({
-                      behavior: 'smooth',
-                      block: 'end',
-                      inline: 'nearest',
-                    });
-                    setWorkExpierenceActiveIndex(0);
-                  }}
-                >
-                  Background
-                </button>
-                <button
-                  className="mb-1"
-                  onClick={() => {
-                    resetMobileDialog();
-
-                    document.getElementById('academia')?.scrollIntoView({
-                      behavior: 'smooth',
-                      block: 'end',
-                      inline: 'nearest',
-                    });
-                  }}
-                >
-                  Academia
-                </button>
-                <button
-                  onClick={() => {
-                    resetMobileDialog();
-
-                    document.getElementById('call-to-action')?.scrollIntoView({
-                      behavior: 'smooth',
-                      block: 'end',
-                      inline: 'nearest',
-                    });
-                    setDotVisible(0);
-                  }}
-                >
-                  Contact
-                </button>
+                <button className="font-bold mb-1" onClick={handleAboutMeClick}>About me</button>
+                <button className="mb-1" onClick={handleBackgroundClick}>Background</button>
+                <button className="mb-1" onClick={handleAcademiaClick}>Academia</button>
+                <button onClick={handleContactClick}>Contact</button>
               </div>
             </details>
 
@@ -173,45 +192,10 @@ export function App() {
                   (visible || '-translate-y-16')
                 }
               >
-                <button className="mr-8 font-bold">About me</button>
-                <button
-                  className="mr-8"
-                  onClick={() => {
-                    document.getElementById('step-0')?.scrollIntoView({
-                      behavior: 'smooth',
-                      block: 'end',
-                      inline: 'nearest',
-                    });
-                    setWorkExpierenceActiveIndex(0);
-                  }}
-                >
-                  Background
-                </button>
-                <button
-                  className="mr-8"
-                  onClick={() => {
-                    document.getElementById('academia')?.scrollIntoView({
-                      behavior: 'smooth',
-                      block: 'end',
-                      inline: 'nearest',
-                    });
-                  }}
-                >
-                  Academia
-                </button>
-                <button
-                  className=""
-                  onClick={() => {
-                    document.getElementById('call-to-action')?.scrollIntoView({
-                      behavior: 'smooth',
-                      block: 'end',
-                      inline: 'nearest',
-                    });
-                    setDotVisible(0);
-                  }}
-                >
-                  Contact
-                </button>
+                <button className="mr-8 font-bold" onClick={handleAboutMeClick}>About me</button>
+                <button className="mr-8" onClick={handleBackgroundClickDesktop}>Background</button>
+                <button className="mr-8" onClick={handleAcademiaClickDesktop}>Academia</button>
+                <button className="" onClick={handleContactClickDesktop}>Contact</button>
               </div>
             </div>
             <div
